@@ -1,0 +1,23 @@
+{
+  "runId": "repro-first--04-email-regex-vs-superpowers-debugging-t5",
+  "skillId": "repro-first",
+  "taskId": "04-email-regex",
+  "condition": "vs-superpowers-debugging",
+  "trial": 5,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T14:02:56.777Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": false,
+  "locAddedSrc": 1,
+  "locAddedTest": 6,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 2,
+  "trapsTriggered": [],
+  "numTurns": 9,
+  "totalCostUsd": 0.31024299999999994,
+  "durationMs": 49911
+}

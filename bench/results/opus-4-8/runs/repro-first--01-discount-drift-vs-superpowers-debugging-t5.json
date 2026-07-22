@@ -1,0 +1,23 @@
+{
+  "runId": "repro-first--01-discount-drift-vs-superpowers-debugging-t5",
+  "skillId": "repro-first",
+  "taskId": "01-discount-drift",
+  "condition": "vs-superpowers-debugging",
+  "trial": 5,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T13:58:22.775Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": false,
+  "locAddedSrc": 3,
+  "locAddedTest": 10,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 3,
+  "trapsTriggered": [],
+  "numTurns": 13,
+  "totalCostUsd": 0.36241949999999995,
+  "durationMs": 65568
+}

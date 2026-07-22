@@ -68,6 +68,8 @@ verified-repro rate: **on 10/20 runs vs off 2/20 vs placebo 0/20**. Hold-out acc
 | 03-cache-key-leak | 0 | 0 | 1 | 5/5 · 5/5 · 5/5 |
 | 04-email-regex | 0 | 0 | 0 | 5/5 · 5/5 · 5/5 |
 
+> Comparison arm **vs-superpowers-debugging** (vendored ruleset — same tasks, model, harness, and gates; trial count may differ from the primary arms; never part of admission): verified-repro rate median 0.5, acceptance 20/20, 20 runs. See docs/audits/superpowers-debugging.md.
+
 ### ✅ underkill — admitted
 
 src LOC added: **-23.8% vs baseline**, **-36% vs placebo** (medians 10.5 / 12.5 / 8). Hold-out acceptance: off 60/60, placebo 60/60, on 60/60. 180 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $22.69.

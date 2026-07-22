@@ -1,0 +1,56 @@
+diff --git a/src/userService.js b/src/userService.js
+index 2f5239c..f482c7d 100644
+--- a/src/userService.js
++++ b/src/userService.js
+@@ -7,7 +7,7 @@ export function makeUserService(loadUsers) {
+   const cache = createCache(60_000);
+   return {
+     async getUsers(opts) {
+-      const key = `users:${opts.team}`;
++      const key = `users:${opts.team}:${opts.includeArchived ? 1 : 0}`;
+       const hit = cache.get(key);
+       if (hit !== undefined) return hit;
+       const users = await loadUsers(opts);
+diff --git a/test/userService.test.js b/test/userService.test.js
+new file mode 100644
+index 0000000..92e2458
+--- /dev/null
++++ b/test/userService.test.js
+@@ -0,0 +1,37 @@
++import { describe, expect, it } from "vitest";
++import { makeUserService } from "../src/userService.js";
++
++describe("makeUserService.getUsers", () => {
++  it("does not serve archived users to a caller that excluded them", async () => {
++    const loadUsers = async ({ includeArchived }) =>
++      includeArchived ? ["alice", "bob(archived)"] : ["alice"];
++
++    const service = makeUserService(loadUsers);
++
++    // An admin view warms the cache including archived users.
++    const withArchived = await service.getUsers({
++      team: "eng",
++      includeArchived: true,
++    });
++    expect(withArchived).toEqual(["alice", "bob(archived)"]);
++
++    // The people picker asks for the same team WITHOUT archived users.
++    const pickerUsers = await service.getUsers({
++      team: "eng",
++      includeArchived: false,
++    });
++    expect(pickerUsers).toEqual(["alice"]);
++  });
++
++  it("still caches within the same opts", async () => {
++    let calls = 0;
++    const loadUsers = async () => {
++      calls += 1;
++      return ["alice"];
++    };
++    const service = makeUserService(loadUsers);
++    await service.getUsers({ team: "eng", includeArchived: false });
++    await service.getUsers({ team: "eng", includeArchived: false });
++    expect(calls).toBe(1);
++  });
++});

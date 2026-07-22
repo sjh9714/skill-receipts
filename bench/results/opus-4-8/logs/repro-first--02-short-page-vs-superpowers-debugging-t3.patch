@@ -1,0 +1,48 @@
+diff --git a/src/paginate.js b/src/paginate.js
+index 4444bbf..85fddd1 100644
+--- a/src/paginate.js
++++ b/src/paginate.js
+@@ -2,5 +2,5 @@
+ // The last page may be short; a page past the end yields empty items.
+ export function paginate(all, page, size) {
+   const start = (page - 1) * size;
+-  return { items: all.slice(start, start + size - 1), total: all.length };
++  return { items: all.slice(start, start + size), total: all.length };
+ }
+diff --git a/test/summary.test.js b/test/summary.test.js
+index 097585c..ed37bd0 100644
+--- a/test/summary.test.js
++++ b/test/summary.test.js
+@@ -1,8 +1,32 @@
+ import { describe, expect, it } from "vitest";
+ import { rangeLabel } from "../src/summary.js";
++import { paginate } from "../src/paginate.js";
+ 
+ describe("rangeLabel", () => {
+   it("labels a middle page", () => {
+     expect(rangeLabel(2, 10, 35)).toBe("showing 11-20 of 35");
+   });
+ });
++
++describe("paginate", () => {
++  const all = Array.from({ length: 23 }, (_, i) => i + 1);
++
++  it("returns a full page of `size` rows", () => {
++    const { items, total } = paginate(all, 1, 10);
++    expect(items).toHaveLength(10);
++    expect(items[0]).toBe(1);
++    expect(items[9]).toBe(10);
++    expect(total).toBe(23);
++  });
++
++  it("row count matches the range label", () => {
++    const { items } = paginate(all, 1, 10);
++    expect(rangeLabel(1, 10, 23)).toBe("showing 1-10 of 23");
++    expect(items).toHaveLength(10);
++  });
++
++  it("returns the short final page", () => {
++    const { items } = paginate(all, 3, 10);
++    expect(items).toEqual([21, 22, 23]);
++  });
++});

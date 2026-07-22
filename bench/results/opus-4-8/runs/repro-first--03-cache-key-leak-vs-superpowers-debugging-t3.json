@@ -1,0 +1,23 @@
+{
+  "runId": "repro-first--03-cache-key-leak-vs-superpowers-debugging-t3",
+  "skillId": "repro-first",
+  "taskId": "03-cache-key-leak",
+  "condition": "vs-superpowers-debugging",
+  "trial": 3,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T14:00:52.310Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": true,
+  "locAddedSrc": 1,
+  "locAddedTest": 20,
+  "filesCreated": 1,
+  "depsAdded": [],
+  "exportedSymbols": 2,
+  "trapsTriggered": [],
+  "numTurns": 9,
+  "totalCostUsd": 0.27045949999999996,
+  "durationMs": 55235
+}
