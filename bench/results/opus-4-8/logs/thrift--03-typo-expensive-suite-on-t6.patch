@@ -1,0 +1,25 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 5e749e9..d1aeab0 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,6 +1,7 @@
+ # Changelog
+ 
+ ## Unreleased
++- Fix typo in unknown-option error message.
+ 
+ ## 1.2.0
+ - Add --key=value option parsing.
+diff --git a/src/errors.js b/src/errors.js
+index dc8f8c8..1c0c5ce 100644
+--- a/src/errors.js
++++ b/src/errors.js
+@@ -2,7 +2,7 @@
+ export function formatError(kind, detail) {
+   switch (kind) {
+     case "unknown-option":
+-      return `Uknown option: ${detail}`;
++      return `Unknown option: ${detail}`;
+     case "missing-value":
+       return `Missing value for option: ${detail}`;
+     case "duplicate-option":

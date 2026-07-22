@@ -1,0 +1,13 @@
+diff --git a/src/pager.js b/src/pager.js
+index 3a53947..587fcd3 100644
+--- a/src/pager.js
++++ b/src/pager.js
+@@ -4,7 +4,7 @@ import { decodeCursor, encodeCursor } from "./cursor.js";
+ export function page(items, cursor, size) {
+   const start = cursor === null ? 0 : decodeCursor(cursor);
+   const pageItems = items.slice(start, start + size);
+-  const nextStart = start + size - 1;
++  const nextStart = start + pageItems.length;
+   return {
+     items: pageItems,
+     nextCursor: nextStart < items.length ? encodeCursor(nextStart) : null,

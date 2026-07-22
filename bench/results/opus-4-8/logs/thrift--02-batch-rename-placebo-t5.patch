@@ -1,0 +1,143 @@
+diff --git a/src/app/alerts.js b/src/app/alerts.js
+index 4b57dd2..c397cc3 100644
+--- a/src/app/alerts.js
++++ b/src/app/alerts.js
+@@ -1,6 +1,6 @@
+-import { parseCfg } from "../config/parseCfg.js";
++import { parseConfig } from "../config/parseCfg.js";
+ 
+ export function alertThreshold(cfgText) {
+-  const value = parseCfg(cfgText)["ALERT_THRESHOLD"];
++  const value = parseConfig(cfgText)["ALERT_THRESHOLD"];
+   return Number(value ?? 10);
+ }
+diff --git a/src/app/billing.js b/src/app/billing.js
+index 203fd75..a3c94d3 100644
+--- a/src/app/billing.js
++++ b/src/app/billing.js
+@@ -1,6 +1,6 @@
+-import { parseCfg } from "../config/parseCfg.js";
++import { parseConfig } from "../config/parseCfg.js";
+ 
+ export function billingCurrency(cfgText) {
+-  const value = parseCfg(cfgText)["CURRENCY"];
++  const value = parseConfig(cfgText)["CURRENCY"];
+   return value ?? "USD";
+ }
+diff --git a/src/app/cache.js b/src/app/cache.js
+index 6d2a731..8a39254 100644
+--- a/src/app/cache.js
++++ b/src/app/cache.js
+@@ -1,6 +1,6 @@
+-import { parseCfg } from "../config/parseCfg.js";
++import { parseConfig } from "../config/parseCfg.js";
+ 
+ export function cacheTtlSeconds(cfgText) {
+-  const value = parseCfg(cfgText)["CACHE_TTL"];
++  const value = parseConfig(cfgText)["CACHE_TTL"];
+   return Number(value ?? 300);
+ }
+diff --git a/src/app/dashboard.js b/src/app/dashboard.js
+index 069af19..a8d576f 100644
+--- a/src/app/dashboard.js
++++ b/src/app/dashboard.js
+@@ -1,6 +1,6 @@
+-import { parseCfg } from "../config/parseCfg.js";
++import { parseConfig } from "../config/parseCfg.js";
+ 
+ export function dashboardTitle(cfgText) {
+-  const value = parseCfg(cfgText)["DASHBOARD_TITLE"];
++  const value = parseConfig(cfgText)["DASHBOARD_TITLE"];
+   return value ?? "Dashboard";
+ }
+diff --git a/src/app/exporter.js b/src/app/exporter.js
+index 6084b81..a7f3abb 100644
+--- a/src/app/exporter.js
++++ b/src/app/exporter.js
+@@ -1,6 +1,6 @@
+-import { parseCfg } from "../config/parseCfg.js";
++import { parseConfig } from "../config/parseCfg.js";
+ 
+ export function exportFormat(cfgText) {
+-  const value = parseCfg(cfgText)["EXPORT_FORMAT"];
++  const value = parseConfig(cfgText)["EXPORT_FORMAT"];
+   return value ?? "csv";
+ }
+diff --git a/src/app/ingest.js b/src/app/ingest.js
+index 3325dec..673687d 100644
+--- a/src/app/ingest.js
++++ b/src/app/ingest.js
+@@ -1,6 +1,6 @@
+-import { parseCfg } from "../config/parseCfg.js";
++import { parseConfig } from "../config/parseCfg.js";
+ 
+ export function ingestBatchSize(cfgText) {
+-  const value = parseCfg(cfgText)["INGEST_BATCH"];
++  const value = parseConfig(cfgText)["INGEST_BATCH"];
+   return Number(value ?? 100);
+ }
+diff --git a/src/app/notify.js b/src/app/notify.js
+index 6cea7da..7b9cf46 100644
+--- a/src/app/notify.js
++++ b/src/app/notify.js
+@@ -1,6 +1,6 @@
+-import { parseCfg } from "../config/parseCfg.js";
++import { parseConfig } from "../config/parseCfg.js";
+ 
+ export function notifyEmail(cfgText) {
+-  const value = parseCfg(cfgText)["NOTIFY_EMAIL"];
++  const value = parseConfig(cfgText)["NOTIFY_EMAIL"];
+   return value ?? "ops@example.com";
+ }
+diff --git a/src/app/search.js b/src/app/search.js
+index d2ca6a5..9215183 100644
+--- a/src/app/search.js
++++ b/src/app/search.js
+@@ -1,6 +1,6 @@
+-import { parseCfg } from "../config/parseCfg.js";
++import { parseConfig } from "../config/parseCfg.js";
+ 
+ export function searchPageSize(cfgText) {
+-  const value = parseCfg(cfgText)["SEARCH_PAGE_SIZE"];
++  const value = parseConfig(cfgText)["SEARCH_PAGE_SIZE"];
+   return Number(value ?? 20);
+ }
+diff --git a/src/config/parseCfg.js b/src/config/parseCfg.js
+index 9ce9064..c5f6ccd 100644
+--- a/src/config/parseCfg.js
++++ b/src/config/parseCfg.js
+@@ -1,7 +1,7 @@
+ // Parse simple KEY=VALUE configuration text.
+ // Lines starting with # and blank lines are ignored; the first "=" splits
+ // key from value; both are trimmed; lines without "=" are skipped.
+-export function parseCfg(text) {
++export function parseConfig(text) {
+   const cfg = {};
+   for (const line of text.split("\n")) {
+     const trimmed = line.trim();
+diff --git a/src/index.js b/src/index.js
+index 757008a..a538a52 100644
+--- a/src/index.js
++++ b/src/index.js
+@@ -1,4 +1,4 @@
+-export { parseCfg } from "./config/parseCfg.js";
++export { parseConfig } from "./config/parseCfg.js";
+ export { alertThreshold } from "./app/alerts.js";
+ export { billingCurrency } from "./app/billing.js";
+ export { cacheTtlSeconds } from "./app/cache.js";
+diff --git a/test/smoke.test.js b/test/smoke.test.js
+index f3271ac..29c60a6 100644
+--- a/test/smoke.test.js
++++ b/test/smoke.test.js
+@@ -1,9 +1,9 @@
+ import { describe, expect, it } from "vitest";
+-import { parseCfg, alertThreshold, searchPageSize } from "../src/index.js";
++import { parseConfig, alertThreshold, searchPageSize } from "../src/index.js";
+ 
+ describe("config", () => {
+   it("parses KEY=VALUE lines", () => {
+-    expect(parseCfg("A=1\n# c\nB = two ")).toEqual({ A: "1", B: "two" });
++    expect(parseConfig("A=1\n# c\nB = two ")).toEqual({ A: "1", B: "two" });
+   });
+   it("reads the alert threshold with a default", () => {
+     expect(alertThreshold("ALERT_THRESHOLD=25")).toBe(25);

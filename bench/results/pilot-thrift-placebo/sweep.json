@@ -1,0 +1,22 @@
+{
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "startedAt": "2026-07-22T12:02:44.116Z",
+  "args": {
+    "model": "claude-opus-4-8",
+    "trials": 2,
+    "skills": [
+      "thrift"
+    ],
+    "tasks": [
+      "01-haystack-bugfix",
+      "03-typo-expensive-suite"
+    ],
+    "sweep": "pilot-thrift-placebo",
+    "budgetUsd": 6,
+    "conditions": [
+      "off",
+      "placebo"
+    ]
+  }
+}

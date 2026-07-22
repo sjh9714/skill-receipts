@@ -78,6 +78,19 @@ mutant kill rate: **-5.6% vs baseline**, **-5.6% vs placebo** (medians 1 / 1 / 0
 | 02-cart-pricing | 1 | 1 | 1 | 5/5 · 5/5 · 5/5 |
 | 03-query-string | 0.889 | 0.889 | 0.889 | 5/5 · 5/5 · 5/5 |
 | 04-rate-limiter | 1 | 1 | 1 | 1/5 · 0/5 · 5/5 |
+
+### ❌ thrift — rejected: does not beat baseline on cost per run (USD) (0.168 vs 0.163)
+
+cost per run (USD): **+3.3% vs baseline**, **-3.5% vs placebo** (medians 0.163 / 0.174 / 0.168). Hold-out acceptance: off 32/32, placebo 32/32, on 32/32. 96 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $25.00.
+
+| task | off | placebo | on (thrift) | pass off/placebo/on |
+|---|---|---|---|---|
+| 01-haystack-bugfix | 0.171 | 0.19 | 0.164 | 8/8 · 8/8 · 8/8 |
+| 02-batch-rename | 0.625 | 0.56 | 0.607 | 8/8 · 8/8 · 8/8 |
+| 03-typo-expensive-suite | 0.119 | 0.125 | 0.127 | 8/8 · 8/8 · 8/8 |
+| 04-pager-contract | 0.155 | 0.158 | 0.172 | 8/8 · 8/8 · 8/8 |
+
+> Comparison arm **vs-caveman** (vendored ruleset, identical protocol, not part of admission): cost per run (USD) median 0.183, acceptance 20/20, 20 runs.
 <!-- BENCH:END -->
 
 ## Methodology

@@ -1,0 +1,23 @@
+{
+  "runId": "thrift--01-haystack-bugfix-on-t8",
+  "skillId": "thrift",
+  "taskId": "01-haystack-bugfix",
+  "condition": "on",
+  "trial": 8,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T12:07:32.612Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 1,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 94,
+  "trapsTriggered": [],
+  "numTurns": 6,
+  "totalCostUsd": 0.1650965,
+  "durationMs": 22614
+}

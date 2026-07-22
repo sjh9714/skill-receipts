@@ -1,0 +1,12 @@
+diff --git a/src/orders/total.js b/src/orders/total.js
+index 46cc6c8..8a3e0d7 100644
+--- a/src/orders/total.js
++++ b/src/orders/total.js
+@@ -10,6 +10,6 @@ export function orderTotalCents(order) {
+   }
+   const discount = discountCents(subtotalCents, order.discountCode);
+   const discounted = subtotalCents - discount;
+-  const tax = Math.round(subtotalCents * taxRate(order.region));
++  const tax = Math.round(discounted * taxRate(order.region));
+   return discounted + tax;
+ }
