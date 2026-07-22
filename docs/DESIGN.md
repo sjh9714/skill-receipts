@@ -101,6 +101,19 @@ tests-that-bite = mutant kill rate; thrift = cost/turns;
 repro-first = wrong-fix rate + repro-verified compliance (owns
 `touches-outside` as secondary).
 
+## Audit #3 — pre-registration (committed before any run)
+
+Target: **obra/superpowers `systematic-debugging`** (259k-star collection,
+MIT), vendored verbatim at v6.1.1 commit d884ae0 as the
+`vs-superpowers-debugging` arm on **repro-first's 4 misdiagnosis tasks**,
+`claude-opus-4-8`, K=5 (20 runs), same hold-out gates. This was named as the
+natural comparison in the roster review: the skill's own Iron Law ("no fixes
+without root cause investigation first", write failing tests before fixes)
+makes verified-repro rate and hold-out accuracy exactly its claim territory.
+Published win-or-lose, like every audit. Metrics reported: repro-verified
+rate, accuracy, cost/turns/test-LOC vs the existing off/placebo/on arms.
+Budget note: ~$6, bringing the launch-window total to ≈$99 of the $100 cap.
+
 ## Known limitations (updated as receipts land)
 
 - **Kill-rate ceiling (tests-that-bite).** The no-skill baseline killed 100%
