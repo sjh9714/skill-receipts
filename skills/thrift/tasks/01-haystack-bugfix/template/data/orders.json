@@ -1,0 +1,6217 @@
+[
+  {
+    "id": "ORD-J00000",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-0-0",
+        "unitCents": 7291,
+        "qty": 4
+      },
+      {
+        "sku": "J-0-1",
+        "unitCents": 8943,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-01-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00001",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-1-0",
+        "unitCents": 9538,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-05-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00002",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-2-0",
+        "unitCents": 8640,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00003",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-3-0",
+        "unitCents": 7099,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00004",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-4-0",
+        "unitCents": 6921,
+        "qty": 7
+      },
+      {
+        "sku": "J-4-1",
+        "unitCents": 2544,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00005",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-5-0",
+        "unitCents": 3792,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-06-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00006",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-6-0",
+        "unitCents": 6924,
+        "qty": 9
+      },
+      {
+        "sku": "J-6-1",
+        "unitCents": 8783,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-04-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00007",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-7-0",
+        "unitCents": 1395,
+        "qty": 8
+      },
+      {
+        "sku": "J-7-1",
+        "unitCents": 6179,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-05-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00008",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-8-0",
+        "unitCents": 747,
+        "qty": 2
+      },
+      {
+        "sku": "J-8-1",
+        "unitCents": 3182,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00009",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-9-0",
+        "unitCents": 351,
+        "qty": 4
+      },
+      {
+        "sku": "J-9-1",
+        "unitCents": 3213,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-06-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00010",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-10-0",
+        "unitCents": 4021,
+        "qty": 9
+      },
+      {
+        "sku": "J-10-1",
+        "unitCents": 5369,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00011",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-11-0",
+        "unitCents": 4385,
+        "qty": 6
+      },
+      {
+        "sku": "J-11-1",
+        "unitCents": 8501,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-04-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00012",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-12-0",
+        "unitCents": 3428,
+        "qty": 6
+      },
+      {
+        "sku": "J-12-1",
+        "unitCents": 5226,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-01-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00013",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-13-0",
+        "unitCents": 4372,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00014",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-14-0",
+        "unitCents": 2597,
+        "qty": 4
+      },
+      {
+        "sku": "J-14-1",
+        "unitCents": 5504,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00015",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-15-0",
+        "unitCents": 4316,
+        "qty": 8
+      },
+      {
+        "sku": "J-15-1",
+        "unitCents": 8137,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-02-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00016",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-16-0",
+        "unitCents": 3115,
+        "qty": 9
+      },
+      {
+        "sku": "J-16-1",
+        "unitCents": 1062,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-01-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00017",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-17-0",
+        "unitCents": 6856,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00018",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-18-0",
+        "unitCents": 3683,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00019",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-19-0",
+        "unitCents": 357,
+        "qty": 1
+      },
+      {
+        "sku": "J-19-1",
+        "unitCents": 8819,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00020",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-20-0",
+        "unitCents": 380,
+        "qty": 9
+      },
+      {
+        "sku": "J-20-1",
+        "unitCents": 7154,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00021",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-21-0",
+        "unitCents": 3244,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00022",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-22-0",
+        "unitCents": 6212,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00023",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-23-0",
+        "unitCents": 1420,
+        "qty": 1
+      },
+      {
+        "sku": "J-23-1",
+        "unitCents": 1631,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00024",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-24-0",
+        "unitCents": 254,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00025",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-25-0",
+        "unitCents": 8753,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-02-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00026",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-26-0",
+        "unitCents": 862,
+        "qty": 2
+      },
+      {
+        "sku": "J-26-1",
+        "unitCents": 4693,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00027",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-27-0",
+        "unitCents": 3494,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00028",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-28-0",
+        "unitCents": 9339,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-05-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00029",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-29-0",
+        "unitCents": 2392,
+        "qty": 2
+      },
+      {
+        "sku": "J-29-1",
+        "unitCents": 8304,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-01-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00030",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-30-0",
+        "unitCents": 5680,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-03-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00031",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-31-0",
+        "unitCents": 8138,
+        "qty": 4
+      },
+      {
+        "sku": "J-31-1",
+        "unitCents": 5929,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00032",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-32-0",
+        "unitCents": 4939,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00033",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-33-0",
+        "unitCents": 6325,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00034",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-34-0",
+        "unitCents": 1599,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-03-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00035",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-35-0",
+        "unitCents": 2270,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-02-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00036",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-36-0",
+        "unitCents": 530,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00037",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-37-0",
+        "unitCents": 302,
+        "qty": 5
+      },
+      {
+        "sku": "J-37-1",
+        "unitCents": 6879,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-01-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00038",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-38-0",
+        "unitCents": 2877,
+        "qty": 3
+      },
+      {
+        "sku": "J-38-1",
+        "unitCents": 4505,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-03-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00039",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-39-0",
+        "unitCents": 7221,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00040",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-40-0",
+        "unitCents": 4223,
+        "qty": 4
+      },
+      {
+        "sku": "J-40-1",
+        "unitCents": 8223,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00041",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-41-0",
+        "unitCents": 6583,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-05-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00042",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-42-0",
+        "unitCents": 7155,
+        "qty": 3
+      },
+      {
+        "sku": "J-42-1",
+        "unitCents": 5022,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-05-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00043",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-43-0",
+        "unitCents": 6624,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-03-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00044",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-44-0",
+        "unitCents": 6261,
+        "qty": 5
+      },
+      {
+        "sku": "J-44-1",
+        "unitCents": 6537,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-01-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00045",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-45-0",
+        "unitCents": 7663,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00046",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-46-0",
+        "unitCents": 8280,
+        "qty": 3
+      },
+      {
+        "sku": "J-46-1",
+        "unitCents": 5061,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-03-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00047",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-47-0",
+        "unitCents": 1311,
+        "qty": 8
+      },
+      {
+        "sku": "J-47-1",
+        "unitCents": 9896,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-05-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00048",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-48-0",
+        "unitCents": 5990,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00049",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-49-0",
+        "unitCents": 2825,
+        "qty": 1
+      },
+      {
+        "sku": "J-49-1",
+        "unitCents": 9327,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-03-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00050",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-50-0",
+        "unitCents": 4339,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-05-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00051",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-51-0",
+        "unitCents": 6229,
+        "qty": 7
+      },
+      {
+        "sku": "J-51-1",
+        "unitCents": 7686,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00052",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-52-0",
+        "unitCents": 4940,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-01-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00053",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-53-0",
+        "unitCents": 5210,
+        "qty": 6
+      },
+      {
+        "sku": "J-53-1",
+        "unitCents": 7560,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-05-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00054",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-54-0",
+        "unitCents": 7278,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-03-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00055",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-55-0",
+        "unitCents": 470,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-06-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00056",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-56-0",
+        "unitCents": 8554,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00057",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-57-0",
+        "unitCents": 3898,
+        "qty": 7
+      },
+      {
+        "sku": "J-57-1",
+        "unitCents": 3122,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00058",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-58-0",
+        "unitCents": 7465,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00059",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-59-0",
+        "unitCents": 4660,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-05-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00060",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-60-0",
+        "unitCents": 5440,
+        "qty": 4
+      },
+      {
+        "sku": "J-60-1",
+        "unitCents": 7596,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-03-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00061",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-61-0",
+        "unitCents": 6531,
+        "qty": 2
+      },
+      {
+        "sku": "J-61-1",
+        "unitCents": 5800,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00062",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-62-0",
+        "unitCents": 2294,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-01-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00063",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-63-0",
+        "unitCents": 6216,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00064",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-64-0",
+        "unitCents": 7031,
+        "qty": 3
+      },
+      {
+        "sku": "J-64-1",
+        "unitCents": 8073,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-06-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00065",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-65-0",
+        "unitCents": 4832,
+        "qty": 3
+      },
+      {
+        "sku": "J-65-1",
+        "unitCents": 3165,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00066",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-66-0",
+        "unitCents": 2336,
+        "qty": 4
+      },
+      {
+        "sku": "J-66-1",
+        "unitCents": 6390,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00067",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-67-0",
+        "unitCents": 7372,
+        "qty": 8
+      },
+      {
+        "sku": "J-67-1",
+        "unitCents": 2840,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-05-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00068",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-68-0",
+        "unitCents": 4603,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-05-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00069",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-69-0",
+        "unitCents": 9106,
+        "qty": 9
+      },
+      {
+        "sku": "J-69-1",
+        "unitCents": 1954,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00070",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-70-0",
+        "unitCents": 9051,
+        "qty": 4
+      },
+      {
+        "sku": "J-70-1",
+        "unitCents": 7065,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-06-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00071",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-71-0",
+        "unitCents": 4405,
+        "qty": 6
+      },
+      {
+        "sku": "J-71-1",
+        "unitCents": 1525,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-01-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00072",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-72-0",
+        "unitCents": 2819,
+        "qty": 3
+      },
+      {
+        "sku": "J-72-1",
+        "unitCents": 3485,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-01-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00073",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-73-0",
+        "unitCents": 5402,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-03-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00074",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-74-0",
+        "unitCents": 6843,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-03-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00075",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-75-0",
+        "unitCents": 2496,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00076",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-76-0",
+        "unitCents": 6886,
+        "qty": 7
+      },
+      {
+        "sku": "J-76-1",
+        "unitCents": 7505,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-06-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00077",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-77-0",
+        "unitCents": 7549,
+        "qty": 8
+      },
+      {
+        "sku": "J-77-1",
+        "unitCents": 5462,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-06-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00078",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-78-0",
+        "unitCents": 1137,
+        "qty": 9
+      },
+      {
+        "sku": "J-78-1",
+        "unitCents": 6616,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00079",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-79-0",
+        "unitCents": 4746,
+        "qty": 6
+      },
+      {
+        "sku": "J-79-1",
+        "unitCents": 9067,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00080",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-80-0",
+        "unitCents": 1731,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-01-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00081",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-81-0",
+        "unitCents": 111,
+        "qty": 7
+      },
+      {
+        "sku": "J-81-1",
+        "unitCents": 3414,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00082",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-82-0",
+        "unitCents": 6005,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-01-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00083",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-83-0",
+        "unitCents": 6593,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-06-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00084",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-84-0",
+        "unitCents": 117,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00085",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-85-0",
+        "unitCents": 252,
+        "qty": 1
+      },
+      {
+        "sku": "J-85-1",
+        "unitCents": 5729,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-04-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00086",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-86-0",
+        "unitCents": 6376,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-06-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00087",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-87-0",
+        "unitCents": 5002,
+        "qty": 3
+      },
+      {
+        "sku": "J-87-1",
+        "unitCents": 6370,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00088",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-88-0",
+        "unitCents": 7310,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-06-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00089",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-89-0",
+        "unitCents": 7348,
+        "qty": 4
+      },
+      {
+        "sku": "J-89-1",
+        "unitCents": 1520,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-02-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00090",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-90-0",
+        "unitCents": 7135,
+        "qty": 6
+      },
+      {
+        "sku": "J-90-1",
+        "unitCents": 2390,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-03-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00091",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-91-0",
+        "unitCents": 5042,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-05-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00092",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-92-0",
+        "unitCents": 994,
+        "qty": 4
+      },
+      {
+        "sku": "J-92-1",
+        "unitCents": 8208,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-01-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00093",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-93-0",
+        "unitCents": 6016,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00094",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-94-0",
+        "unitCents": 9051,
+        "qty": 3
+      },
+      {
+        "sku": "J-94-1",
+        "unitCents": 7817,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00095",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-95-0",
+        "unitCents": 3634,
+        "qty": 1
+      },
+      {
+        "sku": "J-95-1",
+        "unitCents": 1090,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-05-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00096",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-96-0",
+        "unitCents": 6690,
+        "qty": 2
+      },
+      {
+        "sku": "J-96-1",
+        "unitCents": 8891,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00097",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-97-0",
+        "unitCents": 1394,
+        "qty": 9
+      },
+      {
+        "sku": "J-97-1",
+        "unitCents": 3429,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00098",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-98-0",
+        "unitCents": 7267,
+        "qty": 4
+      },
+      {
+        "sku": "J-98-1",
+        "unitCents": 1048,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-01-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00099",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-99-0",
+        "unitCents": 5167,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00100",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-100-0",
+        "unitCents": 2784,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-03-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00101",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-101-0",
+        "unitCents": 6192,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00102",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-102-0",
+        "unitCents": 5588,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-03-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00103",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-103-0",
+        "unitCents": 8228,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-05-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00104",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-104-0",
+        "unitCents": 6124,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-03-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00105",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-105-0",
+        "unitCents": 8436,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-01-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00106",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-106-0",
+        "unitCents": 6063,
+        "qty": 7
+      },
+      {
+        "sku": "J-106-1",
+        "unitCents": 2558,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00107",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-107-0",
+        "unitCents": 5372,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00108",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-108-0",
+        "unitCents": 2056,
+        "qty": 9
+      },
+      {
+        "sku": "J-108-1",
+        "unitCents": 962,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-02-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00109",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-109-0",
+        "unitCents": 7720,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-03-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00110",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-110-0",
+        "unitCents": 6144,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-03-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00111",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-111-0",
+        "unitCents": 6133,
+        "qty": 8
+      },
+      {
+        "sku": "J-111-1",
+        "unitCents": 3301,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00112",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-112-0",
+        "unitCents": 3917,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00113",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-113-0",
+        "unitCents": 5138,
+        "qty": 2
+      },
+      {
+        "sku": "J-113-1",
+        "unitCents": 3461,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00114",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-114-0",
+        "unitCents": 4684,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00115",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-115-0",
+        "unitCents": 7611,
+        "qty": 2
+      },
+      {
+        "sku": "J-115-1",
+        "unitCents": 9615,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-05-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00116",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-116-0",
+        "unitCents": 9797,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-04-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00117",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-117-0",
+        "unitCents": 5261,
+        "qty": 7
+      },
+      {
+        "sku": "J-117-1",
+        "unitCents": 5445,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00118",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-118-0",
+        "unitCents": 2330,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-02-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00119",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-119-0",
+        "unitCents": 5245,
+        "qty": 7
+      },
+      {
+        "sku": "J-119-1",
+        "unitCents": 2078,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00120",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-120-0",
+        "unitCents": 4441,
+        "qty": 2
+      },
+      {
+        "sku": "J-120-1",
+        "unitCents": 1581,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00121",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-121-0",
+        "unitCents": 5470,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00122",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-122-0",
+        "unitCents": 4996,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00123",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-123-0",
+        "unitCents": 1651,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-01-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00124",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-124-0",
+        "unitCents": 3741,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-02-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00125",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-125-0",
+        "unitCents": 1328,
+        "qty": 1
+      },
+      {
+        "sku": "J-125-1",
+        "unitCents": 1156,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00126",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-126-0",
+        "unitCents": 2107,
+        "qty": 1
+      },
+      {
+        "sku": "J-126-1",
+        "unitCents": 7652,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-02-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00127",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-127-0",
+        "unitCents": 583,
+        "qty": 7
+      },
+      {
+        "sku": "J-127-1",
+        "unitCents": 7090,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-03-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00128",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-128-0",
+        "unitCents": 7407,
+        "qty": 3
+      },
+      {
+        "sku": "J-128-1",
+        "unitCents": 667,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00129",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-129-0",
+        "unitCents": 1099,
+        "qty": 2
+      },
+      {
+        "sku": "J-129-1",
+        "unitCents": 4683,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-02-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00130",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-130-0",
+        "unitCents": 6366,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00131",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-131-0",
+        "unitCents": 6463,
+        "qty": 5
+      },
+      {
+        "sku": "J-131-1",
+        "unitCents": 3046,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-03-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00132",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-132-0",
+        "unitCents": 7828,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00133",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-133-0",
+        "unitCents": 4160,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00134",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-134-0",
+        "unitCents": 9532,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-03-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00135",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-135-0",
+        "unitCents": 5978,
+        "qty": 1
+      },
+      {
+        "sku": "J-135-1",
+        "unitCents": 5861,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00136",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-136-0",
+        "unitCents": 8135,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-01-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00137",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-137-0",
+        "unitCents": 8725,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-01-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00138",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-138-0",
+        "unitCents": 5682,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-03-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00139",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-139-0",
+        "unitCents": 1917,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00140",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-140-0",
+        "unitCents": 5614,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-03-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00141",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-141-0",
+        "unitCents": 5298,
+        "qty": 3
+      },
+      {
+        "sku": "J-141-1",
+        "unitCents": 9307,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00142",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-142-0",
+        "unitCents": 4925,
+        "qty": 3
+      },
+      {
+        "sku": "J-142-1",
+        "unitCents": 3011,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-06-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00143",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-143-0",
+        "unitCents": 5313,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00144",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-144-0",
+        "unitCents": 5525,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-02-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00145",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-145-0",
+        "unitCents": 5600,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-01-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00146",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-146-0",
+        "unitCents": 5842,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-01-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00147",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-147-0",
+        "unitCents": 6975,
+        "qty": 3
+      },
+      {
+        "sku": "J-147-1",
+        "unitCents": 6883,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-04-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00148",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-148-0",
+        "unitCents": 7955,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-02-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00149",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-149-0",
+        "unitCents": 428,
+        "qty": 6
+      },
+      {
+        "sku": "J-149-1",
+        "unitCents": 4378,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00150",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-150-0",
+        "unitCents": 1328,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-01-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00151",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-151-0",
+        "unitCents": 7166,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00152",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-152-0",
+        "unitCents": 5524,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-02-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00153",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-153-0",
+        "unitCents": 4972,
+        "qty": 4
+      },
+      {
+        "sku": "J-153-1",
+        "unitCents": 1671,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00154",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-154-0",
+        "unitCents": 993,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-01-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00155",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-155-0",
+        "unitCents": 3371,
+        "qty": 2
+      },
+      {
+        "sku": "J-155-1",
+        "unitCents": 521,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-02-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00156",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-156-0",
+        "unitCents": 5152,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00157",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-157-0",
+        "unitCents": 9014,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-02-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00158",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-158-0",
+        "unitCents": 7403,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-03-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00159",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-159-0",
+        "unitCents": 4500,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-02-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00160",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-160-0",
+        "unitCents": 9762,
+        "qty": 4
+      },
+      {
+        "sku": "J-160-1",
+        "unitCents": 9170,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-04-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00161",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-161-0",
+        "unitCents": 7903,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-01-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00162",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-162-0",
+        "unitCents": 2070,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-02-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00163",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-163-0",
+        "unitCents": 799,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-01-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00164",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-164-0",
+        "unitCents": 5338,
+        "qty": 2
+      },
+      {
+        "sku": "J-164-1",
+        "unitCents": 1525,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-05-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00165",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-165-0",
+        "unitCents": 8614,
+        "qty": 8
+      },
+      {
+        "sku": "J-165-1",
+        "unitCents": 302,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00166",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-166-0",
+        "unitCents": 9383,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00167",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-167-0",
+        "unitCents": 6832,
+        "qty": 5
+      },
+      {
+        "sku": "J-167-1",
+        "unitCents": 6375,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-05-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00168",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-168-0",
+        "unitCents": 6702,
+        "qty": 3
+      },
+      {
+        "sku": "J-168-1",
+        "unitCents": 6681,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-04-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00169",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-169-0",
+        "unitCents": 7885,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-03-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00170",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-170-0",
+        "unitCents": 4693,
+        "qty": 8
+      },
+      {
+        "sku": "J-170-1",
+        "unitCents": 1709,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-02-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00171",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-171-0",
+        "unitCents": 4514,
+        "qty": 7
+      },
+      {
+        "sku": "J-171-1",
+        "unitCents": 1562,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00172",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-172-0",
+        "unitCents": 1020,
+        "qty": 9
+      },
+      {
+        "sku": "J-172-1",
+        "unitCents": 2704,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-03-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00173",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-173-0",
+        "unitCents": 2946,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-02-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00174",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-174-0",
+        "unitCents": 928,
+        "qty": 6
+      },
+      {
+        "sku": "J-174-1",
+        "unitCents": 3362,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-03-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00175",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-175-0",
+        "unitCents": 600,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-03-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00176",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-176-0",
+        "unitCents": 7875,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00177",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-177-0",
+        "unitCents": 4770,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-04-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00178",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-178-0",
+        "unitCents": 3788,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-03-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00179",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-179-0",
+        "unitCents": 7867,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00180",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-180-0",
+        "unitCents": 4235,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-06-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00181",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-181-0",
+        "unitCents": 7620,
+        "qty": 5
+      },
+      {
+        "sku": "J-181-1",
+        "unitCents": 3675,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-03-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00182",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-182-0",
+        "unitCents": 220,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-06-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00183",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-183-0",
+        "unitCents": 1871,
+        "qty": 8
+      },
+      {
+        "sku": "J-183-1",
+        "unitCents": 1145,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-03-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00184",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-184-0",
+        "unitCents": 3186,
+        "qty": 3
+      },
+      {
+        "sku": "J-184-1",
+        "unitCents": 8575,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-01-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00185",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-185-0",
+        "unitCents": 517,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-03-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00186",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-186-0",
+        "unitCents": 678,
+        "qty": 4
+      },
+      {
+        "sku": "J-186-1",
+        "unitCents": 5722,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00187",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-187-0",
+        "unitCents": 8411,
+        "qty": 5
+      },
+      {
+        "sku": "J-187-1",
+        "unitCents": 2885,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00188",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-188-0",
+        "unitCents": 4337,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00189",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-189-0",
+        "unitCents": 5920,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00190",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-190-0",
+        "unitCents": 4369,
+        "qty": 5
+      },
+      {
+        "sku": "J-190-1",
+        "unitCents": 7698,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-04-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00191",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-191-0",
+        "unitCents": 3287,
+        "qty": 9
+      },
+      {
+        "sku": "J-191-1",
+        "unitCents": 2063,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-05-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00192",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-192-0",
+        "unitCents": 2350,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-03-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00193",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-193-0",
+        "unitCents": 5283,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00194",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-194-0",
+        "unitCents": 1050,
+        "qty": 1
+      },
+      {
+        "sku": "J-194-1",
+        "unitCents": 7506,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00195",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-195-0",
+        "unitCents": 1542,
+        "qty": 3
+      },
+      {
+        "sku": "J-195-1",
+        "unitCents": 7205,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00196",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-196-0",
+        "unitCents": 718,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00197",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-197-0",
+        "unitCents": 393,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-06-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00198",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-198-0",
+        "unitCents": 2212,
+        "qty": 2
+      },
+      {
+        "sku": "J-198-1",
+        "unitCents": 6384,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00199",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-199-0",
+        "unitCents": 4985,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00200",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-200-0",
+        "unitCents": 2292,
+        "qty": 6
+      },
+      {
+        "sku": "J-200-1",
+        "unitCents": 8131,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00201",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-201-0",
+        "unitCents": 3775,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-02-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00202",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-202-0",
+        "unitCents": 6106,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-04-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00203",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-203-0",
+        "unitCents": 1871,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-01-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00204",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-204-0",
+        "unitCents": 2124,
+        "qty": 9
+      },
+      {
+        "sku": "J-204-1",
+        "unitCents": 4240,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-06-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00205",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-205-0",
+        "unitCents": 6995,
+        "qty": 2
+      },
+      {
+        "sku": "J-205-1",
+        "unitCents": 8624,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-05-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00206",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-206-0",
+        "unitCents": 4731,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00207",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-207-0",
+        "unitCents": 8671,
+        "qty": 4
+      },
+      {
+        "sku": "J-207-1",
+        "unitCents": 5964,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-03-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00208",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-208-0",
+        "unitCents": 7975,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00209",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-209-0",
+        "unitCents": 9506,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-02-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00210",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-210-0",
+        "unitCents": 4292,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00211",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-211-0",
+        "unitCents": 1735,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00212",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-212-0",
+        "unitCents": 1998,
+        "qty": 2
+      },
+      {
+        "sku": "J-212-1",
+        "unitCents": 851,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-02-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00213",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-213-0",
+        "unitCents": 4495,
+        "qty": 2
+      },
+      {
+        "sku": "J-213-1",
+        "unitCents": 6205,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00214",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-214-0",
+        "unitCents": 4553,
+        "qty": 7
+      },
+      {
+        "sku": "J-214-1",
+        "unitCents": 7935,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-06-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00215",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-215-0",
+        "unitCents": 2711,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00216",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-216-0",
+        "unitCents": 6321,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-05-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00217",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-217-0",
+        "unitCents": 8097,
+        "qty": 2
+      },
+      {
+        "sku": "J-217-1",
+        "unitCents": 6838,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-01-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00218",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-218-0",
+        "unitCents": 8698,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00219",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-219-0",
+        "unitCents": 4172,
+        "qty": 8
+      },
+      {
+        "sku": "J-219-1",
+        "unitCents": 5764,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-02-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00220",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-220-0",
+        "unitCents": 2671,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00221",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-221-0",
+        "unitCents": 5353,
+        "qty": 4
+      },
+      {
+        "sku": "J-221-1",
+        "unitCents": 5521,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-01-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00222",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-222-0",
+        "unitCents": 3950,
+        "qty": 2
+      },
+      {
+        "sku": "J-222-1",
+        "unitCents": 7621,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-05-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00223",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-223-0",
+        "unitCents": 5278,
+        "qty": 2
+      },
+      {
+        "sku": "J-223-1",
+        "unitCents": 8248,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-01-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00224",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-224-0",
+        "unitCents": 1589,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-05-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00225",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-225-0",
+        "unitCents": 6053,
+        "qty": 1
+      },
+      {
+        "sku": "J-225-1",
+        "unitCents": 3752,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00226",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-226-0",
+        "unitCents": 7514,
+        "qty": 2
+      },
+      {
+        "sku": "J-226-1",
+        "unitCents": 1696,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-01-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00227",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-227-0",
+        "unitCents": 1841,
+        "qty": 1
+      },
+      {
+        "sku": "J-227-1",
+        "unitCents": 2789,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-02-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00228",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-228-0",
+        "unitCents": 3172,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-04-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00229",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-229-0",
+        "unitCents": 1865,
+        "qty": 7
+      },
+      {
+        "sku": "J-229-1",
+        "unitCents": 861,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-04-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00230",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-230-0",
+        "unitCents": 171,
+        "qty": 9
+      },
+      {
+        "sku": "J-230-1",
+        "unitCents": 895,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00231",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-231-0",
+        "unitCents": 2203,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-04-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00232",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-232-0",
+        "unitCents": 4167,
+        "qty": 5
+      },
+      {
+        "sku": "J-232-1",
+        "unitCents": 6618,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-03-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00233",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-233-0",
+        "unitCents": 8493,
+        "qty": 5
+      },
+      {
+        "sku": "J-233-1",
+        "unitCents": 9075,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-06-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00234",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-234-0",
+        "unitCents": 3535,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-06-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00235",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-235-0",
+        "unitCents": 8355,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-06-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00236",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-236-0",
+        "unitCents": 9312,
+        "qty": 8
+      },
+      {
+        "sku": "J-236-1",
+        "unitCents": 9648,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-06-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00237",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-237-0",
+        "unitCents": 8664,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00238",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-238-0",
+        "unitCents": 3375,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00239",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-239-0",
+        "unitCents": 1116,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00240",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-240-0",
+        "unitCents": 1779,
+        "qty": 9
+      },
+      {
+        "sku": "J-240-1",
+        "unitCents": 3775,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00241",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-241-0",
+        "unitCents": 6351,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00242",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-242-0",
+        "unitCents": 4217,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-05-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00243",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-243-0",
+        "unitCents": 3270,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00244",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-244-0",
+        "unitCents": 2947,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-01-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00245",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-245-0",
+        "unitCents": 9219,
+        "qty": 5
+      },
+      {
+        "sku": "J-245-1",
+        "unitCents": 2231,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00246",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-246-0",
+        "unitCents": 2636,
+        "qty": 1
+      },
+      {
+        "sku": "J-246-1",
+        "unitCents": 2618,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-05-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00247",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-247-0",
+        "unitCents": 9482,
+        "qty": 9
+      },
+      {
+        "sku": "J-247-1",
+        "unitCents": 5966,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-06-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00248",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-248-0",
+        "unitCents": 8629,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-05-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00249",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-249-0",
+        "unitCents": 5824,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-02-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00250",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-250-0",
+        "unitCents": 3679,
+        "qty": 9
+      },
+      {
+        "sku": "J-250-1",
+        "unitCents": 7880,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-06-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00251",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-251-0",
+        "unitCents": 4037,
+        "qty": 4
+      },
+      {
+        "sku": "J-251-1",
+        "unitCents": 753,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00252",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-252-0",
+        "unitCents": 504,
+        "qty": 9
+      },
+      {
+        "sku": "J-252-1",
+        "unitCents": 6243,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00253",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-253-0",
+        "unitCents": 3254,
+        "qty": 6
+      },
+      {
+        "sku": "J-253-1",
+        "unitCents": 8519,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00254",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-254-0",
+        "unitCents": 3553,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00255",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-255-0",
+        "unitCents": 1281,
+        "qty": 3
+      },
+      {
+        "sku": "J-255-1",
+        "unitCents": 489,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-06-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00256",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-256-0",
+        "unitCents": 989,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00257",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-257-0",
+        "unitCents": 6778,
+        "qty": 7
+      },
+      {
+        "sku": "J-257-1",
+        "unitCents": 7491,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00258",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-258-0",
+        "unitCents": 8862,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-06-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00259",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-259-0",
+        "unitCents": 5960,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-01-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00260",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-260-0",
+        "unitCents": 4712,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-04-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00261",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-261-0",
+        "unitCents": 2661,
+        "qty": 9
+      },
+      {
+        "sku": "J-261-1",
+        "unitCents": 3702,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00262",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-262-0",
+        "unitCents": 4983,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-01-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00263",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-263-0",
+        "unitCents": 784,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-05-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00264",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-264-0",
+        "unitCents": 3541,
+        "qty": 6
+      },
+      {
+        "sku": "J-264-1",
+        "unitCents": 3569,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-06-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00265",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-265-0",
+        "unitCents": 3717,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00266",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-266-0",
+        "unitCents": 9105,
+        "qty": 2
+      },
+      {
+        "sku": "J-266-1",
+        "unitCents": 4862,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-03-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00267",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-267-0",
+        "unitCents": 5951,
+        "qty": 3
+      },
+      {
+        "sku": "J-267-1",
+        "unitCents": 3942,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-03-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00268",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-268-0",
+        "unitCents": 7483,
+        "qty": 6
+      },
+      {
+        "sku": "J-268-1",
+        "unitCents": 5108,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00269",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-269-0",
+        "unitCents": 2862,
+        "qty": 1
+      },
+      {
+        "sku": "J-269-1",
+        "unitCents": 5231,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-02-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00270",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-270-0",
+        "unitCents": 5532,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-04-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00271",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-271-0",
+        "unitCents": 9138,
+        "qty": 2
+      },
+      {
+        "sku": "J-271-1",
+        "unitCents": 2979,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-03-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00272",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-272-0",
+        "unitCents": 1352,
+        "qty": 2
+      },
+      {
+        "sku": "J-272-1",
+        "unitCents": 405,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-06-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00273",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-273-0",
+        "unitCents": 700,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00274",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-274-0",
+        "unitCents": 6093,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-02-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00275",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-275-0",
+        "unitCents": 7713,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00276",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-276-0",
+        "unitCents": 4013,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00277",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-277-0",
+        "unitCents": 9379,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00278",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-278-0",
+        "unitCents": 8089,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-01-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00279",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-279-0",
+        "unitCents": 3487,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00280",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-280-0",
+        "unitCents": 753,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-01-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00281",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-281-0",
+        "unitCents": 9580,
+        "qty": 9
+      },
+      {
+        "sku": "J-281-1",
+        "unitCents": 9441,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-04-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00282",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-282-0",
+        "unitCents": 6265,
+        "qty": 4
+      },
+      {
+        "sku": "J-282-1",
+        "unitCents": 8560,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-03-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00283",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-283-0",
+        "unitCents": 8322,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-04-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00284",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-284-0",
+        "unitCents": 3565,
+        "qty": 3
+      },
+      {
+        "sku": "J-284-1",
+        "unitCents": 3162,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-03-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00285",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-285-0",
+        "unitCents": 5510,
+        "qty": 2
+      },
+      {
+        "sku": "J-285-1",
+        "unitCents": 7989,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-04-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00286",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-286-0",
+        "unitCents": 467,
+        "qty": 4
+      },
+      {
+        "sku": "J-286-1",
+        "unitCents": 806,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00287",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-287-0",
+        "unitCents": 9476,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00288",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-288-0",
+        "unitCents": 9334,
+        "qty": 1
+      },
+      {
+        "sku": "J-288-1",
+        "unitCents": 4744,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-02-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00289",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-289-0",
+        "unitCents": 2894,
+        "qty": 4
+      },
+      {
+        "sku": "J-289-1",
+        "unitCents": 6830,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00290",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-290-0",
+        "unitCents": 5714,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-05-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00291",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-291-0",
+        "unitCents": 6415,
+        "qty": 3
+      },
+      {
+        "sku": "J-291-1",
+        "unitCents": 1878,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-02-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00292",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-292-0",
+        "unitCents": 1677,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-04-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00293",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-293-0",
+        "unitCents": 8001,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00294",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-294-0",
+        "unitCents": 6168,
+        "qty": 1
+      },
+      {
+        "sku": "J-294-1",
+        "unitCents": 8780,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-02-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00295",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-295-0",
+        "unitCents": 7071,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-03-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00296",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-296-0",
+        "unitCents": 9008,
+        "qty": 7
+      },
+      {
+        "sku": "J-296-1",
+        "unitCents": 4323,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-01-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00297",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-297-0",
+        "unitCents": 6244,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-06-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00298",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-298-0",
+        "unitCents": 2635,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-06-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00299",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-299-0",
+        "unitCents": 9351,
+        "qty": 6
+      },
+      {
+        "sku": "J-299-1",
+        "unitCents": 4614,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-02-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00300",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-300-0",
+        "unitCents": 6165,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00301",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-301-0",
+        "unitCents": 6622,
+        "qty": 3
+      },
+      {
+        "sku": "J-301-1",
+        "unitCents": 2051,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00302",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-302-0",
+        "unitCents": 5644,
+        "qty": 9
+      },
+      {
+        "sku": "J-302-1",
+        "unitCents": 952,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-04-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00303",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-303-0",
+        "unitCents": 7233,
+        "qty": 2
+      },
+      {
+        "sku": "J-303-1",
+        "unitCents": 1149,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00304",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-304-0",
+        "unitCents": 6664,
+        "qty": 9
+      },
+      {
+        "sku": "J-304-1",
+        "unitCents": 4793,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-02-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00305",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-305-0",
+        "unitCents": 8589,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00306",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-306-0",
+        "unitCents": 690,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00307",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-307-0",
+        "unitCents": 6644,
+        "qty": 6
+      },
+      {
+        "sku": "J-307-1",
+        "unitCents": 6574,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-05-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00308",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-308-0",
+        "unitCents": 1577,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00309",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-309-0",
+        "unitCents": 4630,
+        "qty": 4
+      },
+      {
+        "sku": "J-309-1",
+        "unitCents": 3287,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00310",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-310-0",
+        "unitCents": 6770,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-01-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00311",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-311-0",
+        "unitCents": 2017,
+        "qty": 9
+      },
+      {
+        "sku": "J-311-1",
+        "unitCents": 4322,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00312",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-312-0",
+        "unitCents": 9326,
+        "qty": 8
+      },
+      {
+        "sku": "J-312-1",
+        "unitCents": 4085,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00313",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-313-0",
+        "unitCents": 2004,
+        "qty": 5
+      },
+      {
+        "sku": "J-313-1",
+        "unitCents": 1206,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-06-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00314",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-314-0",
+        "unitCents": 6857,
+        "qty": 6
+      },
+      {
+        "sku": "J-314-1",
+        "unitCents": 8562,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-01-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00315",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-315-0",
+        "unitCents": 6636,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-01-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00316",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-316-0",
+        "unitCents": 5892,
+        "qty": 4
+      },
+      {
+        "sku": "J-316-1",
+        "unitCents": 9499,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00317",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-317-0",
+        "unitCents": 4065,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-02-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00318",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-318-0",
+        "unitCents": 2655,
+        "qty": 2
+      },
+      {
+        "sku": "J-318-1",
+        "unitCents": 2064,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-06-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00319",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-319-0",
+        "unitCents": 8001,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-05-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00320",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-320-0",
+        "unitCents": 3096,
+        "qty": 9
+      },
+      {
+        "sku": "J-320-1",
+        "unitCents": 4691,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-02-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00321",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-321-0",
+        "unitCents": 7936,
+        "qty": 9
+      },
+      {
+        "sku": "J-321-1",
+        "unitCents": 633,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00322",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-322-0",
+        "unitCents": 2072,
+        "qty": 9
+      },
+      {
+        "sku": "J-322-1",
+        "unitCents": 7637,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-06-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00323",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-323-0",
+        "unitCents": 9619,
+        "qty": 2
+      },
+      {
+        "sku": "J-323-1",
+        "unitCents": 5431,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-05-18T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00324",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-324-0",
+        "unitCents": 4513,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-05-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00325",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-325-0",
+        "unitCents": 7045,
+        "qty": 4
+      },
+      {
+        "sku": "J-325-1",
+        "unitCents": 6966,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-03-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00326",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-326-0",
+        "unitCents": 9461,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-05-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00327",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-327-0",
+        "unitCents": 9198,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00328",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-328-0",
+        "unitCents": 259,
+        "qty": 3
+      },
+      {
+        "sku": "J-328-1",
+        "unitCents": 7006,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-02-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00329",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-329-0",
+        "unitCents": 5015,
+        "qty": 5
+      },
+      {
+        "sku": "J-329-1",
+        "unitCents": 9310,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-04-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00330",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-330-0",
+        "unitCents": 3630,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00331",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-331-0",
+        "unitCents": 6014,
+        "qty": 6
+      },
+      {
+        "sku": "J-331-1",
+        "unitCents": 9280,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00332",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-332-0",
+        "unitCents": 5852,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-05-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00333",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-333-0",
+        "unitCents": 5918,
+        "qty": 6
+      },
+      {
+        "sku": "J-333-1",
+        "unitCents": 8463,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-06-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00334",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-334-0",
+        "unitCents": 7698,
+        "qty": 3
+      },
+      {
+        "sku": "J-334-1",
+        "unitCents": 2845,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00335",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-335-0",
+        "unitCents": 2754,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00336",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-336-0",
+        "unitCents": 6579,
+        "qty": 5
+      },
+      {
+        "sku": "J-336-1",
+        "unitCents": 7389,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-06-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00337",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-337-0",
+        "unitCents": 2841,
+        "qty": 3
+      },
+      {
+        "sku": "J-337-1",
+        "unitCents": 478,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00338",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-338-0",
+        "unitCents": 3550,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-04-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00339",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-339-0",
+        "unitCents": 9085,
+        "qty": 1
+      },
+      {
+        "sku": "J-339-1",
+        "unitCents": 531,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-05-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00340",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-340-0",
+        "unitCents": 1481,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-03-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00341",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-341-0",
+        "unitCents": 2171,
+        "qty": 3
+      },
+      {
+        "sku": "J-341-1",
+        "unitCents": 8730,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00342",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-342-0",
+        "unitCents": 7901,
+        "qty": 8
+      },
+      {
+        "sku": "J-342-1",
+        "unitCents": 8956,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-05-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00343",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-343-0",
+        "unitCents": 9340,
+        "qty": 7
+      },
+      {
+        "sku": "J-343-1",
+        "unitCents": 8676,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-03-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00344",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-344-0",
+        "unitCents": 7339,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-03-23T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00345",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-345-0",
+        "unitCents": 272,
+        "qty": 1
+      },
+      {
+        "sku": "J-345-1",
+        "unitCents": 8674,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-03-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00346",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-346-0",
+        "unitCents": 7916,
+        "qty": 5
+      },
+      {
+        "sku": "J-346-1",
+        "unitCents": 249,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-03-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00347",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-347-0",
+        "unitCents": 6845,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-04-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00348",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-348-0",
+        "unitCents": 6299,
+        "qty": 4
+      },
+      {
+        "sku": "J-348-1",
+        "unitCents": 4408,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-04-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00349",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-349-0",
+        "unitCents": 8815,
+        "qty": 5
+      },
+      {
+        "sku": "J-349-1",
+        "unitCents": 6865,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-01-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00350",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-350-0",
+        "unitCents": 7560,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-03-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00351",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-351-0",
+        "unitCents": 2592,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-05-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00352",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-352-0",
+        "unitCents": 4510,
+        "qty": 3
+      },
+      {
+        "sku": "J-352-1",
+        "unitCents": 7283,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-02-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00353",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-353-0",
+        "unitCents": 3658,
+        "qty": 6
+      },
+      {
+        "sku": "J-353-1",
+        "unitCents": 6985,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00354",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-354-0",
+        "unitCents": 1414,
+        "qty": 3
+      },
+      {
+        "sku": "J-354-1",
+        "unitCents": 1018,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00355",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-355-0",
+        "unitCents": 3248,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-10T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00356",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-356-0",
+        "unitCents": 7357,
+        "qty": 4
+      },
+      {
+        "sku": "J-356-1",
+        "unitCents": 649,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-04-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00357",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-357-0",
+        "unitCents": 6475,
+        "qty": 5
+      },
+      {
+        "sku": "J-357-1",
+        "unitCents": 5393,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00358",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-358-0",
+        "unitCents": 7984,
+        "qty": 5
+      },
+      {
+        "sku": "J-358-1",
+        "unitCents": 3355,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-01-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00359",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-359-0",
+        "unitCents": 5416,
+        "qty": 1
+      },
+      {
+        "sku": "J-359-1",
+        "unitCents": 2842,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-05-13T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00360",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-360-0",
+        "unitCents": 788,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-06-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00361",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-361-0",
+        "unitCents": 2683,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-01-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00362",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-362-0",
+        "unitCents": 5924,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-06-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00363",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-363-0",
+        "unitCents": 3912,
+        "qty": 6
+      },
+      {
+        "sku": "J-363-1",
+        "unitCents": 9248,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00364",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-364-0",
+        "unitCents": 2307,
+        "qty": 5
+      },
+      {
+        "sku": "J-364-1",
+        "unitCents": 746,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-06-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00365",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-365-0",
+        "unitCents": 3209,
+        "qty": 3
+      },
+      {
+        "sku": "J-365-1",
+        "unitCents": 9006,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-03-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00366",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-366-0",
+        "unitCents": 8802,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-04-19T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00367",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-367-0",
+        "unitCents": 111,
+        "qty": 9
+      },
+      {
+        "sku": "J-367-1",
+        "unitCents": 6310,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00368",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-368-0",
+        "unitCents": 1137,
+        "qty": 9
+      },
+      {
+        "sku": "J-368-1",
+        "unitCents": 6448,
+        "qty": 4
+      }
+    ],
+    "placedAt": "2026-05-25T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00369",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-369-0",
+        "unitCents": 5385,
+        "qty": 7
+      },
+      {
+        "sku": "J-369-1",
+        "unitCents": 5376,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-26T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00370",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-370-0",
+        "unitCents": 2226,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-01-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00371",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-371-0",
+        "unitCents": 1717,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-05-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00372",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-372-0",
+        "unitCents": 904,
+        "qty": 6
+      },
+      {
+        "sku": "J-372-1",
+        "unitCents": 3716,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-16T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00373",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-373-0",
+        "unitCents": 7768,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00374",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-374-0",
+        "unitCents": 1055,
+        "qty": 5
+      },
+      {
+        "sku": "J-374-1",
+        "unitCents": 8767,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-06-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00375",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-375-0",
+        "unitCents": 8611,
+        "qty": 2
+      }
+    ],
+    "placedAt": "2026-01-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00376",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-376-0",
+        "unitCents": 3264,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-06-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00377",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-377-0",
+        "unitCents": 1828,
+        "qty": 6
+      },
+      {
+        "sku": "J-377-1",
+        "unitCents": 7615,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-01-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00378",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-378-0",
+        "unitCents": 2691,
+        "qty": 9
+      },
+      {
+        "sku": "J-378-1",
+        "unitCents": 7358,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-03-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00379",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-379-0",
+        "unitCents": 7154,
+        "qty": 6
+      },
+      {
+        "sku": "J-379-1",
+        "unitCents": 4043,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00380",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-380-0",
+        "unitCents": 7512,
+        "qty": 8
+      },
+      {
+        "sku": "J-380-1",
+        "unitCents": 6605,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-06-11T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00381",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-381-0",
+        "unitCents": 5045,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-03-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00382",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-382-0",
+        "unitCents": 4621,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00383",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-383-0",
+        "unitCents": 718,
+        "qty": 8
+      }
+    ],
+    "placedAt": "2026-03-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00384",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-384-0",
+        "unitCents": 9638,
+        "qty": 4
+      },
+      {
+        "sku": "J-384-1",
+        "unitCents": 3917,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-03-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00385",
+    "region": "APAC",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-385-0",
+        "unitCents": 1364,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-04-15T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00386",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-386-0",
+        "unitCents": 712,
+        "qty": 7
+      },
+      {
+        "sku": "J-386-1",
+        "unitCents": 1385,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-03-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00387",
+    "region": "EU",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-387-0",
+        "unitCents": 3814,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-06-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00388",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-388-0",
+        "unitCents": 5331,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-05-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00389",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-389-0",
+        "unitCents": 927,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00390",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-390-0",
+        "unitCents": 7176,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-04-14T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00391",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-391-0",
+        "unitCents": 7896,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-05-22T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00392",
+    "region": "EU",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-392-0",
+        "unitCents": 8321,
+        "qty": 7
+      },
+      {
+        "sku": "J-392-1",
+        "unitCents": 2236,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-04-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00393",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-393-0",
+        "unitCents": 9460,
+        "qty": 4
+      },
+      {
+        "sku": "J-393-1",
+        "unitCents": 9294,
+        "qty": 9
+      }
+    ],
+    "placedAt": "2026-02-17T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00394",
+    "region": "US",
+    "discountCode": null,
+    "lines": [
+      {
+        "sku": "J-394-0",
+        "unitCents": 5398,
+        "qty": 2
+      },
+      {
+        "sku": "J-394-1",
+        "unitCents": 1943,
+        "qty": 7
+      }
+    ],
+    "placedAt": "2026-04-21T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00395",
+    "region": "EU",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-395-0",
+        "unitCents": 5744,
+        "qty": 1
+      },
+      {
+        "sku": "J-395-1",
+        "unitCents": 5094,
+        "qty": 3
+      }
+    ],
+    "placedAt": "2026-03-24T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00396",
+    "region": "APAC",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-396-0",
+        "unitCents": 835,
+        "qty": 4
+      },
+      {
+        "sku": "J-396-1",
+        "unitCents": 3371,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-12T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00397",
+    "region": "US",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-397-0",
+        "unitCents": 2519,
+        "qty": 5
+      }
+    ],
+    "placedAt": "2026-01-20T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00398",
+    "region": "APAC",
+    "discountCode": "SAVE10",
+    "lines": [
+      {
+        "sku": "J-398-0",
+        "unitCents": 7473,
+        "qty": 8
+      },
+      {
+        "sku": "J-398-1",
+        "unitCents": 472,
+        "qty": 6
+      }
+    ],
+    "placedAt": "2026-02-27T12:00:00Z"
+  },
+  {
+    "id": "ORD-J00399",
+    "region": "US",
+    "discountCode": "SAVE20",
+    "lines": [
+      {
+        "sku": "J-399-0",
+        "unitCents": 9091,
+        "qty": 8
+      },
+      {
+        "sku": "J-399-1",
+        "unitCents": 2415,
+        "qty": 1
+      }
+    ],
+    "placedAt": "2026-04-28T12:00:00Z"
+  }
+]

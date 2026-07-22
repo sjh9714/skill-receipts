@@ -1,0 +1,10 @@
+{
+  "id": "02-batch-rename",
+  "title": "Rename an exported function across eight call sites and a barrel",
+  "tags": ["thrift", "brownfield", "batching"],
+  "timeoutMin": 10,
+  "maxBudgetUsd": 2,
+  "traps": [
+    { "name": "unrelated-files", "detect": { "type": "touches-outside", "allow": ["src/config/parseCfg.js", "src/app/*.js", "src/index.js"] } }
+  ]
+}

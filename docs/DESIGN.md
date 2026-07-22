@@ -55,8 +55,12 @@ reported alongside but never count toward admission.
   note: injected text adds input tokens every turn, so any instruction arm
   starts above `off` on cost — beating both prices in the skill's own
   overhead.)
-- Comparison arm: `vs-caveman` — the popular terse-mode ruleset vendored
-  verbatim, published win-or-lose.
+- Comparison arm: `vs-caveman` — JuliusBrussee/caveman (91.9k stars, MIT)
+  vendored at v1.9.1 commit 0d95a81, the `skills/caveman/SKILL.md` ruleset
+  body verbatim (YAML invocation frontmatter omitted; provenance comment
+  stripped at injection, as for the placebo). Published win-or-lose. The
+  contrast is the point: caveman compresses what the agent SAYS; thrift
+  disciplines what it DOES.
 
 ### repro-first — bugfix discipline
 - Target: co-primary hold-out pass rate (wrong-fix rate down; not below either

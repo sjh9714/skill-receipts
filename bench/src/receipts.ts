@@ -58,18 +58,36 @@ const round1 = (x: number): number => Math.round(x * 10) / 10;
 const deltaPct = (on: number, base: number): number | null =>
   base === 0 ? null : round1(((on - base) / base) * 100);
 
-export function buildReceipt(skillId: string, target: TargetSpec, allRuns: RunResult[]): SkillReceipt {
+export function buildReceipt(
+  skillId: string,
+  target: TargetSpec,
+  allRuns: RunResult[],
+  coTarget?: TargetSpec,
+): SkillReceipt {
   // vs-* comparison arms are reported separately; admission is strictly three-armed
   const runs = allRuns.filter((r) => r.condition === "on" || r.condition === "off" || r.condition === "placebo");
-  const value = (r: RunResult): number => {
-    if (target.metric !== "taskScalar") return r[target.metric];
+  const valueOf = (spec: TargetSpec) => (r: RunResult): number => {
+    if (spec.metric !== "taskScalar") return r[spec.metric];
     if (r.taskScalar === null) {
       throw new Error(`run ${r.runId} has no .bench-scalar value but the target metric requires one`);
     }
     return r.taskScalar;
   };
+  const value = valueOf(target);
   const arm = (c: Condition) => runs.filter((r) => r.condition === c);
   const taskIds = [...new Set(runs.map((r) => r.taskId))].sort();
+
+  // skill-level median for a spec = median over tasks of per-task medians,
+  // identically for the primary and any co-primary target
+  const skillMedians = (spec: TargetSpec) => {
+    const med = (c: Condition) =>
+      median(
+        taskIds.map((taskId) =>
+          median(runs.filter((r) => r.taskId === taskId && r.condition === c).map(valueOf(spec))),
+        ),
+      );
+    return { off: med("off"), placebo: med("placebo"), on: med("on") };
+  };
 
   const rows: TaskReceiptRow[] = taskIds.map((taskId) => {
     const of = (c: Condition) => runs.filter((r) => r.taskId === taskId && r.condition === c);
@@ -87,11 +105,7 @@ export function buildReceipt(skillId: string, target: TargetSpec, allRuns: RunRe
     };
   });
 
-  const medianTarget = {
-    off: median(rows.map((r) => r.off)),
-    placebo: median(rows.map((r) => r.placebo)),
-    on: median(rows.map((r) => r.on)),
-  };
+  const medianTarget = skillMedians(target);
 
   const passCounts = (c: Condition) => {
     const a = arm(c);
@@ -111,6 +125,18 @@ export function buildReceipt(skillId: string, target: TargetSpec, allRuns: RunRe
   }
   if (!beats(medianTarget.on, medianTarget.placebo)) {
     reasons.push(`does not beat placebo on ${target.label} (${medianTarget.on} vs ${medianTarget.placebo})`);
+  }
+  if (coTarget) {
+    // co-primary target (pre-registered per skill): must also beat both arms
+    const co = skillMedians(coTarget);
+    const coBeats = (on: number, control: number) =>
+      coTarget.direction === "down" ? on < control : on > control;
+    if (!coBeats(co.on, co.off)) {
+      reasons.push(`does not beat baseline on ${coTarget.label} (${co.on} vs ${co.off})`);
+    }
+    if (!coBeats(co.on, co.placebo)) {
+      reasons.push(`does not beat placebo on ${coTarget.label} (${co.on} vs ${co.placebo})`);
+    }
   }
   if (rate(pc.on) < rate(pc.off)) {
     reasons.push(`acceptance pass rate drops vs off (${frac(pc.on)} vs ${frac(pc.off)})`);
@@ -214,8 +240,10 @@ async function main(): Promise<void> {
   for (const skillId of [...new Set(runs.map((r) => r.skillId))].sort()) {
     const meta = JSON.parse(
       await readFile(path.join(root, "skills", skillId, "skill.json"), "utf8"),
-    ) as { target: TargetSpec };
-    receipts.push(buildReceipt(skillId, meta.target, runs.filter((r) => r.skillId === skillId)));
+    ) as { target: TargetSpec; coTarget?: TargetSpec };
+    receipts.push(
+      buildReceipt(skillId, meta.target, runs.filter((r) => r.skillId === skillId), meta.coTarget),
+    );
   }
 
   const readmePath = path.join(root, "README.md");

@@ -1,0 +1,22 @@
+{
+  "runId": "tests-that-bite--01-interval-merge-off-t5",
+  "skillId": "tests-that-bite",
+  "taskId": "01-interval-merge",
+  "condition": "off",
+  "trial": 5,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T09:51:56.710Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": 0.8888888888888888,
+  "locAddedSrc": 0,
+  "locAddedTest": 125,
+  "filesCreated": 2,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 8,
+  "totalCostUsd": 0.2690545,
+  "durationMs": 49598
+}

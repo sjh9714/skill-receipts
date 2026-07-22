@@ -1,0 +1,22 @@
+{
+  "id": "04-pager-contract",
+  "title": "Fix a pagination bug whose correct fix depends on a documented contract",
+  "tags": [
+    "thrift",
+    "brownfield",
+    "counter-task"
+  ],
+  "timeoutMin": 10,
+  "maxBudgetUsd": 2,
+  "traps": [
+    {
+      "name": "unrelated-files",
+      "detect": {
+        "type": "touches-outside",
+        "allow": [
+          "src/pager.js"
+        ]
+      }
+    }
+  ]
+}

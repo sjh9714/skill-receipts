@@ -1,0 +1,144 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..cb8cb2d
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/merge.test.js",{"duration":2.9939999999999998,"failed":false}],[":test/example.test.js",{"duration":0.8588749999999834,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/merge.test.js b/test/merge.test.js
+new file mode 100644
+index 0000000..e13e65b
+--- /dev/null
++++ b/test/merge.test.js
+@@ -0,0 +1,130 @@
++import { describe, expect, it } from "vitest";
++import { mergeIntervals } from "../src/merge.js";
++
++describe("mergeIntervals", () => {
++  describe("empty input", () => {
++    it("maps [] -> []", () => {
++      expect(mergeIntervals([])).toEqual([]);
++    });
++  });
++
++  describe("overlapping intervals", () => {
++    it("merges overlapping intervals ([1,4],[3,6] -> [1,6])", () => {
++      expect(mergeIntervals([[1, 4], [3, 6]])).toEqual([[1, 6]]);
++    });
++
++    it("merges a chain of overlapping intervals", () => {
++      expect(mergeIntervals([[1, 3], [2, 5], [4, 8]])).toEqual([[1, 8]]);
++    });
++
++    it("merges when a later interval is fully contained in an earlier one", () => {
++      expect(mergeIntervals([[1, 10], [3, 6]])).toEqual([[1, 10]]);
++    });
++
++    it("keeps the maximum end when merging (does not shrink)", () => {
++      // [3,6] must not reduce the running end from 10 to 6
++      expect(mergeIntervals([[1, 10], [2, 3], [4, 6]])).toEqual([[1, 10]]);
++    });
++  });
++
++  describe("touching intervals", () => {
++    it("merges touching intervals ([1,2],[2,3] -> [1,3])", () => {
++      expect(mergeIntervals([[1, 2], [2, 3]])).toEqual([[1, 3]]);
++    });
++  });
++
++  describe("disjoint intervals", () => {
++    it("keeps disjoint intervals separate", () => {
++      expect(mergeIntervals([[1, 2], [4, 5]])).toEqual([[1, 2], [4, 5]]);
++    });
++
++    it("does not merge intervals that only share a gap of 1 ([1,2],[3,4])", () => {
++      expect(mergeIntervals([[1, 2], [3, 4]])).toEqual([[1, 2], [3, 4]]);
++    });
++
++    it("returns a single interval unchanged", () => {
++      expect(mergeIntervals([[5, 9]])).toEqual([[5, 9]]);
++    });
++
++    it("handles a mix of merged and disjoint intervals", () => {
++      expect(mergeIntervals([[1, 3], [2, 4], [7, 9], [8, 10], [12, 12]])).toEqual([
++        [1, 4],
++        [7, 10],
++        [12, 12],
++      ]);
++    });
++  });
++
++  describe("sorting", () => {
++    it("returns intervals sorted by start ascending regardless of input order", () => {
++      expect(mergeIntervals([[8, 10], [1, 2], [4, 6]])).toEqual([
++        [1, 2],
++        [4, 6],
++        [8, 10],
++      ]);
++    });
++
++    it("merges correctly even when overlapping intervals are given out of order", () => {
++      expect(mergeIntervals([[6, 8], [1, 4], [2, 3], [7, 9]])).toEqual([
++        [1, 4],
++        [6, 9],
++      ]);
++    });
++  });
++
++  describe("edge values", () => {
++    it("handles zero-width intervals ([2,2])", () => {
++      expect(mergeIntervals([[2, 2], [2, 2]])).toEqual([[2, 2]]);
++    });
++
++    it("handles negative coordinates", () => {
++      expect(mergeIntervals([[-5, -1], [-2, 3]])).toEqual([[-5, 3]]);
++    });
++
++    it("handles intervals sharing the same start", () => {
++      expect(mergeIntervals([[1, 3], [1, 5]])).toEqual([[1, 5]]);
++    });
++  });
++
++  describe("invalid intervals", () => {
++    it("throws RangeError if any pair has start > end", () => {
++      expect(() => mergeIntervals([[5, 1]])).toThrow(RangeError);
++    });
++
++    it("throws even when the invalid pair is not first", () => {
++      expect(() => mergeIntervals([[1, 2], [9, 4]])).toThrow(RangeError);
++    });
++
++    it("does not throw for equal start and end", () => {
++      expect(() => mergeIntervals([[3, 3]])).not.toThrow();
++    });
++  });
++
++  describe("purity", () => {
++    it("does not mutate the input array", () => {
++      const input = [[3, 6], [1, 4]];
++      mergeIntervals(input);
++      expect(input).toEqual([[3, 6], [1, 4]]);
++    });
++
++    it("does not mutate the input pairs", () => {
++      const pair = [1, 4];
++      const input = [pair, [3, 6]];
++      mergeIntervals(input);
++      expect(pair).toEqual([1, 4]);
++    });
++
++    it("returns a new array that does not alias input pairs", () => {
++      const input = [[1, 4], [3, 6]];
++      const result = mergeIntervals(input);
++      expect(result[0]).not.toBe(input[0]);
++    });
++
++    it("returned pairs can be mutated without affecting a subsequent call", () => {
++      const input = [[1, 4], [3, 6]];
++      const first = mergeIntervals(input);
++      first[0][1] = 999;
++      expect(mergeIntervals(input)).toEqual([[1, 6]]);
++    });
++  });
++});

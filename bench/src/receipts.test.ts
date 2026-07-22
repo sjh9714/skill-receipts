@@ -115,6 +115,27 @@ describe("buildReceipt", () => {
     expect(() => buildReceipt("s", kill, [run({ taskScalar: null })])).toThrow(/\.bench-scalar/);
   });
 
+  it("enforces a co-primary target when the skill declares one", () => {
+    // on beats off+placebo on cost, but ties placebo on turns -> rejected
+    const cost = { metric: "totalCostUsd", direction: "down", label: "cost per run" } as const;
+    const turns = { metric: "numTurns", direction: "down", label: "turns per run" } as const;
+    const runs = [
+      run({ runId: "o1", taskId: "a", condition: "off", totalCostUsd: 0.4, numTurns: 30 }),
+      run({ runId: "p1", taskId: "a", condition: "placebo", totalCostUsd: 0.38, numTurns: 24 }),
+      run({ runId: "n1", taskId: "a", condition: "on", totalCostUsd: 0.2, numTurns: 24 }),
+    ];
+    const rejected = buildReceipt("s", cost, runs, turns);
+    expect(rejected.admitted).toBe(false);
+    expect(rejected.reasons).toEqual(["does not beat placebo on turns per run (24 vs 24)"]);
+    const admitted = buildReceipt(
+      "s",
+      cost,
+      runs.map((r) => (r.condition === "on" ? { ...r, numTurns: 20 } : r)),
+      turns,
+    );
+    expect(admitted.admitted).toBe(true);
+  });
+
   it("excludes vs-* comparison arms from the admission decision", () => {
     const runs = [
       ...threeArm(),

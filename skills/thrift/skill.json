@@ -1,0 +1,7 @@
+{
+  "name": "thrift",
+  "description": "Use on every coding task to spend tokens and turns proportionally to the change: no redundant re-reads, no full-suite runs for trivial edits, batch related operations, verify once — without ever skipping verification the task actually needs.",
+  "snippetHeading": "Spend tokens like they're yours (thrift)",
+  "target": { "metric": "totalCostUsd", "direction": "down", "label": "cost per run (USD)" },
+  "coTarget": { "metric": "numTurns", "direction": "down", "label": "turns per run" }
+}
