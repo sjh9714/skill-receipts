@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 640px;
+    background: #0d1117;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: #e6edf3;
+    padding: 56px 64px;
+    display: flex; flex-direction: column;
+  }
+  .repo { font-size: 26px; color: #8b949e; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .repo b { color: #e6edf3; font-weight: 600; }
+  h1 { font-size: 44px; font-weight: 700; margin: 14px 0 10px; letter-spacing: -0.5px; }
+  h1 .hl { color: #7ee787; }
+  .sub { font-size: 24px; color: #8b949e; margin-bottom: 34px; }
+  table { border-collapse: collapse; width: 100%; font-size: 24px; }
+  th {
+    text-align: left; color: #8b949e; font-weight: 600; font-size: 19px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0 18px 12px 18px; border-bottom: 1px solid #30363d;
+  }
+  td { padding: 15px 18px; border-bottom: 1px solid #21262d; }
+  tr:last-child td { border-bottom: none; }
+  .name { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-weight: 600; }
+  .pass { color: #7ee787; font-weight: 700; }
+  .fail { color: #f85149; font-weight: 700; }
+  .num { color: #79c0ff; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .dim { color: #8b949e; }
+  .foot {
+    margin-top: auto; display: flex; justify-content: space-between;
+    font-size: 20px; color: #8b949e; white-space: nowrap;
+  }
+  .foot .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+</style>
+</head>
+<body>
+  <div class="repo">sjh9714 / <b>skill-receipts</b></div>
+  <h1>Claude Code skills that ship <span class="hl">with receipts</span></h1>
+  <div class="sub">Every skill must beat baseline AND a placebo on hidden hold-out tests — or it's published as a reject.</div>
+  <table>
+    <tr><th>skill</th><th>verdict</th><th>receipt</th></tr>
+    <tr>
+      <td class="name">underkill</td>
+      <td class="pass">✓ admitted</td>
+      <td><span class="num">−23.8%</span> src LOC vs baseline, <span class="num">−36%</span> vs placebo <span class="dim">· accuracy 60/60/60</span></td>
+    </tr>
+    <tr>
+      <td class="name">repro-first</td>
+      <td class="pass">✓ admitted</td>
+      <td>verified repro tests: <span class="num">10/20</span> runs vs <span class="num">2/20</span> off, <span class="num">0/20</span> placebo</td>
+    </tr>
+    <tr>
+      <td class="name">tests-that-bite</td>
+      <td class="fail">✗ rejected</td>
+      <td class="dim">baseline already killed 100% of mutants — ceiling, published</td>
+    </tr>
+    <tr>
+      <td class="name">thrift</td>
+      <td class="fail">✗ rejected</td>
+      <td class="dim">cut turns −14%, not dollars — published</td>
+    </tr>
+  </table>
+  <div class="foot">
+    <div><span class="mono">456 runs · raw logs committed · CI-regenerated</span></div>
+    <div>audited: ponytail 87k★ · caveman 92k★ · superpowers 259k★</div>
+  </div>
+</body>
+</html>
