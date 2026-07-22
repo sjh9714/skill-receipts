@@ -19,4 +19,5 @@ jobs:
       - run: npm run typecheck
       - run: npm run build-dist -- --check
       - run: npm run report -- --check
+      - run: npm run audit-holdout
       - run: npm test

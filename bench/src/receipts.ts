@@ -51,6 +51,11 @@ export interface SkillReceipt {
   deltaVsOffPct: number | null;
   deltaVsPlaceboPct: number | null;
   passRate: { off: string; placebo: string; on: string }; // "accepted/total"
+  // run-level counts for binary metrics (reproVerified): "hits/runs" per arm
+  binaryCounts: { off: string; placebo: string; on: string } | null;
+  // free-text annotation rendered under the section (e.g. the pre-registered
+  // compliance-fallback note), set from skill.json's admissionNote
+  note: string | null;
   admitted: boolean;
   reasons: string[];
   // vendored third-party rulesets run under the identical protocol (vs-<name>
@@ -67,6 +72,7 @@ export function buildReceipt(
   target: TargetSpec,
   allRuns: RunResult[],
   coTarget?: TargetSpec,
+  note?: string,
 ): SkillReceipt {
   // vs-* comparison arms are reported separately; admission is strictly three-armed
   const runs = allRuns.filter((r) => r.condition === "on" || r.condition === "off" || r.condition === "placebo");
@@ -185,6 +191,15 @@ export function buildReceipt(
     deltaVsOffPct: deltaPct(medianTarget.on, medianTarget.off),
     deltaVsPlaceboPct: deltaPct(medianTarget.on, medianTarget.placebo),
     passRate: { off: frac(pc.off), placebo: frac(pc.placebo), on: frac(pc.on) },
+    binaryCounts:
+      target.metric === "reproVerified"
+        ? {
+            off: `${arm("off").filter((r) => r.reproVerified).length}/${arm("off").length}`,
+            placebo: `${arm("placebo").filter((r) => r.reproVerified).length}/${arm("placebo").length}`,
+            on: `${arm("on").filter((r) => r.reproVerified).length}/${arm("on").length}`,
+          }
+        : null,
+    note: note ?? null,
     admitted: reasons.length === 0,
     reasons,
     comparisons,
@@ -195,13 +210,20 @@ const fmtDelta = (d: number | null): string => (d === null ? "n/a" : `${d > 0 ? 
 const fmtCell = (n: number): string => String(Math.round(n * 1000) / 1000);
 
 function renderOne(r: SkillReceipt, lines: string[]): void {
+  const headline = r.binaryCounts
+    ? `${r.target.label}: **on ${r.binaryCounts.on} runs vs off ${r.binaryCounts.off} vs placebo ${r.binaryCounts.placebo}**. `
+    : `${r.target.label}: **${fmtDelta(r.deltaVsOffPct)} vs baseline**, **${fmtDelta(r.deltaVsPlaceboPct)} vs placebo** ` +
+      `(medians ${fmtCell(r.medianTarget.off)} / ${fmtCell(r.medianTarget.placebo)} / ${fmtCell(r.medianTarget.on)}). `;
   lines.push(
-    `${r.target.label}: **${fmtDelta(r.deltaVsOffPct)} vs baseline**, **${fmtDelta(r.deltaVsPlaceboPct)} vs placebo** ` +
-      `(medians ${fmtCell(r.medianTarget.off)} / ${fmtCell(r.medianTarget.placebo)} / ${fmtCell(r.medianTarget.on)}). ` +
+    headline +
       `Hold-out acceptance: off ${r.passRate.off}, placebo ${r.passRate.placebo}, on ${r.passRate.on}. ` +
       `${r.runsTotal} runs, ${r.model}, CLI ${r.cliVersion}, total cost $${r.totalCostUsd.toFixed(2)}.`,
   );
   lines.push("");
+  if (r.note) {
+    lines.push(`> ${r.note}`);
+    lines.push("");
+  }
   lines.push(`| task | off | placebo | on (${r.skillId}) | pass off/placebo/on |`);
   lines.push("|---|---|---|---|---|");
   for (const row of r.rows) {
@@ -212,8 +234,8 @@ function renderOne(r: SkillReceipt, lines: string[]): void {
   lines.push("");
   for (const c of r.comparisons) {
     lines.push(
-      `> Comparison arm **vs-${c.name}** (vendored ruleset, identical protocol, not part of admission): ` +
-        `${r.target.label} median ${fmtCell(c.medianTarget)}, acceptance ${c.passRate}, ${c.runs} runs.`,
+      `> Comparison arm **vs-${c.name}** (vendored ruleset — same tasks, model, harness, and gates; trial count may differ from the primary arms; never part of admission): ` +
+        `${r.target.label} median ${fmtCell(c.medianTarget)}, acceptance ${c.passRate}, ${c.runs} runs. See docs/audits/${c.name}.md.`,
     );
     lines.push("");
   }
@@ -280,9 +302,15 @@ async function main(): Promise<void> {
   for (const skillId of [...new Set(runs.map((r) => r.skillId))].sort()) {
     const meta = JSON.parse(
       await readFile(path.join(root, "skills", skillId, "skill.json"), "utf8"),
-    ) as { target: TargetSpec; coTarget?: TargetSpec };
+    ) as { target: TargetSpec; coTarget?: TargetSpec; admissionNote?: string };
     receipts.push(
-      buildReceipt(skillId, meta.target, runs.filter((r) => r.skillId === skillId), meta.coTarget),
+      buildReceipt(
+        skillId,
+        meta.target,
+        runs.filter((r) => r.skillId === skillId),
+        meta.coTarget,
+        meta.admissionNote,
+      ),
     );
   }
 

@@ -6,9 +6,17 @@ placebo prompt. Skills that fail are published too, with their numbers.
 
 > **The admission rule (pre-registered in this repo's first commit,
 > [`347cb54`](https://github.com/sjh9714/skill-receipts/commit/347cb54)): no
-> skill gets merged unless it beats both baseline and placebo on hold-out
-> acceptance tests, with accuracy not dropping. Rejects go in the table
-> below.**
+> skill gets merged unless it beats both baseline and placebo on its
+> pre-registered target metric, measured on tasks with hidden hold-out
+> acceptance tests, with accuracy not allowed to drop. Rejects go in the
+> table below.**
+
+| skill | verdict | headline |
+|---|---|---|
+| [underkill](skills/underkill) | ✅ admitted | −23.8% src LOC vs baseline, −36% vs placebo, accuracy 60/60/60 |
+| [repro-first](skills/repro-first) | ✅ admitted | verified repro tests appear in 10/20 runs vs 2/20 off, 0/20 placebo (compliance receipt — see note) |
+| tests-that-bite | ❌ rejected | baseline already killed 100% of our mutants — ceiling; full table below |
+| thrift | ❌ rejected | cut turns −14% but not dollars; the [caveman comparison](docs/audits/caveman.md) is the interesting part |
 
 ## Install
 
@@ -33,10 +41,12 @@ receipt here is a three-way comparison — **off / placebo / on** — on tasks
 with hidden hold-out acceptance tests the agent never sees, K=5+ trials per
 task per arm, isolated workspaces, raw logs and per-run patches committed.
 
-Popular third-party skills get the same treatment:
+Popular third-party rulesets get the same treatment:
 **[Audit #1 — ponytail (87k★)](docs/audits/ponytail.md)** ran the
-most-installed anti-over-engineering skill under this protocol, pre-registered
-and published win-or-lose (spoiler: it won on LOC, at a cost).
+most-starred anti-over-engineering skill under a pre-registered protocol,
+published win-or-lose (it won on LOC, at a cost), and
+**[Audit #2 — caveman (92k★)](docs/audits/caveman.md)** measured whether
+terse-mode compression cuts agentic run cost (it didn't — it raised it).
 
 ## Receipts
 
@@ -47,7 +57,9 @@ nothing hand-written.
 <!-- BENCH:START -->
 ### ✅ repro-first — admitted
 
-verified-repro rate: **n/a vs baseline**, **n/a vs placebo** (medians 0 / 0 / 0.5). Hold-out acceptance: off 20/20, placebo 20/20, on 20/20. 60 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $12.94.
+verified-repro rate: **on 10/20 runs vs off 2/20 vs placebo 0/20**. Hold-out acceptance: off 20/20, placebo 20/20, on 20/20. 60 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $12.94.
+
+> Compliance receipt via the pre-registered pilot-gate fallback (docs/DESIGN.md): the off arm fixed every misdiagnosis task (pilot 12/12, sweep 20/20), so the accuracy axis was unearnable. What the skill measurably changes is that fixes arrive with a machine-verified regression test — one that fails on the pre-fix baseline and passes after — at +$0.07/run and +11 test LOC median. Detector counts added test files only, so this understates compliance where the repro belongs in an existing file (tasks 01/04).
 
 | task | off | placebo | on (repro-first) | pass off/placebo/on |
 |---|---|---|---|---|
@@ -101,7 +113,7 @@ cost per run (USD): **+3.3% vs baseline**, **-3.5% vs placebo** (medians 0.163 /
 | 03-typo-expensive-suite | 0.119 | 0.125 | 0.127 | 8/8 · 8/8 · 8/8 |
 | 04-pager-contract | 0.155 | 0.158 | 0.172 | 8/8 · 8/8 · 8/8 |
 
-> Comparison arm **vs-caveman** (vendored ruleset, identical protocol, not part of admission): cost per run (USD) median 0.183, acceptance 20/20, 20 runs.
+> Comparison arm **vs-caveman** (vendored ruleset — same tasks, model, harness, and gates; trial count may differ from the primary arms; never part of admission): cost per run (USD) median 0.183, acceptance 20/20, 20 runs. See docs/audits/caveman.md.
 <!-- BENCH:END -->
 
 ## Methodology

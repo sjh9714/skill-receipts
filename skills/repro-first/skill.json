@@ -2,5 +2,6 @@
   "name": "repro-first",
   "description": "Use when fixing a reported bug — reproduce it with a failing test before touching the code, then make the minimal fix at the true cause; never patch the symptom or files unrelated to the bug.",
   "snippetHeading": "Reproduce before you fix (repro-first)",
-  "target": { "metric": "reproVerified", "direction": "up", "label": "verified-repro rate" }
+  "target": { "metric": "reproVerified", "direction": "up", "label": "verified-repro rate" },
+  "admissionNote": "Compliance receipt via the pre-registered pilot-gate fallback (docs/DESIGN.md): the off arm fixed every misdiagnosis task (pilot 12/12, sweep 20/20), so the accuracy axis was unearnable. What the skill measurably changes is that fixes arrive with a machine-verified regression test — one that fails on the pre-fix baseline and passes after — at +$0.07/run and +11 test LOC median. Detector counts added test files only, so this understates compliance where the repro belongs in an existing file (tasks 01/04)."
 }

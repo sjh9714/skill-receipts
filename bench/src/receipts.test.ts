@@ -111,6 +111,21 @@ describe("buildReceipt", () => {
     expect(r.medianTarget).toEqual({ off: 0.4, placebo: 0.5, on: 0.9 });
   });
 
+  it("renders binary metrics as run-level counts with the admission note", () => {
+    const spec = { metric: "reproVerified", direction: "up", label: "verified-repro rate" } as const;
+    const runs = [
+      run({ runId: "o1", taskId: "a", condition: "off", reproVerified: false }),
+      run({ runId: "p1", taskId: "a", condition: "placebo", reproVerified: false }),
+      run({ runId: "n1", taskId: "a", condition: "on", reproVerified: true }),
+    ];
+    const r = buildReceipt("s", spec, runs, undefined, "compliance fallback note");
+    expect(r.binaryCounts).toEqual({ off: "0/1", placebo: "0/1", on: "1/1" });
+    const md = renderReceipts([r]);
+    expect(md).toContain("on 1/1 runs vs off 0/1 vs placebo 0/1");
+    expect(md).toContain("> compliance fallback note");
+    expect(md).not.toContain("n/a vs baseline");
+  });
+
   it("throws when a run is missing the scalar the target requires", () => {
     const kill = { metric: "taskScalar", direction: "up", label: "mutant kill rate" } as const;
     expect(() => buildReceipt("s", kill, [run({ taskScalar: null })])).toThrow(/\.bench-scalar/);

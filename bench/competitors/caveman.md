@@ -1,7 +1,17 @@
 <!--
   VENDORED COMPETITOR RULESET — comparison arm "vs-caveman" (see docs/DESIGN.md).
   Source: JuliusBrussee/caveman skills/caveman/SKILL.md
-  Version: v1.9.1 · commit 0d95a81d35a9f2d123a5e9430d1cfc43d55f1bb0 · MIT license
+  Version: v1.9.1 · commit 0d95a81d35a9f2d123a5e9430d1cfc43d55f1bb0
+
+  MIT License — Copyright (c) JuliusBrussee
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the "Software"),
+  to deal in the Software without restriction, including without limitation
+  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+  and/or sell copies of the Software, subject to including this notice in
+  all copies or substantial portions. THE SOFTWARE IS PROVIDED "AS IS",
+  WITHOUT WARRANTY OF ANY KIND. See the upstream LICENSE for the full text:
+  https://github.com/JuliusBrussee/caveman/blob/0d95a81/LICENSE
   Vendored: 2026-07-22. The SKILL.md YAML frontmatter (invocation metadata) is
   omitted; the ruleset body below is verbatim. This comment is stripped before
   injection, exactly as for the placebo arm.

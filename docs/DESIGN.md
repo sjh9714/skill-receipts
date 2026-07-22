@@ -54,11 +54,12 @@ reported alongside but never count toward admission.
   unbatched edits. **T4 is a pre-registered counter-task** where correct
   behavior REQUIRES reading/verifying more — a run that games the metric by
   under-verifying fails the hold-out gate there.
-- Placebo: thrift gets its own placebo variant that is process-neutral AND
-  verbosity-neutral, pilot-verified cost-inert before the sweep. (Physics
-  note: injected text adds input tokens every turn, so any instruction arm
-  starts above `off` on cost — beating both prices in the skill's own
-  overhead.)
+- Placebo: thrift gets its own placebo variant that is process-neutral —
+  it contains no mechanism that could reduce spend — and was pilot-checked
+  (n=8) for gross cost distortion before the sweep. (Physics note: injected
+  text adds input tokens every turn, so any instruction arm starts above
+  `off` on cost — beating both prices in the skill's own overhead. The pilot
+  showed exactly that: placebo ≈ +10% vs off on one task, ≈ 0 on the other.)
 - Comparison arm: `vs-caveman` — JuliusBrussee/caveman (91.9k stars, MIT)
   vendored at v1.9.1 commit 0d95a81, the `skills/caveman/SKILL.md` ruleset
   body verbatim (YAML invocation frontmatter omitted; provenance comment
@@ -106,9 +107,15 @@ repro-first = wrong-fix rate + repro-verified compliance (owns
   of mutants on 3 of 4 tasks — our mutants were too coarse for
   claude-opus-4-8, so the pre-registered target could not differentiate and
   the skill was rejected. The accuracy gate still separated arms on the
-  rate-limiter task (off 1/5, placebo 0/5, on 5/5): without the skill, the
-  model asserted wrong boundary expectations. A future round with subtler
-  mutants would need fresh pre-registration.
+  rate-limiter task (off 1/5, placebo 0/5, on 5/5) — but read the failure
+  mode precisely: the failing off/placebo suites PASSED on the pristine
+  implementation and failed the behavior-preserving-refactor gate, because
+  they asserted implementation-coupled key-identity semantics (Map identity
+  for non-string keys) that the documented contract never promises. Their
+  boundary tests were correct. Related artifact: a suite that fails on the
+  pristine module vacuously "kills" every mutant, so kill rate is only
+  interpretable alongside the gate columns — which is how the tables print
+  it. A future round with subtler mutants would need fresh pre-registration.
 - **repro-first is a compliance receipt, by its pre-registered fallback.**
   The off-arm pilot was clean (12/12 correct fixes, zero traps) — the
   wrong-fix axis was unearnable on these tasks, exactly the case the pilot
@@ -128,7 +135,30 @@ repro-first = wrong-fix rate + repro-verified compliance (owns
   input-dominated. That does not test caveman's own claim, which is about
   chat-response output tokens.
 - **Small task sets.** 4 tasks per new skill (12 for underkill) is enough to
-  gate on, not to generalize from. Receipts are evidence, not proofs.
+  gate on, not to generalize from. Receipts are evidence, not proofs. The
+  tasks are small and self-contained (5-50 LOC solutions); effects on large
+  real codebases are untested here.
+- **Pre-registration is commit-ordering, self-attested.** Rule and per-skill
+  targets were committed before their sweeps ran — verifiable in the git
+  history — but the whole sequence happened within one day in a repo the
+  author controls. The methodology itself carries the earlier underkill
+  repo's multi-day record.
+- **Hold-out material is reachable in principle.** The agent has unrestricted
+  read tools and the workspace lives under this repo, so acceptance/mutant
+  files were not physically unreachable. `npm run audit-holdout` (run in CI)
+  scans every committed run log for any reference to the repo's task
+  material: currently 436/436 logs clean.
+- **Per-skill placebos amend the first-commit definition.** The original
+  protocol said "style-only placebo of equal length"; tests-that-bite's
+  exhortation placebo and thrift's convention placebo (committed before their
+  sweeps) are task-relevant and shorter than their skills (~40% in the
+  tests-that-bite case). The direction of that bias is conservative — a
+  shorter placebo takes fewer input tokens and less instruction budget — but
+  the drift from "equal length" is real and recorded here.
+- **vs-caveman ran K=5 against K=8 primary arms** (20 vs 32 runs per arm),
+  on the metric this document itself calls heavy-tailed. Same tasks, model,
+  harness, and gates — but not the same trial count; see
+  docs/audits/caveman.md for per-task numbers.
 
 ## Budget
 

@@ -8,6 +8,7 @@
     "build-dist": "tsx scripts/build-dist.ts",
     "bench": "tsx bench/src/run.ts",
     "report": "tsx bench/src/receipts.ts",
+    "audit-holdout": "tsx bench/src/audit-holdout.ts",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests --exclude \"skills/**\" --exclude \"bench/.workspaces/**\""
   },
