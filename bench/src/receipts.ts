@@ -127,13 +127,14 @@ export function buildReceipt(
 
   const beats = (on: number, control: number) =>
     target.direction === "down" ? on < control : on > control;
+  const show = (n: number) => String(Math.round(n * 1000) / 1000);
 
   const reasons: string[] = [];
   if (!beats(medianTarget.on, medianTarget.off)) {
-    reasons.push(`does not beat baseline on ${target.label} (${medianTarget.on} vs ${medianTarget.off})`);
+    reasons.push(`does not beat baseline on ${target.label} (${show(medianTarget.on)} vs ${show(medianTarget.off)})`);
   }
   if (!beats(medianTarget.on, medianTarget.placebo)) {
-    reasons.push(`does not beat placebo on ${target.label} (${medianTarget.on} vs ${medianTarget.placebo})`);
+    reasons.push(`does not beat placebo on ${target.label} (${show(medianTarget.on)} vs ${show(medianTarget.placebo)})`);
   }
   if (coTarget) {
     // co-primary target (pre-registered per skill): must also beat both arms
@@ -141,10 +142,10 @@ export function buildReceipt(
     const coBeats = (on: number, control: number) =>
       coTarget.direction === "down" ? on < control : on > control;
     if (!coBeats(co.on, co.off)) {
-      reasons.push(`does not beat baseline on ${coTarget.label} (${co.on} vs ${co.off})`);
+      reasons.push(`does not beat baseline on ${coTarget.label} (${show(co.on)} vs ${show(co.off)})`);
     }
     if (!coBeats(co.on, co.placebo)) {
-      reasons.push(`does not beat placebo on ${coTarget.label} (${co.on} vs ${co.placebo})`);
+      reasons.push(`does not beat placebo on ${coTarget.label} (${show(co.on)} vs ${show(co.placebo)})`);
     }
   }
   if (rate(pc.on) < rate(pc.off)) {
@@ -172,6 +173,25 @@ export function buildReceipt(
 }
 
 const fmtDelta = (d: number | null): string => (d === null ? "n/a" : `${d > 0 ? "+" : ""}${d}%`);
+const fmtCell = (n: number): string => String(Math.round(n * 1000) / 1000);
+
+function renderOne(r: SkillReceipt, lines: string[]): void {
+  lines.push(
+    `${r.target.label}: **${fmtDelta(r.deltaVsOffPct)} vs baseline**, **${fmtDelta(r.deltaVsPlaceboPct)} vs placebo** ` +
+      `(medians ${fmtCell(r.medianTarget.off)} / ${fmtCell(r.medianTarget.placebo)} / ${fmtCell(r.medianTarget.on)}). ` +
+      `Hold-out acceptance: off ${r.passRate.off}, placebo ${r.passRate.placebo}, on ${r.passRate.on}. ` +
+      `${r.runsTotal} runs, ${r.model}, CLI ${r.cliVersion}, total cost $${r.totalCostUsd.toFixed(2)}.`,
+  );
+  lines.push("");
+  lines.push(`| task | off | placebo | on (${r.skillId}) | pass off/placebo/on |`);
+  lines.push("|---|---|---|---|---|");
+  for (const row of r.rows) {
+    lines.push(
+      `| ${row.taskId} | ${fmtCell(row.off)} | ${fmtCell(row.placebo)} | ${fmtCell(row.on)} | ${row.passOff}/${row.trials} · ${row.passPlacebo}/${row.trials} · ${row.passOn}/${row.trials} |`,
+    );
+  }
+  lines.push("");
+}
 
 export function renderReceipts(receipts: SkillReceipt[]): string {
   const admitted = receipts.filter((r) => r.admitted);
@@ -181,34 +201,19 @@ export function renderReceipts(receipts: SkillReceipt[]): string {
   for (const r of admitted) {
     lines.push(`### ✅ ${r.skillId} — admitted`);
     lines.push("");
-    lines.push(
-      `${r.target.label}: **${fmtDelta(r.deltaVsOffPct)} vs baseline**, **${fmtDelta(r.deltaVsPlaceboPct)} vs placebo** ` +
-        `(medians ${r.medianTarget.off} / ${r.medianTarget.placebo} / ${r.medianTarget.on}). ` +
-        `Hold-out acceptance: off ${r.passRate.off}, placebo ${r.passRate.placebo}, on ${r.passRate.on}. ` +
-        `${r.runsTotal} runs, ${r.model}, CLI ${r.cliVersion}, total cost $${r.totalCostUsd.toFixed(2)}.`,
-    );
-    lines.push("");
-    lines.push(`| task | off | placebo | on (${r.skillId}) | pass off/placebo/on |`);
-    lines.push("|---|---|---|---|---|");
-    for (const row of r.rows) {
-      lines.push(
-        `| ${row.taskId} | ${row.off} | ${row.placebo} | ${row.on} | ${row.passOff}/${row.trials} · ${row.passPlacebo}/${row.trials} · ${row.passOn}/${row.trials} |`,
-      );
-    }
-    lines.push("");
+    renderOne(r, lines);
   }
 
   if (rejected.length > 0) {
-    lines.push("### ❌ Did not make the cut");
+    lines.push("## ❌ Did not make the cut");
     lines.push("");
-    lines.push("Skills we wrote, measured, and rejected under the same protocol. Published because a results log that only contains wins would not be worth trusting.");
+    lines.push("Skills we wrote, measured, and rejected under the same protocol — full tables included. Published because a results log that only contains wins would not be worth trusting.");
     lines.push("");
-    lines.push("| skill | why it was rejected |");
-    lines.push("|---|---|");
     for (const r of rejected) {
-      lines.push(`| ${r.skillId} | ${r.reasons.join("; ")} |`);
+      lines.push(`### ❌ ${r.skillId} — rejected: ${r.reasons.join("; ")}`);
+      lines.push("");
+      renderOne(r, lines);
     }
-    lines.push("");
   }
 
   return lines.join("\n").trimEnd();

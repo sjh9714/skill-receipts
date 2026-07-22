@@ -164,10 +164,11 @@ describe("renderReceipts", () => {
     expect(md).toContain("claude-opus-4-8");
   });
 
-  it("renders rejected skills in the rejects table with reasons", () => {
+  it("renders rejected skills with reasons AND their full three-arm table", () => {
     expect(md).toContain("Did not make the cut");
-    expect(md).toContain("padder");
+    expect(md).toContain("❌ padder — rejected:");
     expect(md).toMatch(/does not beat (baseline|placebo)/);
+    expect(md).toContain("| task | off | placebo | on (padder) |");
   });
 
   it("is deterministic", () => {

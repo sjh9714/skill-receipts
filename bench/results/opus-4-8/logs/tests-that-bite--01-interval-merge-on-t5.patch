@@ -1,0 +1,157 @@
+diff --git a/test/merge.test.js b/test/merge.test.js
+new file mode 100644
+index 0000000..435f52b
+--- /dev/null
++++ b/test/merge.test.js
+@@ -0,0 +1,151 @@
++import { describe, expect, it } from "vitest";
++import { mergeIntervals } from "../src/merge.js";
++
++describe("mergeIntervals", () => {
++  // Bug caught: empty input mishandled (e.g. returning undefined/null).
++  it("returns [] for empty input", () => {
++    expect(mergeIntervals([])).toEqual([]);
++  });
++
++  // Bug caught: a single interval dropped or altered.
++  it("returns a single interval unchanged", () => {
++    expect(mergeIntervals([[1, 5]])).toEqual([[1, 5]]);
++  });
++
++  // --- Overlap ---
++
++  // Bug caught: overlapping intervals not merged. [1,4] and [3,6] overlap on [3,4].
++  it("merges overlapping intervals", () => {
++    expect(mergeIntervals([[1, 4], [3, 6]])).toEqual([[1, 6]]);
++  });
++
++  // Bug caught: end not extended via Math.max when second interval is fully
++  // contained. [1,10] swallows [3,4] -> end must stay 10, not shrink to 4.
++  it("keeps the larger end when one interval contains another", () => {
++    expect(mergeIntervals([[1, 10], [3, 4]])).toEqual([[1, 10]]);
++  });
++
++  // --- Touch boundary: below / at / above ---
++
++  // Just below the touch: a 1-unit gap must stay disjoint. Catches using
++  // start <= last[1] + 1 (treating adjacency as overlap).
++  it("keeps intervals with a gap disjoint (just below touch)", () => {
++    expect(mergeIntervals([[1, 2], [3, 4]])).toEqual([[1, 2], [3, 4]]);
++  });
++
++  // At the boundary: touching endpoints merge. Catches using start < last[1]
++  // (strict), which would wrongly leave [1,2],[2,3] separate.
++  it("merges touching intervals (at the boundary)", () => {
++    expect(mergeIntervals([[1, 2], [2, 3]])).toEqual([[1, 3]]);
++  });
++
++  // Just above: clear overlap merges.
++  it("merges clearly overlapping intervals (just above touch)", () => {
++    expect(mergeIntervals([[1, 3], [2, 4]])).toEqual([[1, 4]]);
++  });
++
++  // --- Disjoint ---
++
++  // Bug caught: distinct disjoint intervals collapsed together.
++  it("keeps multiple disjoint intervals separate", () => {
++    expect(mergeIntervals([[1, 2], [4, 5], [7, 8]])).toEqual([
++      [1, 2],
++      [4, 5],
++      [7, 8],
++    ]);
++  });
++
++  // --- Sorting ---
++
++  // Bug caught: unsorted input not sorted before merging, so adjacent-in-value
++  // intervals given out of order fail to merge.
++  it("sorts by start ascending before merging", () => {
++    expect(mergeIntervals([[6, 8], [1, 3], [2, 5]])).toEqual([[1, 5], [6, 8]]);
++  });
++
++  // Bug caught: sort by string/lexicographic instead of numeric, which would
++  // put 10 before 2. Numeric sort keeps [2,3] before [10,11].
++  it("sorts numerically, not lexicographically", () => {
++    expect(mergeIntervals([[10, 11], [2, 3]])).toEqual([[2, 3], [10, 11]]);
++  });
++
++  // --- Duplicates & point intervals ---
++
++  // Bug caught: identical intervals not collapsed.
++  it("collapses duplicate intervals into one", () => {
++    expect(mergeIntervals([[1, 3], [1, 3]])).toEqual([[1, 3]]);
++  });
++
++  // Bug caught: zero-width point interval mishandled; [5,5] touches [5,7].
++  it("merges a point interval that touches another", () => {
++    expect(mergeIntervals([[5, 5], [5, 7]])).toEqual([[5, 7]]);
++  });
++
++  // Bug caught: distinct point intervals wrongly merged or dropped.
++  it("keeps distinct point intervals separate", () => {
++    expect(mergeIntervals([[1, 1], [3, 3]])).toEqual([[1, 1], [3, 3]]);
++  });
++
++  // --- Negative values ---
++
++  // Bug caught: numeric comparison broken for negatives.
++  it("handles negative and zero-crossing intervals", () => {
++    expect(mergeIntervals([[-5, -2], [-3, 0], [2, 4]])).toEqual([
++      [-5, 0],
++      [2, 4],
++    ]);
++  });
++
++  // --- Chained merge ---
++
++  // Bug caught: merge only compares adjacent pairs and fails to carry a running
++  // end forward. [1,3],[2,5],[6,9],[8,10] -> [1,5],[6,10].
++  it("merges a chain of overlaps into runs", () => {
++    expect(mergeIntervals([[1, 3], [2, 5], [6, 9], [8, 10]])).toEqual([
++      [1, 5],
++      [6, 10],
++    ]);
++  });
++
++  // --- RangeError: below / at / above the start>end boundary ---
++
++  // At the boundary start === end is valid, not an error.
++  it("does not throw when start === end", () => {
++    expect(() => mergeIntervals([[4, 4]])).not.toThrow();
++  });
++
++  // Just over the boundary: start === end + 1 must throw RangeError.
++  it("throws RangeError when start is exactly one past end", () => {
++    expect(() => mergeIntervals([[5, 4]])).toThrow(RangeError);
++  });
++
++  // Bug caught: invalid pair not on the first index slips through (validation
++  // stops early). [3,7] valid, [10,2] invalid.
++  it("throws RangeError for an invalid pair anywhere in the list", () => {
++    expect(() => mergeIntervals([[3, 7], [10, 2]])).toThrow(RangeError);
++  });
++
++  // --- Immutability ---
++
++  // Bug caught: input array reordered in place (sort mutates original).
++  it("does not mutate the input array's order", () => {
++    const input = [[6, 8], [1, 3]];
++    mergeIntervals(input);
++    expect(input).toEqual([[6, 8], [1, 3]]);
++  });
++
++  // Bug caught: inner pair mutated (end extended on the caller's own array).
++  it("does not mutate the input pairs", () => {
++    const input = [[1, 4], [3, 6]];
++    mergeIntervals(input);
++    expect(input).toEqual([[1, 4], [3, 6]]);
++  });
++
++  // Bug caught: returned pairs alias the input pairs, so a later edit to the
++  // result corrupts the caller's data.
++  it("returns pairs that are not the same references as the input", () => {
++    const first = [1, 4];
++    const result = mergeIntervals([first]);
++    expect(result[0]).not.toBe(first);
++  });
++});

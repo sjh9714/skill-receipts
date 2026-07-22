@@ -1,0 +1,23 @@
+{
+  "runId": "tests-that-bite--03-query-string-placebo-t5",
+  "skillId": "tests-that-bite",
+  "taskId": "03-query-string",
+  "condition": "placebo",
+  "trial": 5,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T10:22:57.668Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": 0.8888888888888888,
+  "reproVerified": null,
+  "locAddedSrc": 0,
+  "locAddedTest": 224,
+  "filesCreated": 1,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 8,
+  "totalCostUsd": 0.40175099999999997,
+  "durationMs": 94337
+}

@@ -1,0 +1,237 @@
+diff --git a/test/limiter.test.js b/test/limiter.test.js
+new file mode 100644
+index 0000000..b74901b
+--- /dev/null
++++ b/test/limiter.test.js
+@@ -0,0 +1,231 @@
++import { describe, expect, it } from "vitest";
++import { createLimiter } from "../src/limiter.js";
++
++describe("createLimiter", () => {
++  describe("public shape", () => {
++    it("returns an object with an allow function", () => {
++      const limiter = createLimiter();
++      expect(typeof limiter.allow).toBe("function");
++    });
++  });
++
++  describe("basic allow/deny under the limit", () => {
++    it("allows the first call", () => {
++      const limiter = createLimiter(5, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++    });
++
++    it("allows exactly `limit` calls within the window", () => {
++      const limiter = createLimiter(3, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 1)).toBe(true);
++      expect(limiter.allow("a", 2)).toBe(true);
++    });
++
++    it("denies the call that would exceed the limit", () => {
++      const limiter = createLimiter(3, 1000);
++      limiter.allow("a", 0);
++      limiter.allow("a", 1);
++      limiter.allow("a", 2);
++      expect(limiter.allow("a", 3)).toBe(false);
++    });
++
++    it("keeps denying while the window stays full", () => {
++      const limiter = createLimiter(2, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 0)).toBe(false);
++      expect(limiter.allow("a", 500)).toBe(false);
++      expect(limiter.allow("a", 999)).toBe(false);
++    });
++
++    it("allows multiple calls sharing the same timestamp up to the limit", () => {
++      const limiter = createLimiter(3, 1000);
++      expect(limiter.allow("a", 42)).toBe(true);
++      expect(limiter.allow("a", 42)).toBe(true);
++      expect(limiter.allow("a", 42)).toBe(true);
++      expect(limiter.allow("a", 42)).toBe(false);
++    });
++  });
++
++  describe("sliding window expiry", () => {
++    it("counts a call strictly newer than now - windowMs (t > now - windowMs)", () => {
++      const limiter = createLimiter(1, 1000);
++      // Record at t=0. At now=999, boundary = -1, so 0 > -1 => still counts.
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 999)).toBe(false);
++    });
++
++    it("expires a call exactly windowMs old (t === now - windowMs does NOT count)", () => {
++      const limiter = createLimiter(1, 1000);
++      // Record at t=0. At now=1000, boundary = 0, and 0 > 0 is false => expired.
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 1000)).toBe(true);
++    });
++
++    it("expires a call older than windowMs", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 5000)).toBe(true);
++    });
++
++    it("frees exactly one slot as the oldest call expires", () => {
++      const limiter = createLimiter(2, 1000);
++      expect(limiter.allow("a", 0)).toBe(true); // slot 1 at t=0
++      expect(limiter.allow("a", 500)).toBe(true); // slot 2 at t=500
++      expect(limiter.allow("a", 999)).toBe(false); // both still recent
++      // At now=1000 the t=0 call has expired (1000 - 1000 = 0, 0 > 0 false),
++      // but the t=500 call is still recent => exactly one slot free.
++      expect(limiter.allow("a", 1000)).toBe(true); // uses freed slot
++      expect(limiter.allow("a", 1000)).toBe(false); // t=500 and t=1000 fill it
++    });
++
++    it("allows a fresh full burst after the entire window has passed", () => {
++      const limiter = createLimiter(3, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 0)).toBe(false);
++      // After a full window, all prior calls have expired.
++      expect(limiter.allow("a", 1000)).toBe(true);
++      expect(limiter.allow("a", 1000)).toBe(true);
++      expect(limiter.allow("a", 1000)).toBe(true);
++      expect(limiter.allow("a", 1000)).toBe(false);
++    });
++  });
++
++  describe("denied calls record nothing", () => {
++    it("a denied call does not consume future capacity", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++      // These denied calls at t=100..900 must NOT be recorded.
++      expect(limiter.allow("a", 100)).toBe(false);
++      expect(limiter.allow("a", 900)).toBe(false);
++      // At now=1000 only the original t=0 call expires. If the denied calls
++      // had been recorded, the window would still be full and this would deny.
++      expect(limiter.allow("a", 1000)).toBe(true);
++    });
++
++    it("repeated denials never push the effective window forward", () => {
++      const limiter = createLimiter(1, 1000);
++      limiter.allow("a", 0);
++      for (let t = 1; t < 1000; t++) {
++        expect(limiter.allow("a", t)).toBe(false);
++      }
++      // Only the t=0 call ever counted; it expires exactly at now=1000.
++      expect(limiter.allow("a", 1000)).toBe(true);
++    });
++  });
++
++  describe("independent key buckets", () => {
++    it("tracks each key separately", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("b", 0)).toBe(true);
++      expect(limiter.allow("a", 0)).toBe(false);
++      expect(limiter.allow("b", 0)).toBe(false);
++    });
++
++    it("exhausting one key leaves another untouched", () => {
++      const limiter = createLimiter(2, 1000);
++      limiter.allow("a", 0);
++      limiter.allow("a", 0);
++      expect(limiter.allow("a", 0)).toBe(false);
++      expect(limiter.allow("c", 0)).toBe(true);
++      expect(limiter.allow("c", 0)).toBe(true);
++      expect(limiter.allow("c", 0)).toBe(false);
++    });
++
++    it("treats distinct key types/values as distinct buckets", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("1", 0)).toBe(true);
++      expect(limiter.allow(1, 0)).toBe(true); // number 1 !== string "1"
++      expect(limiter.allow("1", 0)).toBe(false);
++      expect(limiter.allow(1, 0)).toBe(false);
++    });
++
++    it("supports undefined as a valid key", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow(undefined, 0)).toBe(true);
++      expect(limiter.allow(undefined, 0)).toBe(false);
++    });
++  });
++
++  describe("defaults", () => {
++    it("defaults to a limit of 5", () => {
++      const limiter = createLimiter();
++      for (let i = 0; i < 5; i++) {
++        expect(limiter.allow("a", 0)).toBe(true);
++      }
++      expect(limiter.allow("a", 0)).toBe(false);
++    });
++
++    it("defaults to a window of 60000ms", () => {
++      const limiter = createLimiter(1);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 59999)).toBe(false); // still within 60000ms
++      expect(limiter.allow("a", 60000)).toBe(true); // exactly windowMs old, expired
++    });
++
++    it("uses the default window when only the limit is provided", () => {
++      const limiter = createLimiter(2);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 30000)).toBe(true);
++      expect(limiter.allow("a", 59000)).toBe(false);
++    });
++  });
++
++  describe("now validation", () => {
++    it("throws TypeError when now is not a number", () => {
++      const limiter = createLimiter();
++      expect(() => limiter.allow("a", "0")).toThrow(TypeError);
++      expect(() => limiter.allow("a", undefined)).toThrow(TypeError);
++      expect(() => limiter.allow("a", null)).toThrow(TypeError);
++      expect(() => limiter.allow("a", {})).toThrow(TypeError);
++      expect(() => limiter.allow("a", [])).toThrow(TypeError);
++      expect(() => limiter.allow("a", true)).toThrow(TypeError);
++    });
++
++    it("throws TypeError when now is omitted", () => {
++      const limiter = createLimiter();
++      expect(() => limiter.allow("a")).toThrow(TypeError);
++    });
++
++    it("throws TypeError when now is NaN", () => {
++      const limiter = createLimiter();
++      expect(() => limiter.allow("a", NaN)).toThrow(TypeError);
++    });
++
++    it("throws TypeError when now is Infinity or -Infinity", () => {
++      const limiter = createLimiter();
++      expect(() => limiter.allow("a", Infinity)).toThrow(TypeError);
++      expect(() => limiter.allow("a", -Infinity)).toThrow(TypeError);
++    });
++
++    it("does not record anything when it throws on invalid now", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(() => limiter.allow("a", NaN)).toThrow(TypeError);
++      // The throwing call must not have consumed the single slot.
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("a", 0)).toBe(false);
++    });
++
++    it("accepts finite numbers including zero and negatives", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("a", -500)).toBe(true);
++      expect(limiter.allow("b", 0)).toBe(true);
++      expect(() => limiter.allow("c", 1.5)).not.toThrow();
++    });
++  });
++
++  describe("independent limiter instances", () => {
++    it("does not share state between limiters", () => {
++      const first = createLimiter(1, 1000);
++      const second = createLimiter(1, 1000);
++      expect(first.allow("a", 0)).toBe(true);
++      expect(first.allow("a", 0)).toBe(false);
++      // A separate instance has its own buckets.
++      expect(second.allow("a", 0)).toBe(true);
++    });
++  });
++});

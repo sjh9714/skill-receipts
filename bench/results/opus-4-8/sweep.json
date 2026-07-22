@@ -1,7 +1,7 @@
 {
   "model": "claude-opus-4-8",
   "cliVersion": "2.1.216 (Claude Code)",
-  "startedAt": "2026-07-22T09:46:51.054Z",
+  "startedAt": "2026-07-22T10:17:27.574Z",
   "args": {
     "model": "claude-opus-4-8",
     "trials": 5,
@@ -9,7 +9,7 @@
       "tests-that-bite"
     ],
     "sweep": "opus-4-8",
-    "budgetUsd": 20,
+    "budgetUsd": 25,
     "conditions": [
       "on",
       "off",
