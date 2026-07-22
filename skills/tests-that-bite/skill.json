@@ -1,0 +1,6 @@
+{
+  "name": "tests-that-bite",
+  "description": "Use when writing tests — new suites or additions to existing ones — to make every test actually catch the bug it guards against: behavior-focused assertions, boundary coverage, no vacuous or implementation-coupled tests.",
+  "snippetHeading": "Write tests that bite (tests-that-bite)",
+  "target": { "metric": "taskScalar", "direction": "up", "label": "mutant kill rate" }
+}

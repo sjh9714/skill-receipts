@@ -55,6 +55,16 @@ describe("prepareWorkspace", () => {
     expect(content.toLowerCase()).not.toContain("scope");
   });
 
+  it("placebo: a skill's own placebo.md wins over the shared one, meta comment stripped", async () => {
+    const ws = await prepareWorkspace("tests-that-bite", "01-interval-merge", "placebo");
+    created.push(ws.dir, ws.configDir);
+    const content = readFileSync(path.join(ws.dir, "CLAUDE.md"), "utf8");
+    expect(content).toContain("high-quality tests");
+    expect(content).not.toContain("<!--");
+    expect(content.toLowerCase()).not.toContain("placebo");
+    expect(content.toLowerCase()).not.toContain("mechanism");
+  });
+
   it("gives every run its own empty scratch config dir", async () => {
     const a = await prepare("off");
     const b = await prepare("off");

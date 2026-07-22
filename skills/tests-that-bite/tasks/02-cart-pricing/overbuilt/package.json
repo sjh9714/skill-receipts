@@ -1,0 +1,14 @@
+{
+  "name": "cart-pricing",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run --dir test"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.0"
+  }
+}

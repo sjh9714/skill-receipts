@@ -50,11 +50,14 @@ async function workspaceWith(
 describe.each(cases)("$skillId/$taskId", ({ skillId, taskId }) => {
   const LONG = 240_000;
 
-  it("reference passes the acceptance tests", { timeout: LONG }, async () => {
+  it("reference passes the acceptance tests (and kills every mutant, when the task defines them)", { timeout: LONG }, async () => {
     const dir = await workspaceWith(skillId, taskId, "reference");
     const result = await verifyAcceptance(dir, skillId, taskId);
     expect(result.failingTests).toEqual([]);
     expect(result.accepted).toBe(true);
+    // for scalar-metric tasks the reference suite must kill 100% of the
+    // pre-registered mutants — proves no mutant is equivalent
+    if (result.taskScalar !== null) expect(result.taskScalar).toBe(1);
   });
 
   it("bare template fails the acceptance tests", { timeout: LONG }, async () => {

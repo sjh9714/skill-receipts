@@ -1,0 +1,10 @@
+{
+  "id": "04-rate-limiter",
+  "title": "Write a test suite for a sliding-window rate limiter",
+  "tags": ["tests", "greenfield"],
+  "timeoutMin": 8,
+  "maxBudgetUsd": 1.5,
+  "traps": [
+    { "name": "deps", "detect": { "type": "deps-added" } }
+  ]
+}

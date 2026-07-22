@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { existsSync } from "node:fs";
 import { cp, mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -31,12 +32,18 @@ export async function prepareWorkspace(
     );
   } else if (condition !== "off") {
     // control/comparison arms: placebo instructions or a vendored competitor
-    // ruleset (vs-<name>). Strip the file's meta comment — it describes the
-    // experiment or the vendoring provenance and must never reach the model.
-    const source = condition === "placebo"
-      ? "bench/placebo-instructions.md"
-      : `bench/competitors/${condition.slice(3)}.md`;
-    const raw = await readFile(path.join(root, source), "utf8");
+    // ruleset (vs-<name>). A skill may ship its own placebo.md (pre-registered
+    // in docs/DESIGN.md); otherwise the shared style-only placebo is used.
+    // Strip the file's meta comment — it describes the experiment or the
+    // vendoring provenance and must never reach the model.
+    const skillPlacebo = path.join(root, "skills", skillId, "placebo.md");
+    const source =
+      condition === "placebo"
+        ? existsSync(skillPlacebo)
+          ? skillPlacebo
+          : path.join(root, "bench/placebo-instructions.md")
+        : path.join(root, `bench/competitors/${condition.slice(3)}.md`);
+    const raw = await readFile(source, "utf8");
     await writeFile(path.join(dir, "CLAUDE.md"), raw.replace(/^<!--[\s\S]*?-->\n/, ""));
   }
   git(dir, "init", "-q", "-b", "main");
