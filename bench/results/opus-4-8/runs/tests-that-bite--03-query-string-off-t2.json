@@ -1,0 +1,22 @@
+{
+  "runId": "tests-that-bite--03-query-string-off-t2",
+  "skillId": "tests-that-bite",
+  "taskId": "03-query-string",
+  "condition": "off",
+  "trial": 2,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T10:02:49.795Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": 0.8888888888888888,
+  "locAddedSrc": 0,
+  "locAddedTest": 196,
+  "filesCreated": 2,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 6,
+  "totalCostUsd": 0.257932,
+  "durationMs": 47724
+}

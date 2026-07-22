@@ -22,7 +22,8 @@ export interface TargetSpec {
     | "numTurns"
     | "durationMs"
     | "totalCostUsd"
-    | "taskScalar"; // task-defined scalar written to .bench-scalar by acceptance
+    | "taskScalar" // task-defined scalar written to .bench-scalar by acceptance
+    | "reproVerified"; // harness repro detector, scored 1/0 per run
   direction: "down" | "up";
   label: string;
 }
@@ -67,11 +68,19 @@ export function buildReceipt(
   // vs-* comparison arms are reported separately; admission is strictly three-armed
   const runs = allRuns.filter((r) => r.condition === "on" || r.condition === "off" || r.condition === "placebo");
   const valueOf = (spec: TargetSpec) => (r: RunResult): number => {
-    if (spec.metric !== "taskScalar") return r[spec.metric];
-    if (r.taskScalar === null) {
-      throw new Error(`run ${r.runId} has no .bench-scalar value but the target metric requires one`);
+    if (spec.metric === "taskScalar") {
+      if (r.taskScalar === null) {
+        throw new Error(`run ${r.runId} has no .bench-scalar value but the target metric requires one`);
+      }
+      return r.taskScalar;
     }
-    return r.taskScalar;
+    if (spec.metric === "reproVerified") {
+      if (r.reproVerified === null) {
+        throw new Error(`run ${r.runId} has no repro verdict but the target metric requires one`);
+      }
+      return r.reproVerified ? 1 : 0;
+    }
+    return r[spec.metric];
   };
   const value = valueOf(target);
   const arm = (c: Condition) => runs.filter((r) => r.condition === c);

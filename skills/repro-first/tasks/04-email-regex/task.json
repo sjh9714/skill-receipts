@@ -1,0 +1,23 @@
+{
+  "id": "04-email-regex",
+  "title": "Tighten a validator the existing shallow tests never caught",
+  "tags": [
+    "bugfix",
+    "brownfield",
+    "misdiagnosis"
+  ],
+  "timeoutMin": 10,
+  "maxBudgetUsd": 2,
+  "repro": true,
+  "traps": [
+    {
+      "name": "unrelated-files",
+      "detect": {
+        "type": "touches-outside",
+        "allow": [
+          "src/validate.js"
+        ]
+      }
+    }
+  ]
+}

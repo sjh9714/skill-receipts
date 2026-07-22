@@ -31,6 +31,7 @@ function run(partial: Partial<RunResult>): RunResult {
     accepted: true,
     failingTests: [],
     taskScalar: null,
+    reproVerified: null,
     locAddedSrc: 0,
     locAddedTest: 0,
     filesCreated: 0,

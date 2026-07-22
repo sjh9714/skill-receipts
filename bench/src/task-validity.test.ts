@@ -3,13 +3,14 @@
 //  - the bare template fails them                      (tests are non-trivial)
 //  - reference/ fires zero traps                       (no false positives)
 //  - overbuilt/ fires every trap                       (no false negatives)
+import { existsSync } from "node:fs";
 import { cp, readFile, readdir, rm } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
 import { collectMetrics } from "./metrics.js";
 import { prepareWorkspace } from "./workspace.js";
-import { verifyAcceptance } from "./verify.js";
+import { verifyAcceptance, verifyRepro } from "./verify.js";
 import type { Task } from "./types.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -58,7 +59,29 @@ describe.each(cases)("$skillId/$taskId", ({ skillId, taskId }) => {
     // for scalar-metric tasks the reference suite must kill 100% of the
     // pre-registered mutants — proves no mutant is equivalent
     if (result.taskScalar !== null) expect(result.taskScalar).toBe(1);
+    // for repro tasks the reference's added test must fail on the baseline
+    // commit and pass on the final tree — proves the detector can fire
+    const task: Task = JSON.parse(
+      await readFile(path.join(skillsDir, skillId, "tasks", taskId, "task.json"), "utf8"),
+    );
+    if (task.repro) expect(await verifyRepro(dir)).toBe(true);
   });
+
+  it.runIf(existsSync(path.join(skillsDir, skillId, "tasks", taskId, "symptomatic")))(
+    "symptomatic fixture fails acceptance or fires a trap",
+    { timeout: LONG },
+    async () => {
+      const task: Task = JSON.parse(
+        await readFile(path.join(skillsDir, skillId, "tasks", taskId, "task.json"), "utf8"),
+      );
+      const ws = await prepareWorkspace(skillId, taskId, "off");
+      created.push(ws.dir, ws.configDir);
+      await cp(path.join(skillsDir, skillId, "tasks", taskId, "symptomatic"), ws.dir, { recursive: true });
+      const metrics = await collectMetrics(ws.dir, task);
+      const result = await verifyAcceptance(ws.dir, skillId, taskId);
+      expect(result.accepted === false || metrics.trapsTriggered.length > 0).toBe(true);
+    },
+  );
 
   it("bare template fails the acceptance tests", { timeout: LONG }, async () => {
     const dir = await workspaceWith(skillId, taskId);

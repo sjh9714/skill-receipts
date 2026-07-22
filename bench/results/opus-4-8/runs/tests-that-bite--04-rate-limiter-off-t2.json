@@ -1,0 +1,24 @@
+{
+  "runId": "tests-that-bite--04-rate-limiter-off-t2",
+  "skillId": "tests-that-bite",
+  "taskId": "04-rate-limiter",
+  "condition": "off",
+  "trial": 2,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T10:09:40.050Z",
+  "accepted": false,
+  "failingTests": [
+    "gate the suite passes on a behavior-preserving refactor"
+  ],
+  "taskScalar": 1,
+  "locAddedSrc": 0,
+  "locAddedTest": 174,
+  "filesCreated": 2,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 6,
+  "totalCostUsd": 0.270667,
+  "durationMs": 52247
+}

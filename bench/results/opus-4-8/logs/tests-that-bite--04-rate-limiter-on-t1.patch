@@ -1,0 +1,211 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..6c29b4f
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/limiter.test.js",{"duration":4.006541999999968,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/example.test.js b/test/example.test.js
+deleted file mode 100644
+index 876303f..0000000
+--- a/test/example.test.js
++++ /dev/null
+@@ -1,9 +0,0 @@
+-import { describe, expect, it } from "vitest";
+-import { createLimiter } from "../src/limiter.js";
+-
+-// Starter test — extend or replace with a real suite.
+-describe("createLimiter", () => {
+-  it("returns an allow function", () => {
+-    expect(typeof createLimiter().allow).toBe("function");
+-  });
+-});
+diff --git a/test/limiter.test.js b/test/limiter.test.js
+new file mode 100644
+index 0000000..13c8fb6
+--- /dev/null
++++ b/test/limiter.test.js
+@@ -0,0 +1,182 @@
++import { describe, expect, it } from "vitest";
++import { createLimiter } from "../src/limiter.js";
++
++// Each test names the concrete bug it would catch.
++
++describe("limit boundary (allowed count strictly less than limit)", () => {
++  it("allows exactly `limit` calls at the same instant, then rejects", () => {
++    // Catches an off-by-one where `<` becomes `<=` (would allow limit+1).
++    const { allow } = createLimiter(3, 1000);
++    expect(allow("a", 0)).toBe(true); // 0 prior -> allowed
++    expect(allow("a", 0)).toBe(true); // 1 prior -> allowed
++    expect(allow("a", 0)).toBe(true); // 2 prior -> allowed
++    expect(allow("a", 0)).toBe(false); // 3 prior -> rejected
++  });
++
++  it("rejects the very first call when limit is 0", () => {
++    // Catches treating a 0 limit as "at least one allowed".
++    const { allow } = createLimiter(0, 1000);
++    expect(allow("a", 0)).toBe(false);
++  });
++
++  it("allows exactly one call when limit is 1", () => {
++    // Catches an off-by-one that rejects the sole permitted call.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0)).toBe(true);
++    expect(allow("a", 0)).toBe(false);
++  });
++
++  it("uses a default limit of 5", () => {
++    // Catches a wrong default (e.g. 10) for the limit parameter.
++    const { allow } = createLimiter(); // limit defaults to 5
++    for (let i = 0; i < 5; i++) expect(allow("a", 0)).toBe(true);
++    expect(allow("a", 0)).toBe(false); // 6th at same instant rejected
++  });
++});
++
++describe("window boundary (t > now - windowMs, strictly)", () => {
++  it("counts a call whose age is just under the window (age = windowMs - 1)", () => {
++    // Catches expiring calls too early (using >= instead of >).
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0)).toBe(true);
++    // now=999, age=999 < 1000 -> still counts -> rejected
++    expect(allow("a", 999)).toBe(false);
++  });
++
++  it("expires a call whose age is exactly the window (age = windowMs)", () => {
++    // Catches using >= (t >= now - windowMs) which keeps a same-age call alive.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0)).toBe(true);
++    // now=1000, now-windowMs=0, 0 > 0 is false -> expired -> allowed
++    expect(allow("a", 1000)).toBe(true);
++  });
++
++  it("expires a call whose age exceeds the window (age = windowMs + 1)", () => {
++    // Catches never expiring old calls at all.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0)).toBe(true);
++    expect(allow("a", 1001)).toBe(true);
++  });
++
++  it("uses a default window of 60000 ms", () => {
++    // Catches a wrong default window (e.g. 1000).
++    const { allow } = createLimiter(1); // windowMs defaults to 60000
++    expect(allow("a", 0)).toBe(true);
++    expect(allow("a", 59999)).toBe(false); // age 59999 < 60000, still counts
++    expect(allow("a", 60000)).toBe(true); // age 60000, expired
++  });
++});
++
++describe("recording semantics", () => {
++  it("does not record rejected calls", () => {
++    // Catches recording on rejection: a rejected call must not occupy a slot
++    // or push its own timestamp into the window.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0)).toBe(true); // records t=0
++    expect(allow("a", 500)).toBe(false); // rejected; must NOT record t=500
++    // At now=1001: t=0 has expired. If t=500 had been recorded, age=501<1000
++    // would still block. It was not, so this must be allowed.
++    expect(allow("a", 1001)).toBe(true);
++  });
++
++  it("frees a slot once an allowed call ages out of the window", () => {
++    // Catches a window that never slides (permanent limit exhaustion).
++    const { allow } = createLimiter(2, 1000);
++    expect(allow("a", 0)).toBe(true); // t=0
++    expect(allow("a", 100)).toBe(true); // t=100 -> full
++    expect(allow("a", 100)).toBe(false); // over limit
++    // now=1001: t=0 expired (age 1001), t=100 alive (age 901) -> one slot free
++    expect(allow("a", 1001)).toBe(true);
++    // now still 1001: t=100 and t=1001 alive -> full again
++    expect(allow("a", 1001)).toBe(false);
++  });
++
++  it("repeated rejections do not corrupt the count when the window slides", () => {
++    // Catches rejections silently accumulating phantom timestamps.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0)).toBe(true);
++    expect(allow("a", 10)).toBe(false);
++    expect(allow("a", 20)).toBe(false);
++    expect(allow("a", 30)).toBe(false);
++    // Only t=0 was ever recorded; it expires at age 1000.
++    expect(allow("a", 1000)).toBe(true);
++  });
++});
++
++describe("independent buckets per key", () => {
++  it("does not let one key consume another key's quota", () => {
++    // Catches a shared global counter across keys.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0)).toBe(true);
++    expect(allow("b", 0)).toBe(true); // different key, own quota
++    expect(allow("a", 0)).toBe(false);
++    expect(allow("b", 0)).toBe(false);
++  });
++
++  it("expires keys independently", () => {
++    // Catches windows leaking across keys.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0)).toBe(true);
++    expect(allow("b", 500)).toBe(true);
++    // now=1000: a's t=0 expired, b's t=500 still alive (age 500)
++    expect(allow("a", 1000)).toBe(true);
++    expect(allow("b", 1000)).toBe(false);
++  });
++});
++
++describe("invalid `now` argument", () => {
++  it("throws TypeError for NaN", () => {
++    // Catches accepting NaN (all comparisons false -> silently allows forever).
++    const { allow } = createLimiter(1, 1000);
++    expect(() => allow("a", NaN)).toThrow(TypeError);
++  });
++
++  it("throws TypeError for Infinity and -Infinity", () => {
++    // Catches Number.isFinite being omitted (typeof check alone passes here).
++    const { allow } = createLimiter(1, 1000);
++    expect(() => allow("a", Infinity)).toThrow(TypeError);
++    expect(() => allow("a", -Infinity)).toThrow(TypeError);
++  });
++
++  it("throws TypeError for a numeric string", () => {
++    // Catches a loose typeof / coercion check that accepts "0".
++    const { allow } = createLimiter(1, 1000);
++    expect(() => allow("a", "0")).toThrow(TypeError);
++  });
++
++  it("throws TypeError for undefined (omitted argument)", () => {
++    const { allow } = createLimiter(1, 1000);
++    expect(() => allow("a")).toThrow(TypeError);
++  });
++
++  it("throws TypeError for null and boolean", () => {
++    const { allow } = createLimiter(1, 1000);
++    expect(() => allow("a", null)).toThrow(TypeError);
++    expect(() => allow("a", true)).toThrow(TypeError);
++  });
++
++  it("does not record anything when it throws", () => {
++    // Catches recording before validating: a throwing call must leave no trace.
++    const { allow } = createLimiter(1, 1000);
++    expect(() => allow("a", NaN)).toThrow(TypeError);
++    expect(allow("a", 0)).toBe(true); // slot untouched by the failed call
++  });
++});
++
++describe("valid but unusual `now` values", () => {
++  it("accepts zero and negative timestamps", () => {
++    // Catches a falsy check (`if (!now)`) that would reject 0.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", -500)).toBe(true);
++    expect(allow("a", -500)).toBe(false);
++    // age from -500 to 500 is 1000 -> expired
++    expect(allow("a", 500)).toBe(true);
++  });
++
++  it("accepts fractional timestamps at the window boundary", () => {
++    // Catches integer-only assumptions around the strict comparison.
++    const { allow } = createLimiter(1, 1000);
++    expect(allow("a", 0.5)).toBe(true);
++    expect(allow("a", 1000.5)).toBe(true); // age exactly 1000 -> expired
++  });
++});

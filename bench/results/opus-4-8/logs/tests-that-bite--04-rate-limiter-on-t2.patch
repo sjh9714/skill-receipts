@@ -1,0 +1,183 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..e508f9c
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/limiter.test.js",{"duration":3.6960000000000264,"failed":false}],[":test/example.test.js",{"duration":1.0144170000000372,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/limiter.test.js b/test/limiter.test.js
+new file mode 100644
+index 0000000..186c914
+--- /dev/null
++++ b/test/limiter.test.js
+@@ -0,0 +1,169 @@
++import { describe, expect, it } from "vitest";
++import { createLimiter } from "../src/limiter.js";
++
++describe("createLimiter — counting up to the limit", () => {
++  it("allows exactly `limit` calls in one window, then denies the next", () => {
++    // Bug: off-by-one using <= instead of < would allow a 6th call.
++    const rl = createLimiter(5, 60000);
++    for (let i = 0; i < 5; i++) {
++      expect(rl.allow("a", 0)).toBe(true);
++    }
++    expect(rl.allow("a", 0)).toBe(false);
++  });
++
++  it("allows the limit-th call (just below the limit still passes)", () => {
++    // Bug: too-strict comparison denying the last legitimate call.
++    const rl = createLimiter(3, 60000);
++    expect(rl.allow("a", 0)).toBe(true); // 1st, count was 0
++    expect(rl.allow("a", 0)).toBe(true); // 2nd, count was 1
++    expect(rl.allow("a", 0)).toBe(true); // 3rd, count was 2 (< 3)
++    expect(rl.allow("a", 0)).toBe(false); // 4th, count was 3 (not < 3)
++  });
++
++  it("respects a custom limit of 1", () => {
++    // Bug: ignoring the limit argument / hardcoding a default.
++    const rl = createLimiter(1, 60000);
++    expect(rl.allow("a", 0)).toBe(true);
++    expect(rl.allow("a", 0)).toBe(false);
++  });
++
++  it("uses default limit of 5 when unspecified", () => {
++    // Bug: wrong default limit.
++    const rl = createLimiter();
++    for (let i = 0; i < 5; i++) expect(rl.allow("a", 0)).toBe(true);
++    expect(rl.allow("a", 0)).toBe(false);
++  });
++
++  it("denies every call when limit is 0", () => {
++    // Bug: treating 0 as falsy and falling back to a default.
++    const rl = createLimiter(0, 60000);
++    expect(rl.allow("a", 0)).toBe(false);
++    expect(rl.allow("a", 100)).toBe(false);
++  });
++});
++
++describe("createLimiter — the window boundary (t === now - windowMs)", () => {
++  it("a call exactly windowMs old has expired and does not count", () => {
++    // Bug: using >= instead of > would keep a call that is exactly at the edge.
++    const rl = createLimiter(1, 60000);
++    expect(rl.allow("a", 0)).toBe(true);
++    // now - windowMs === 0, so t=0 is NOT > 0 → expired → capacity freed.
++    expect(rl.allow("a", 60000)).toBe(true);
++  });
++
++  it("a call one ms short of windowMs old still counts (just below the edge)", () => {
++    // Bug: expiring calls too early would wrongly free capacity.
++    const rl = createLimiter(1, 60000);
++    expect(rl.allow("a", 0)).toBe(true);
++    // now - windowMs === -1, t=0 > -1 → still active → denied.
++    expect(rl.allow("a", 59999)).toBe(false);
++  });
++
++  it("a call just past windowMs old is expired (just above the edge)", () => {
++    // Bug: off-by-one keeping a call one ms too long.
++    const rl = createLimiter(1, 60000);
++    expect(rl.allow("a", 0)).toBe(true);
++    // now - windowMs === 1, t=0 not > 1 → expired → allowed.
++    expect(rl.allow("a", 60001)).toBe(true);
++  });
++
++  it("honors a custom windowMs for the boundary", () => {
++    // Bug: ignoring the windowMs argument / hardcoding 60000.
++    const rl = createLimiter(1, 100);
++    expect(rl.allow("a", 0)).toBe(true);
++    expect(rl.allow("a", 99)).toBe(false); // 0 > -1 → active
++    expect(rl.allow("a", 100)).toBe(true); // 0 not > 0 → expired
++  });
++
++  it("uses default windowMs of 60000 when unspecified", () => {
++    // Bug: wrong default window.
++    const rl = createLimiter(1);
++    expect(rl.allow("a", 0)).toBe(true);
++    expect(rl.allow("a", 59999)).toBe(false);
++    expect(rl.allow("a", 60000)).toBe(true);
++  });
++});
++
++describe("createLimiter — sliding window behavior", () => {
++  it("frees exactly one slot as the oldest call expires", () => {
++    // Bug: expiring all-or-nothing instead of per-timestamp sliding.
++    const rl = createLimiter(2, 100);
++    expect(rl.allow("a", 0)).toBe(true); // t=0
++    expect(rl.allow("a", 40)).toBe(true); // t=40, now full
++    expect(rl.allow("a", 40)).toBe(false); // full: 0>−60 and 40>−60
++    // At now=100: 0 not > 0 (expired), 40 > 0 (active). One slot free.
++    expect(rl.allow("a", 100)).toBe(true); // fills the freed slot (t=100)
++    expect(rl.allow("a", 100)).toBe(false); // 40>0 and 100>0 → full again
++  });
++});
++
++describe("createLimiter — denied calls record nothing", () => {
++  it("a denied call is not stored and does not delay future capacity", () => {
++    // Bug: recording the denied timestamp would push out the expiry window,
++    // wrongly blocking a call that should be allowed.
++    const rl = createLimiter(1, 100);
++    expect(rl.allow("a", 0)).toBe(true); // t=0 recorded
++    expect(rl.allow("a", 50)).toBe(false); // denied; must NOT record t=50
++    // At now=101: now - windowMs === 1. t=0 expired (0 not > 1). If the
++    // denied t=50 had been recorded, 50 > 1 would block this call.
++    expect(rl.allow("a", 101)).toBe(true);
++  });
++});
++
++describe("createLimiter — keys are independent buckets", () => {
++  it("exhausting one key does not affect another", () => {
++    // Bug: sharing a single global counter across keys.
++    const rl = createLimiter(1, 60000);
++    expect(rl.allow("a", 0)).toBe(true);
++    expect(rl.allow("a", 0)).toBe(false); // a exhausted
++    expect(rl.allow("b", 0)).toBe(true); // b unaffected
++    expect(rl.allow("b", 0)).toBe(false); // b independently exhausted
++  });
++
++  it("tracks distinct keys with independent windows", () => {
++    // Bug: cross-key timestamp bleed.
++    const rl = createLimiter(1, 100);
++    expect(rl.allow("a", 0)).toBe(true);
++    expect(rl.allow("b", 0)).toBe(true);
++    expect(rl.allow("a", 50)).toBe(false);
++    expect(rl.allow("b", 50)).toBe(false);
++  });
++});
++
++describe("createLimiter — invalid `now` throws TypeError", () => {
++  it.each([
++    ["a string", "0"],
++    ["NaN", NaN],
++    ["Infinity", Infinity],
++    ["-Infinity", -Infinity],
++    ["undefined", undefined],
++    ["null", null],
++    ["a boolean", true],
++    ["an object", {}],
++  ])("throws TypeError when now is %s", (_label, badNow) => {
++    // Bug: accepting non-finite/non-number timestamps silently.
++    const rl = createLimiter(1, 100);
++    expect(() => rl.allow("a", badNow)).toThrow(TypeError);
++  });
++
++  it("does not record a call when `now` is invalid", () => {
++    // Bug: throwing after mutating state would corrupt the bucket.
++    const rl = createLimiter(1, 100);
++    expect(() => rl.allow("a", NaN)).toThrow(TypeError);
++    // The bucket must still have full capacity.
++    expect(rl.allow("a", 0)).toBe(true);
++  });
++
++  it("accepts 0 as a valid finite timestamp", () => {
++    // Bug: treating 0 as invalid via a truthiness check.
++    const rl = createLimiter(1, 100);
++    expect(rl.allow("a", 0)).toBe(true);
++  });
++
++  it("accepts negative finite timestamps", () => {
++    // Bug: assuming timestamps are non-negative.
++    const rl = createLimiter(1, 100);
++    expect(rl.allow("a", -500)).toBe(true);
++    expect(rl.allow("a", -500)).toBe(false);
++  });
++});

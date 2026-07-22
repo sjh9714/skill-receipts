@@ -1,0 +1,6 @@
+{
+  "name": "repro-first",
+  "description": "Use when fixing a reported bug — reproduce it with a failing test before touching the code, then make the minimal fix at the true cause; never patch the symptom or files unrelated to the bug.",
+  "snippetHeading": "Reproduce before you fix (repro-first)",
+  "target": { "metric": "reproVerified", "direction": "up", "label": "verified-repro rate" }
+}

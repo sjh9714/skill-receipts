@@ -1,0 +1,23 @@
+{
+  "id": "03-cache-key-leak",
+  "title": "Fix a cache-key bug where the lazy fix is deleting the cache",
+  "tags": [
+    "bugfix",
+    "brownfield",
+    "misdiagnosis"
+  ],
+  "timeoutMin": 10,
+  "maxBudgetUsd": 2,
+  "repro": true,
+  "traps": [
+    {
+      "name": "unrelated-files",
+      "detect": {
+        "type": "touches-outside",
+        "allow": [
+          "src/userService.js"
+        ]
+      }
+    }
+  ]
+}

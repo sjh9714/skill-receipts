@@ -1,0 +1,338 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..0d0819d
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/pricing.test.js",{"duration":3.849958000000015,"failed":false}],[":test/example.test.js",{"duration":1.2576670000000263,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/pricing.test.js b/test/pricing.test.js
+new file mode 100644
+index 0000000..cae3e5c
+--- /dev/null
++++ b/test/pricing.test.js
+@@ -0,0 +1,324 @@
++import { describe, expect, it } from "vitest";
++import { priceOrder } from "../src/pricing.js";
++
++// Behavior under test (from src/pricing.js):
++//   priceOrder(lines, coupon?) -> { subtotalCents, discountCents, totalCents }
++//   - subtotalCents = sum of unitCents * qty over all lines ([] -> all zeros)
++//   - tier discount: subtotal >= 10000 => 10% of subtotal, rounded (.5 up)
++//   - coupon discount: capped pct of (subtotal - tier), rounded (.5 up)
++//   - coupon pct is clamped to a maximum of 30
++//   - discountCents = tier + coupon;  totalCents = subtotal - discount
++//   - qty must be a positive integer, otherwise RangeError
++
++describe("priceOrder", () => {
++  describe("subtotal", () => {
++    it("returns all zeros for an empty order", () => {
++      expect(priceOrder([])).toEqual({
++        subtotalCents: 0,
++        discountCents: 0,
++        totalCents: 0,
++      });
++    });
++
++    it("sums unitCents * qty for a single line", () => {
++      expect(priceOrder([{ unitCents: 250, qty: 3 }])).toEqual({
++        subtotalCents: 750,
++        discountCents: 0,
++        totalCents: 750,
++      });
++    });
++
++    it("sums across multiple lines", () => {
++      const result = priceOrder([
++        { unitCents: 199, qty: 2 }, // 398
++        { unitCents: 500, qty: 1 }, // 500
++        { unitCents: 33, qty: 4 }, //  132
++      ]);
++      expect(result).toEqual({
++        subtotalCents: 1030,
++        discountCents: 0,
++        totalCents: 1030,
++      });
++    });
++
++    it("treats a zero unit price as contributing nothing", () => {
++      expect(priceOrder([{ unitCents: 0, qty: 5 }])).toEqual({
++        subtotalCents: 0,
++        discountCents: 0,
++        totalCents: 0,
++      });
++    });
++
++    it("handles a single unit at qty 1", () => {
++      expect(priceOrder([{ unitCents: 4200, qty: 1 }])).toEqual({
++        subtotalCents: 4200,
++        discountCents: 0,
++        totalCents: 4200,
++      });
++    });
++  });
++
++  describe("qty validation", () => {
++    it("throws RangeError for qty of 0", () => {
++      expect(() => priceOrder([{ unitCents: 100, qty: 0 }])).toThrow(RangeError);
++    });
++
++    it("throws RangeError for a negative qty", () => {
++      expect(() => priceOrder([{ unitCents: 100, qty: -1 }])).toThrow(
++        RangeError,
++      );
++    });
++
++    it("throws RangeError for a fractional qty", () => {
++      expect(() => priceOrder([{ unitCents: 100, qty: 1.5 }])).toThrow(
++        RangeError,
++      );
++    });
++
++    it("throws RangeError for a non-numeric qty", () => {
++      expect(() => priceOrder([{ unitCents: 100, qty: "2" }])).toThrow(
++        RangeError,
++      );
++    });
++
++    it("throws RangeError for a NaN qty", () => {
++      expect(() => priceOrder([{ unitCents: 100, qty: NaN }])).toThrow(
++        RangeError,
++      );
++    });
++
++    it("throws RangeError for a missing qty", () => {
++      expect(() => priceOrder([{ unitCents: 100 }])).toThrow(RangeError);
++    });
++
++    it("throws when any line is invalid, even after valid lines", () => {
++      expect(() =>
++        priceOrder([
++          { unitCents: 100, qty: 2 },
++          { unitCents: 100, qty: 0 },
++        ]),
++      ).toThrow(RangeError);
++    });
++
++    it("includes the offending qty in the error message", () => {
++      expect(() => priceOrder([{ unitCents: 100, qty: -3 }])).toThrow(
++        /invalid qty -3/,
++      );
++    });
++
++    it("accepts a large positive integer qty", () => {
++      expect(priceOrder([{ unitCents: 1, qty: 1000000 }])).toEqual({
++        subtotalCents: 1000000,
++        discountCents: 100000, // >= 10000 -> 10% tier discount
++        totalCents: 900000,
++      });
++    });
++  });
++
++  describe("tier discount", () => {
++    it("does not apply below the 10000 threshold", () => {
++      expect(priceOrder([{ unitCents: 9999, qty: 1 }])).toEqual({
++        subtotalCents: 9999,
++        discountCents: 0,
++        totalCents: 9999,
++      });
++    });
++
++    it("applies exactly at the 10000 threshold", () => {
++      expect(priceOrder([{ unitCents: 10000, qty: 1 }])).toEqual({
++        subtotalCents: 10000,
++        discountCents: 1000, // 10% of 10000
++        totalCents: 9000,
++      });
++    });
++
++    it("applies 10% above the threshold", () => {
++      expect(priceOrder([{ unitCents: 20000, qty: 1 }])).toEqual({
++        subtotalCents: 20000,
++        discountCents: 2000,
++        totalCents: 18000,
++      });
++    });
++
++    it("rounds a half-cent tier discount up", () => {
++      // 10005 * 0.10 = 1000.5 -> 1001
++      expect(priceOrder([{ unitCents: 10005, qty: 1 }])).toEqual({
++        subtotalCents: 10005,
++        discountCents: 1001,
++        totalCents: 9004,
++      });
++    });
++
++    it("rounds a non-half fractional tier discount to nearest cent", () => {
++      // 12345 * 0.10 = 1234.5 -> 1235
++      expect(priceOrder([{ unitCents: 12345, qty: 1 }])).toEqual({
++        subtotalCents: 12345,
++        discountCents: 1235,
++        totalCents: 11110,
++      });
++    });
++  });
++
++  describe("coupon discount", () => {
++    it("applies the coupon pct to the subtotal when there is no tier discount", () => {
++      // 1000 * 10% = 100
++      expect(priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 10 })).toEqual({
++        subtotalCents: 1000,
++        discountCents: 100,
++        totalCents: 900,
++      });
++    });
++
++    it("treats a pct of 0 as no discount", () => {
++      expect(priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 0 })).toEqual({
++        subtotalCents: 1000,
++        discountCents: 0,
++        totalCents: 1000,
++      });
++    });
++
++    it("rounds a half-cent coupon discount up", () => {
++      // 990 * 15% = 148.5 -> 149
++      expect(priceOrder([{ unitCents: 990, qty: 1 }], { pct: 15 })).toEqual({
++        subtotalCents: 990,
++        discountCents: 149,
++        totalCents: 841,
++      });
++    });
++
++    it("rounds a sub-half coupon discount to nearest cent", () => {
++      // 110 * 5% = 5.5 -> 6
++      expect(priceOrder([{ unitCents: 110, qty: 1 }], { pct: 5 })).toEqual({
++        subtotalCents: 110,
++        discountCents: 6,
++        totalCents: 104,
++      });
++    });
++  });
++
++  describe("coupon cap", () => {
++    it("does not cap a pct of exactly 30", () => {
++      // 1000 * 30% = 300
++      expect(priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 30 })).toEqual({
++        subtotalCents: 1000,
++        discountCents: 300,
++        totalCents: 700,
++      });
++    });
++
++    it("caps a pct just above 30 down to 30", () => {
++      // pct 31 -> 30; 1000 * 30% = 300
++      expect(priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 31 })).toEqual({
++        subtotalCents: 1000,
++        discountCents: 300,
++        totalCents: 700,
++      });
++    });
++
++    it("caps a large pct down to 30", () => {
++      // pct 100 -> 30; 1000 * 30% = 300
++      expect(priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 100 })).toEqual({
++        subtotalCents: 1000,
++        discountCents: 300,
++        totalCents: 700,
++      });
++    });
++
++    it("applies a pct below the cap unchanged", () => {
++      // 1000 * 25% = 250
++      expect(priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 25 })).toEqual({
++        subtotalCents: 1000,
++        discountCents: 250,
++        totalCents: 750,
++      });
++    });
++  });
++
++  describe("tier and coupon combined", () => {
++    it("applies the coupon to the subtotal AFTER the tier discount", () => {
++      // subtotal 20000 -> tier 2000 -> base 18000 -> coupon 30% = 5400
++      // discount = 2000 + 5400 = 7400
++      expect(priceOrder([{ unitCents: 20000, qty: 1 }], { pct: 30 })).toEqual({
++        subtotalCents: 20000,
++        discountCents: 7400,
++        totalCents: 12600,
++      });
++    });
++
++    it("stacks tier and coupon with independent rounding", () => {
++      // subtotal 12345 -> tier round(1234.5)=1235 -> base 11110
++      // coupon 30% of 11110 = 3333 -> discount 4568
++      expect(priceOrder([{ unitCents: 12345, qty: 1 }], { pct: 30 })).toEqual({
++        subtotalCents: 12345,
++        discountCents: 4568,
++        totalCents: 7777,
++      });
++    });
++
++    it("applies a capped coupon on top of the tier discount", () => {
++      // subtotal 20000 -> tier 2000 -> base 18000 -> coupon capped 30% = 5400
++      expect(priceOrder([{ unitCents: 20000, qty: 1 }], { pct: 90 })).toEqual({
++        subtotalCents: 20000,
++        discountCents: 7400,
++        totalCents: 12600,
++      });
++    });
++  });
++
++  describe("no coupon", () => {
++    it("applies no coupon discount when coupon is omitted", () => {
++      expect(priceOrder([{ unitCents: 5000, qty: 1 }])).toEqual({
++        subtotalCents: 5000,
++        discountCents: 0,
++        totalCents: 5000,
++      });
++    });
++
++    it("applies no coupon discount when coupon is undefined", () => {
++      expect(priceOrder([{ unitCents: 5000, qty: 1 }], undefined)).toEqual({
++        subtotalCents: 5000,
++        discountCents: 0,
++        totalCents: 5000,
++      });
++    });
++
++    it("applies no coupon discount when coupon is null", () => {
++      expect(priceOrder([{ unitCents: 5000, qty: 1 }], null)).toEqual({
++        subtotalCents: 5000,
++        discountCents: 0,
++        totalCents: 5000,
++      });
++    });
++  });
++
++  describe("result shape and invariants", () => {
++    it("returns exactly the three documented keys", () => {
++      expect(Object.keys(priceOrder([{ unitCents: 20000, qty: 1 }], { pct: 10 })).sort()).toEqual([
++        "discountCents",
++        "subtotalCents",
++        "totalCents",
++      ]);
++    });
++
++    it("keeps total = subtotal - discount across a realistic order", () => {
++      const result = priceOrder(
++        [
++          { unitCents: 1299, qty: 3 }, // 3897
++          { unitCents: 4999, qty: 2 }, // 9998
++          { unitCents: 250, qty: 5 }, //  1250
++        ],
++        { pct: 20 },
++      );
++      // subtotal = 15145 -> tier round(1514.5)=1515 -> base 13630
++      // coupon 20% of 13630 = 2726 -> discount 4241
++      expect(result).toEqual({
++        subtotalCents: 15145,
++        discountCents: 4241,
++        totalCents: 10904,
++      });
++      expect(result.totalCents).toBe(
++        result.subtotalCents - result.discountCents,
++      );
++    });
++  });
++});

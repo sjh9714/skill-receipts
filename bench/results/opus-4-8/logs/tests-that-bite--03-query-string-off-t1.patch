@@ -1,0 +1,194 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..d1c2765
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/parseQuery.test.js",{"duration":3.7723330000000033,"failed":false}],[":test/example.test.js",{"duration":0.848542000000009,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/parseQuery.test.js b/test/parseQuery.test.js
+new file mode 100644
+index 0000000..8f4bf72
+--- /dev/null
++++ b/test/parseQuery.test.js
+@@ -0,0 +1,180 @@
++import { describe, expect, it } from "vitest";
++import { parseQuery } from "../src/parseQuery.js";
++
++describe("parseQuery", () => {
++  describe("leading '?' handling", () => {
++    it("strips a single leading '?'", () => {
++      expect(parseQuery("?a=1")).toEqual({ a: "1" });
++    });
++
++    it("works without a leading '?'", () => {
++      expect(parseQuery("a=1")).toEqual({ a: "1" });
++    });
++
++    it("only strips the first '?', keeping later ones as part of the value", () => {
++      expect(parseQuery("?a=?")).toEqual({ a: "?" });
++    });
++
++    it("treats a lone '?' as an empty string", () => {
++      expect(parseQuery("?")).toEqual({});
++    });
++  });
++
++  describe("empty input", () => {
++    it("returns an empty object for an empty string", () => {
++      expect(parseQuery("")).toEqual({});
++    });
++
++    it("returns a plain object", () => {
++      expect(typeof parseQuery("")).toBe("object");
++    });
++  });
++
++  describe("pair separation with '&'", () => {
++    it("parses multiple distinct keys", () => {
++      expect(parseQuery("a=1&b=2&c=3")).toEqual({ a: "1", b: "2", c: "3" });
++    });
++
++    it("skips empty segments between '&'", () => {
++      expect(parseQuery("a=1&&b=2")).toEqual({ a: "1", b: "2" });
++    });
++
++    it("skips a leading empty segment", () => {
++      expect(parseQuery("&a=1")).toEqual({ a: "1" });
++    });
++
++    it("skips a trailing empty segment", () => {
++      expect(parseQuery("a=1&")).toEqual({ a: "1" });
++    });
++
++    it("skips runs of consecutive separators", () => {
++      expect(parseQuery("a=1&&&b=2")).toEqual({ a: "1", b: "2" });
++    });
++
++    it("returns an empty object for a string of only separators", () => {
++      expect(parseQuery("&&&")).toEqual({});
++    });
++  });
++
++  describe("single-occurrence keys", () => {
++    it("maps a key that appears once to its string value", () => {
++      expect(parseQuery("name=alice")).toEqual({ name: "alice" });
++    });
++
++    it("keeps the value as a string, not an array", () => {
++      expect(parseQuery("n=1").n).toBe("1");
++    });
++  });
++
++  describe("repeated keys", () => {
++    it("maps a key appearing twice to an array in order of appearance", () => {
++      expect(parseQuery("a=1&a=2")).toEqual({ a: ["1", "2"] });
++    });
++
++    it("maps a key appearing three times to an array in order", () => {
++      expect(parseQuery("a=1&a=2&a=3")).toEqual({ a: ["1", "2", "3"] });
++    });
++
++    it("preserves order relative to other interleaved keys", () => {
++      expect(parseQuery("a=1&b=x&a=2")).toEqual({ a: ["1", "2"], b: "x" });
++    });
++
++    it("groups repeated bare keys into an array of empty strings", () => {
++      expect(parseQuery("flag&flag")).toEqual({ flag: ["", ""] });
++    });
++  });
++
++  describe("bare keys (no '=')", () => {
++    it("maps a bare key to an empty string", () => {
++      expect(parseQuery("flag")).toEqual({ flag: "" });
++    });
++
++    it("maps multiple bare keys each to an empty string", () => {
++      expect(parseQuery("a&b")).toEqual({ a: "", b: "" });
++    });
++
++    it("treats a key with '=' but no value as an empty string", () => {
++      expect(parseQuery("a=")).toEqual({ a: "" });
++    });
++  });
++
++  describe("'=' splitting", () => {
++    it("splits on the first '=' only, keeping later '=' in the value", () => {
++      expect(parseQuery("a=b=c")).toEqual({ a: "b=c" });
++    });
++
++    it("handles an empty key when a segment starts with '='", () => {
++      expect(parseQuery("=v")).toEqual({ "": "v" });
++    });
++  });
++
++  describe("'+' decoding to space", () => {
++    it("decodes '+' to a space in values", () => {
++      expect(parseQuery("q=hello+world")).toEqual({ q: "hello world" });
++    });
++
++    it("decodes '+' to a space in keys", () => {
++      expect(parseQuery("first+name=alice")).toEqual({ "first name": "alice" });
++    });
++
++    it("decodes multiple '+' characters", () => {
++      expect(parseQuery("a=x+y+z")).toEqual({ a: "x y z" });
++    });
++  });
++
++  describe("percent-decoding", () => {
++    it("percent-decodes values", () => {
++      expect(parseQuery("a=%2F")).toEqual({ a: "/" });
++    });
++
++    it("percent-decodes keys", () => {
++      expect(parseQuery("%61=1")).toEqual({ a: "1" });
++    });
++
++    it("decodes a space encoded as %20", () => {
++      expect(parseQuery("a=hello%20world")).toEqual({ a: "hello world" });
++    });
++
++    it("decodes multi-byte UTF-8 sequences", () => {
++      expect(parseQuery("a=%E2%9C%93")).toEqual({ a: "✓" });
++    });
++
++    it("applies '+' replacement before percent-decoding", () => {
++      // "%2B" decodes to a literal "+", while "+" becomes a space.
++      expect(parseQuery("a=%2B+b")).toEqual({ a: "+ b" });
++    });
++  });
++
++  describe("malformed percent-encoding", () => {
++    it("uses the raw token when a value fails to decode", () => {
++      expect(parseQuery("a=%zz")).toEqual({ a: "%zz" });
++    });
++
++    it("uses the raw token when a key fails to decode", () => {
++      expect(parseQuery("%zz=1")).toEqual({ "%zz": "1" });
++    });
++
++    it("does not throw on a lone trailing '%'", () => {
++      expect(() => parseQuery("a=100%")).not.toThrow();
++      expect(parseQuery("a=100%")).toEqual({ a: "100%" });
++    });
++
++    it("still applies '+' replacement to a token that fails to decode", () => {
++      expect(parseQuery("a=%zz+b")).toEqual({ a: "%zz b" });
++    });
++  });
++
++  describe("combined behaviors", () => {
++    it("handles a realistic mixed query string", () => {
++      expect(
++        parseQuery("?q=hello+world&tag=js&tag=test&flag&x=%2F&bad=%zz"),
++      ).toEqual({
++        q: "hello world",
++        tag: ["js", "test"],
++        flag: "",
++        x: "/",
++        bad: "%zz",
++      });
++    });
++  });
++});

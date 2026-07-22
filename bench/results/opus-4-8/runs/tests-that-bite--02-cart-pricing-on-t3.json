@@ -1,0 +1,22 @@
+{
+  "runId": "tests-that-bite--02-cart-pricing-on-t3",
+  "skillId": "tests-that-bite",
+  "taskId": "02-cart-pricing",
+  "condition": "on",
+  "trial": 3,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T09:56:37.664Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": 1,
+  "locAddedSrc": 0,
+  "locAddedTest": 154,
+  "filesCreated": 2,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 6,
+  "totalCostUsd": 0.30919450000000004,
+  "durationMs": 66599
+}

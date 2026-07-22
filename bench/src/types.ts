@@ -25,6 +25,10 @@ export interface Task {
   timeoutMin: number;
   maxBudgetUsd: number; // per-run spend cap (CLI --max-budget-usd; --max-turns is gone)
   traps: Trap[];
+  // when true, the harness verifies any agent-added test files FAIL on the
+  // pre-fix baseline commit (assertion failure, not import error) and pass on
+  // the final tree — the repro-verified detector
+  repro?: boolean;
 }
 
 // Everything measured for a single (skill, task, condition, trial) run.
@@ -45,6 +49,10 @@ export interface RunResult {
   // optional task-defined scalar receipt metric (e.g. mutant kill rate):
   // acceptance writes a number to .bench-scalar in the workspace; null when absent
   taskScalar: number | null;
+
+  // repro-verified detector result (null when the task doesn't request it):
+  // agent-added tests fail on the baseline commit and pass on the final tree
+  reproVerified: boolean | null;
 
   // scope metrics
   locAddedSrc: number;

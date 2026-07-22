@@ -1,0 +1,22 @@
+{
+  "runId": "tests-that-bite--02-cart-pricing-placebo-t1",
+  "skillId": "tests-that-bite",
+  "taskId": "02-cart-pricing",
+  "condition": "placebo",
+  "trial": 1,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T09:55:29.457Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": 1,
+  "locAddedSrc": 0,
+  "locAddedTest": 271,
+  "filesCreated": 2,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 6,
+  "totalCostUsd": 0.486134,
+  "durationMs": 127599
+}

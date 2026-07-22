@@ -1,0 +1,187 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..b969823
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/pricing.test.js",{"duration":2.5054999999999836,"failed":false}],[":test/example.test.js",{"duration":0.8658330000000092,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/pricing.test.js b/test/pricing.test.js
+new file mode 100644
+index 0000000..debb33a
+--- /dev/null
++++ b/test/pricing.test.js
+@@ -0,0 +1,173 @@
++import { describe, expect, it } from "vitest";
++import { priceOrder } from "../src/pricing.js";
++
++describe("priceOrder — subtotal", () => {
++  // Bug: empty cart not treated as all-zeros.
++  it("returns all zeros for an empty order", () => {
++    expect(priceOrder([])).toEqual({
++      subtotalCents: 0,
++      discountCents: 0,
++      totalCents: 0,
++    });
++  });
++
++  // Bug: subtotal computed as sum of unitCents ignoring qty.
++  it("multiplies unitCents by qty for a single line", () => {
++    const r = priceOrder([{ unitCents: 250, qty: 3 }]);
++    expect(r.subtotalCents).toBe(750);
++  });
++
++  // Bug: only the first line counted instead of summing all lines.
++  it("sums across multiple lines", () => {
++    const r = priceOrder([
++      { unitCents: 100, qty: 2 },
++      { unitCents: 30, qty: 5 },
++    ]);
++    expect(r.subtotalCents).toBe(350);
++  });
++});
++
++describe("priceOrder — qty validation", () => {
++  // Bug: qty of zero silently accepted instead of rejected.
++  it("throws RangeError when qty is zero", () => {
++    expect(() => priceOrder([{ unitCents: 100, qty: 0 }])).toThrow(RangeError);
++  });
++
++  // Bug: negative qty accepted, producing a negative subtotal.
++  it("throws RangeError when qty is negative", () => {
++    expect(() => priceOrder([{ unitCents: 100, qty: -1 }])).toThrow(RangeError);
++  });
++
++  // Bug: fractional qty accepted instead of requiring an integer.
++  it("throws RangeError when qty is not an integer", () => {
++    expect(() => priceOrder([{ unitCents: 100, qty: 1.5 }])).toThrow(RangeError);
++  });
++
++  // Boundary just above zero: the smallest valid qty must be accepted.
++  it("accepts qty of exactly 1", () => {
++    expect(priceOrder([{ unitCents: 100, qty: 1 }]).subtotalCents).toBe(100);
++  });
++});
++
++describe("priceOrder — tier discount boundary (10000)", () => {
++  // Boundary just below: 9999 must not trigger the tier discount.
++  it("applies no tier discount just below the threshold", () => {
++    const r = priceOrder([{ unitCents: 9999, qty: 1 }]);
++    expect(r).toEqual({
++      subtotalCents: 9999,
++      discountCents: 0,
++      totalCents: 9999,
++    });
++  });
++
++  // Boundary at the threshold: >= 10000 triggers a 10% tier discount.
++  it("applies a 10% tier discount exactly at the threshold", () => {
++    const r = priceOrder([{ unitCents: 10000, qty: 1 }]);
++    expect(r).toEqual({
++      subtotalCents: 10000,
++      discountCents: 1000,
++      totalCents: 9000,
++    });
++  });
++
++  // Boundary just above: 10001 gets 10% rounded to nearest cent.
++  it("applies the tier discount just above the threshold", () => {
++    const r = priceOrder([{ unitCents: 10001, qty: 1 }]);
++    // 10% of 10001 = 1000.1 -> rounds to 1000
++    expect(r.discountCents).toBe(1000);
++    expect(r.totalCents).toBe(9001);
++  });
++
++  // Rounding: .5 rounds up (10% of 10005 = 1000.5 -> 1001).
++  it("rounds the tier discount up on a .5 boundary", () => {
++    const r = priceOrder([{ unitCents: 10005, qty: 1 }]);
++    expect(r.discountCents).toBe(1001);
++    expect(r.totalCents).toBe(9004);
++  });
++
++  // Rounding down just below .5 (10% of 10004 = 1000.4 -> 1000).
++  it("rounds the tier discount down just below a .5 boundary", () => {
++    const r = priceOrder([{ unitCents: 10004, qty: 1 }]);
++    expect(r.discountCents).toBe(1000);
++    expect(r.totalCents).toBe(9004);
++  });
++});
++
++describe("priceOrder — coupon", () => {
++  // Bug: no coupon argument still applies some discount.
++  it("applies no coupon discount when coupon is omitted", () => {
++    const r = priceOrder([{ unitCents: 1000, qty: 1 }]);
++    expect(r.discountCents).toBe(0);
++    expect(r.totalCents).toBe(1000);
++  });
++
++  // Bug: coupon pct of 0 treated as a default rather than literal 0.
++  it("applies no discount for a 0% coupon", () => {
++    const r = priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 0 });
++    expect(r.discountCents).toBe(0);
++    expect(r.totalCents).toBe(1000);
++  });
++
++  // Straightforward coupon below the tier threshold (no tier interaction).
++  it("applies a plain percentage coupon", () => {
++    const r = priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 20 });
++    // 20% of 1000 = 200
++    expect(r.discountCents).toBe(200);
++    expect(r.totalCents).toBe(800);
++  });
++
++  // Boundary at the cap: pct 30 is not capped.
++  it("applies the full 30% at the cap boundary", () => {
++    const r = priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 30 });
++    expect(r.discountCents).toBe(300);
++    expect(r.totalCents).toBe(700);
++  });
++
++  // Boundary just above the cap: pct 31 is capped to 30.
++  it("caps a coupon just above 30 at 30%", () => {
++    const r = priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 31 });
++    // capped to 30% of 1000 = 300
++    expect(r.discountCents).toBe(300);
++    expect(r.totalCents).toBe(700);
++  });
++
++  // Bug: cap not applied for large pct values.
++  it("caps a large coupon at 30%", () => {
++    const r = priceOrder([{ unitCents: 1000, qty: 1 }], { pct: 100 });
++    expect(r.discountCents).toBe(300);
++    expect(r.totalCents).toBe(700);
++  });
++
++  // Coupon rounds up on a .5 boundary (10% of 1005 = 100.5 -> 101).
++  it("rounds the coupon discount up on a .5 boundary", () => {
++    const r = priceOrder([{ unitCents: 1005, qty: 1 }], { pct: 10 });
++    expect(r.discountCents).toBe(101);
++    expect(r.totalCents).toBe(904);
++  });
++
++  // Coupon rounds down just below .5 (10% of 1004 = 100.4 -> 100).
++  it("rounds the coupon discount down just below a .5 boundary", () => {
++    const r = priceOrder([{ unitCents: 1004, qty: 1 }], { pct: 10 });
++    expect(r.discountCents).toBe(100);
++    expect(r.totalCents).toBe(904);
++  });
++});
++
++describe("priceOrder — tier and coupon combined", () => {
++  // Bug: coupon applied to the raw subtotal instead of subtotal-after-tier.
++  it("applies the coupon to the subtotal AFTER the tier discount", () => {
++    const r = priceOrder([{ unitCents: 10000, qty: 1 }], { pct: 20 });
++    // tier = 10% of 10000 = 1000; remaining = 9000; coupon = 20% of 9000 = 1800
++    expect(r.subtotalCents).toBe(10000);
++    expect(r.discountCents).toBe(2800);
++    expect(r.totalCents).toBe(7200);
++  });
++
++  // Bug: cap not honored when a tier discount is also present.
++  it("caps the coupon and applies it after the tier discount", () => {
++    const r = priceOrder([{ unitCents: 20000, qty: 1 }], { pct: 50 });
++    // tier = 2000; remaining = 18000; coupon capped 30% of 18000 = 5400
++    expect(r.discountCents).toBe(7400);
++    expect(r.totalCents).toBe(12600);
++  });
++});

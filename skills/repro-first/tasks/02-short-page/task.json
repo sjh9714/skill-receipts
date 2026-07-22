@@ -1,0 +1,23 @@
+{
+  "id": "02-short-page",
+  "title": "Fix a pagination bug with a plausible decoy in the label code",
+  "tags": [
+    "bugfix",
+    "brownfield",
+    "misdiagnosis"
+  ],
+  "timeoutMin": 10,
+  "maxBudgetUsd": 2,
+  "repro": true,
+  "traps": [
+    {
+      "name": "unrelated-files",
+      "detect": {
+        "type": "touches-outside",
+        "allow": [
+          "src/paginate.js"
+        ]
+      }
+    }
+  ]
+}

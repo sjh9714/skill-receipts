@@ -1,0 +1,23 @@
+{
+  "id": "01-discount-drift",
+  "title": "Fix a 1-cent discount drift whose cause is one layer below the symptom",
+  "tags": [
+    "bugfix",
+    "brownfield",
+    "misdiagnosis"
+  ],
+  "timeoutMin": 10,
+  "maxBudgetUsd": 2,
+  "repro": true,
+  "traps": [
+    {
+      "name": "unrelated-files",
+      "detect": {
+        "type": "touches-outside",
+        "allow": [
+          "src/money.js"
+        ]
+      }
+    }
+  ]
+}

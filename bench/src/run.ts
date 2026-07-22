@@ -14,7 +14,7 @@ import path from "node:path";
 import { runAgent } from "./agent.js";
 import { collectMetrics } from "./metrics.js";
 import { prepareWorkspace } from "./workspace.js";
-import { verifyAcceptance } from "./verify.js";
+import { verifyAcceptance, verifyRepro } from "./verify.js";
 import type { Condition, RunResult, Task } from "./types.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
@@ -117,6 +117,7 @@ async function executeRun(
     const patch = execFileSync("git", ["-C", dir, "diff", "--cached", "HEAD"], { encoding: "utf8" });
     await writeFile(path.join(opts.logsDir, `${planned.runId}.patch`), patch);
     const verdict = await verifyAcceptance(dir, planned.skillId, planned.taskId);
+    const reproVerified = task.repro ? await verifyRepro(dir) : null;
     return {
       runId: planned.runId,
       skillId: planned.skillId,
@@ -129,6 +130,7 @@ async function executeRun(
       accepted: verdict.accepted,
       failingTests: verdict.failingTests,
       taskScalar: verdict.taskScalar,
+      reproVerified,
       locAddedSrc: metrics.locAddedSrc,
       locAddedTest: metrics.locAddedTest,
       filesCreated: metrics.filesCreated,

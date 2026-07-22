@@ -1,0 +1,188 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..073b1c5
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/limiter.test.js",{"duration":3.4177500000000123,"failed":false}],[":test/example.test.js",{"duration":1.9560419999999965,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/limiter.test.js b/test/limiter.test.js
+new file mode 100644
+index 0000000..22b37f6
+--- /dev/null
++++ b/test/limiter.test.js
+@@ -0,0 +1,174 @@
++import { describe, expect, it } from "vitest";
++import { createLimiter } from "../src/limiter.js";
++
++describe("createLimiter", () => {
++  describe("shape", () => {
++    it("returns an object with an allow function", () => {
++      const limiter = createLimiter();
++      expect(typeof limiter.allow).toBe("function");
++    });
++  });
++
++  describe("basic allowance up to the limit", () => {
++    it("allows the first `limit` calls at the same timestamp and blocks the next", () => {
++      const limiter = createLimiter(3, 1000);
++      expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(false);
++    });
++
++    it("defaults to a limit of 5", () => {
++      const limiter = createLimiter();
++      for (let i = 0; i < 5; i++) {
++        expect(limiter.allow("k", 0)).toBe(true);
++      }
++      expect(limiter.allow("k", 0)).toBe(false);
++    });
++
++    it("blocks strictly at the limit (allowed count < limit is required)", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(false);
++    });
++
++    it("supports a limit of 0 (never allows)", () => {
++      const limiter = createLimiter(0, 1000);
++      expect(limiter.allow("k", 0)).toBe(false);
++      expect(limiter.allow("k", 100)).toBe(false);
++    });
++  });
++
++  describe("blocked calls record nothing", () => {
++    it("does not consume window capacity when a call is blocked", () => {
++      const limiter = createLimiter(1, 1000);
++      // Fill the window at t=0.
++      expect(limiter.allow("k", 0)).toBe(true);
++      // Blocked calls in the same window must not be recorded...
++      expect(limiter.allow("k", 100)).toBe(false);
++      expect(limiter.allow("k", 200)).toBe(false);
++      // ...so once the original call expires, exactly one slot frees up.
++      // At now=1000, t=0 has expired (0 > 1000-1000 === 0 is false).
++      expect(limiter.allow("k", 1000)).toBe(true);
++    });
++
++    it("does not let blocked calls push out the recorded timestamps", () => {
++      const limiter = createLimiter(2, 1000);
++      expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(true);
++      // These are blocked and recorded nothing.
++      expect(limiter.allow("k", 500)).toBe(false);
++      expect(limiter.allow("k", 999)).toBe(false);
++      // The two recorded calls are still at t=0; they expire at now=1000.
++      expect(limiter.allow("k", 999)).toBe(false);
++      expect(limiter.allow("k", 1000)).toBe(true);
++    });
++  });
++
++  describe("sliding window expiry", () => {
++    it("counts a call while it is still within the window (t > now - windowMs)", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("k", 0)).toBe(true);
++      // now=999: 0 > 999-1000 === 0 > -1 -> true, still counts, blocked.
++      expect(limiter.allow("k", 999)).toBe(false);
++    });
++
++    it("expires a call exactly windowMs old (t === now - windowMs does not count)", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("k", 0)).toBe(true);
++      // now=1000: 0 > 1000-1000 === 0 > 0 -> false, expired, allowed.
++      expect(limiter.allow("k", 1000)).toBe(true);
++    });
++
++    it("expires calls older than the window", () => {
++      const limiter = createLimiter(2, 1000);
++      expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 500)).toBe(false);
++      // At now=1001 both t=0 calls have expired.
++      expect(limiter.allow("k", 1001)).toBe(true);
++      expect(limiter.allow("k", 1001)).toBe(true);
++      expect(limiter.allow("k", 1001)).toBe(false);
++    });
++
++    it("slides: only calls within the trailing window count", () => {
++      const limiter = createLimiter(2, 1000);
++      expect(limiter.allow("k", 100)).toBe(true); // recorded at 100
++      expect(limiter.allow("k", 800)).toBe(true); // recorded at 800
++      expect(limiter.allow("k", 900)).toBe(false); // both 100 and 800 in window
++      // At now=1100, t=100 expired (100 > 100 false), t=800 still in window.
++      expect(limiter.allow("k", 1100)).toBe(true); // records 1100
++      // Now 800 and 1100 are in window -> blocked.
++      expect(limiter.allow("k", 1100)).toBe(false);
++    });
++
++    it("allows a fresh full burst after the entire window passes", () => {
++      const limiter = createLimiter(3, 1000);
++      for (let i = 0; i < 3; i++) expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(false);
++      // Long after the window, capacity is fully restored.
++      for (let i = 0; i < 3; i++) expect(limiter.allow("k", 5000)).toBe(true);
++      expect(limiter.allow("k", 5000)).toBe(false);
++    });
++  });
++
++  describe("independent key buckets", () => {
++    it("tracks each key separately", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("b", 0)).toBe(true);
++      expect(limiter.allow("a", 0)).toBe(false);
++      expect(limiter.allow("b", 0)).toBe(false);
++    });
++
++    it("expiry is per-key", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow("a", 0)).toBe(true);
++      expect(limiter.allow("b", 500)).toBe(true);
++      // At now=1000, a's t=0 expired but b's t=500 still counts.
++      expect(limiter.allow("a", 1000)).toBe(true);
++      expect(limiter.allow("b", 1000)).toBe(false);
++    });
++
++    it("treats distinct key values (including non-strings) independently", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(limiter.allow(1, 0)).toBe(true);
++      expect(limiter.allow("1", 0)).toBe(true); // different Map key
++      expect(limiter.allow(1, 0)).toBe(false);
++      expect(limiter.allow(undefined, 0)).toBe(true);
++      expect(limiter.allow(undefined, 0)).toBe(false);
++    });
++  });
++
++  describe("`now` validation", () => {
++    it("throws TypeError when now is not a number", () => {
++      const limiter = createLimiter();
++      expect(() => limiter.allow("k", "0")).toThrow(TypeError);
++      expect(() => limiter.allow("k", null)).toThrow(TypeError);
++      expect(() => limiter.allow("k", undefined)).toThrow(TypeError);
++      expect(() => limiter.allow("k")).toThrow(TypeError);
++      expect(() => limiter.allow("k", {})).toThrow(TypeError);
++    });
++
++    it("throws TypeError when now is a non-finite number", () => {
++      const limiter = createLimiter();
++      expect(() => limiter.allow("k", NaN)).toThrow(TypeError);
++      expect(() => limiter.allow("k", Infinity)).toThrow(TypeError);
++      expect(() => limiter.allow("k", -Infinity)).toThrow(TypeError);
++    });
++
++    it("accepts finite numbers including zero and negatives", () => {
++      const limiter = createLimiter(2, 1000);
++      expect(limiter.allow("k", -500)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(true);
++      expect(limiter.allow("k", 0)).toBe(false);
++    });
++
++    it("does not record anything when it throws", () => {
++      const limiter = createLimiter(1, 1000);
++      expect(() => limiter.allow("k", NaN)).toThrow(TypeError);
++      // The throwing call must not have consumed capacity.
++      expect(limiter.allow("k", 0)).toBe(true);
++    });
++  });
++});

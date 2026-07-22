@@ -1,0 +1,215 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..6a36f92
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/parseQuery.test.js",{"duration":3.6039580000000058,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/example.test.js b/test/example.test.js
+deleted file mode 100644
+index bee1db1..0000000
+--- a/test/example.test.js
++++ /dev/null
+@@ -1,9 +0,0 @@
+-import { describe, expect, it } from "vitest";
+-import { parseQuery } from "../src/parseQuery.js";
+-
+-// Starter test — extend or replace with a real suite.
+-describe("parseQuery", () => {
+-  it("returns an object", () => {
+-    expect(typeof parseQuery("")).toBe("object");
+-  });
+-});
+diff --git a/test/parseQuery.test.js b/test/parseQuery.test.js
+new file mode 100644
+index 0000000..20744a1
+--- /dev/null
++++ b/test/parseQuery.test.js
+@@ -0,0 +1,186 @@
++import { describe, expect, it } from "vitest";
++import { parseQuery } from "../src/parseQuery.js";
++
++describe("parseQuery", () => {
++  // Bug: forgetting to return {} for empty input, or splitting "" into [""]
++  // and not skipping it, would produce a spurious key.
++  it("returns an empty object for an empty string", () => {
++    expect(parseQuery("")).toEqual({});
++  });
++
++  // Bug: a lone "?" not stripped would leave "" -> {""... } or similar.
++  it("returns an empty object for a lone '?'", () => {
++    expect(parseQuery("?")).toEqual({});
++  });
++
++  describe("leading '?' handling", () => {
++    // Bug: not stripping a leading "?" would fold it into the first key ("?a").
++    it("strips a single leading '?'", () => {
++      expect(parseQuery("?a=1")).toEqual({ a: "1" });
++    });
++
++    // Boundary: only the FIRST "?" is stripped (slice(1)). A second one stays.
++    it("strips only one leading '?', leaving a second in the first key", () => {
++      expect(parseQuery("??a=1")).toEqual({ "?a": "1" });
++    });
++
++    // Bug: stripping "?" anywhere instead of only at the start would corrupt values.
++    it("does not strip a '?' that is not leading", () => {
++      expect(parseQuery("a=?")).toEqual({ a: "?" });
++    });
++  });
++
++  describe("basic key/value pairs", () => {
++    // Bug: mis-splitting a single pair.
++    it("parses a single key=value pair", () => {
++      expect(parseQuery("a=1")).toEqual({ a: "1" });
++    });
++
++    // Bug: dropping or merging pairs when splitting on "&".
++    it("parses multiple distinct keys", () => {
++      expect(parseQuery("a=1&b=2&c=3")).toEqual({ a: "1", b: "2", c: "3" });
++    });
++
++    // Values are strings, never numbers.
++    it("keeps values as strings", () => {
++      expect(parseQuery("a=1")).toStrictEqual({ a: "1" });
++      expect(parseQuery("a=1").a).toBe("1");
++    });
++  });
++
++  describe("'=' splitting", () => {
++    // Bug: splitting on every "=" instead of the first would truncate values.
++    it("splits on the first '=' only, keeping later '=' in the value", () => {
++      expect(parseQuery("a=b=c")).toEqual({ a: "b=c" });
++    });
++
++    // Boundary: "=" present but value empty.
++    it("maps 'a=' to an empty-string value", () => {
++      expect(parseQuery("a=")).toEqual({ a: "" });
++    });
++
++    // Boundary: "=" present but key empty.
++    it("maps '=v' to an empty-string key", () => {
++      expect(parseQuery("=v")).toEqual({ "": "v" });
++    });
++  });
++
++  describe("bare keys (no '=')", () => {
++    // Bug: a bare key mapping to undefined/null instead of "".
++    it("maps a bare key to an empty string", () => {
++      expect(parseQuery("flag")).toEqual({ flag: "" });
++    });
++
++    // A bare key repeated becomes an array of empty strings, in order.
++    it("collects repeated bare keys into an array of empty strings", () => {
++      expect(parseQuery("flag&flag")).toEqual({ flag: ["", ""] });
++    });
++  });
++
++  describe("empty segments", () => {
++    // Bug: not skipping "" segments would create a "" key from "a=1&&b=2".
++    it("skips an empty segment between pairs", () => {
++      expect(parseQuery("a=1&&b=2")).toEqual({ a: "1", b: "2" });
++    });
++
++    // Boundary: leading, trailing, and consecutive "&".
++    it("skips leading and trailing empty segments", () => {
++      expect(parseQuery("&a=1&")).toEqual({ a: "1" });
++    });
++
++    // Boundary: a string of only separators yields {}.
++    it("returns {} for a string of only separators", () => {
++      expect(parseQuery("&&&")).toEqual({});
++    });
++  });
++
++  describe("repeated keys", () => {
++    // Bug: overwriting instead of collecting duplicates.
++    it("collects two occurrences into an array in order", () => {
++      expect(parseQuery("a=1&a=2")).toEqual({ a: ["1", "2"] });
++    });
++
++    // Boundary: three occurrences must push onto the existing array, not nest.
++    it("collects three occurrences into a flat array in order", () => {
++      expect(parseQuery("a=1&a=2&a=3")).toEqual({ a: ["1", "2", "3"] });
++    });
++
++    // Order matters: appearance order, not sorted.
++    it("preserves appearance order for repeated keys", () => {
++      expect(parseQuery("a=z&a=a&a=m")).toEqual({ a: ["z", "a", "m"] });
++    });
++
++    // A single occurrence stays a bare string, not a one-element array.
++    it("keeps a single occurrence as a string, not an array", () => {
++      expect(parseQuery("a=1")).toEqual({ a: "1" });
++      expect(Array.isArray(parseQuery("a=1").a)).toBe(false);
++    });
++
++    // Grouping is by DECODED key: "a%62" and "ab" both decode to "ab".
++    it("groups by decoded key, not raw key", () => {
++      expect(parseQuery("a%62=1&ab=2")).toEqual({ ab: ["1", "2"] });
++    });
++  });
++
++  describe("'+' decoding", () => {
++    // Bug: not turning "+" into a space in values.
++    it("decodes '+' to a space in values", () => {
++      expect(parseQuery("a=1+2")).toEqual({ a: "1 2" });
++    });
++
++    // Bug: only decoding "+" in values, not keys.
++    it("decodes '+' to a space in keys", () => {
++      expect(parseQuery("a+b=1")).toEqual({ "a b": "1" });
++    });
++  });
++
++  describe("percent decoding", () => {
++    // Bug: not percent-decoding at all.
++    it("percent-decodes values", () => {
++      expect(parseQuery("a=%20")).toEqual({ a: " " });
++    });
++
++    // Bug: not percent-decoding keys.
++    it("percent-decodes keys", () => {
++      expect(parseQuery("%6B=v")).toEqual({ k: "v" });
++    });
++
++    // Order: "+" replacement happens BEFORE percent-decoding, so "%2B"
++    // (an encoded literal "+") must survive as "+", not become a space.
++    it("decodes %2B to a literal '+', not a space", () => {
++      expect(parseQuery("a=%2B")).toEqual({ a: "+" });
++    });
++
++    // Multi-byte UTF-8 percent decoding.
++    it("decodes multi-byte UTF-8 sequences", () => {
++      expect(parseQuery("a=%E2%9C%93")).toEqual({ a: "✓" });
++    });
++  });
++
++  describe("decode failure falls back to the raw token", () => {
++    // Bug: throwing (or returning undefined) on a malformed percent-escape.
++    it("uses the raw token when a value fails to decode", () => {
++      expect(parseQuery("a=%")).toEqual({ a: "%" });
++    });
++
++    // Boundary: invalid two-char escape.
++    it("uses the raw token for an invalid percent escape", () => {
++      expect(parseQuery("a=%ZZ")).toEqual({ a: "%ZZ" });
++    });
++
++    // Fallback uses the token AFTER "+" replacement, not the original.
++    it("applies '+' replacement before falling back on decode failure", () => {
++      expect(parseQuery("a=b+%zz")).toEqual({ a: "b %zz" });
++    });
++
++    // A decode failure in the key must not crash and must fall back.
++    it("uses the raw token when a key fails to decode", () => {
++      expect(parseQuery("%=v")).toEqual({ "%": "v" });
++    });
++
++    // Never throws, even on wholly malformed input.
++    it("does not throw on malformed input", () => {
++      expect(() => parseQuery("%&%=%&=%")).not.toThrow();
++    });
++  });
++});

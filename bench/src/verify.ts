@@ -1,11 +1,89 @@
-import { execFile } from "node:child_process";
-import { cp, readFile, rm } from "node:fs/promises";
+import { execFile, execFileSync } from "node:child_process";
+import { cp, mkdir, readFile, rm, symlink } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { promisify } from "node:util";
 
 const execFileP = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+
+const isTestFile = (p: string) =>
+  /(^|\/)(test|tests|__tests__)\//.test(p) || /\.(test|spec)\.[cm]?[jt]sx?$/.test(p);
+
+async function runVitest(cwd: string, files: string[]): Promise<{ success: boolean; assertionFailure: boolean }> {
+  const report = path.join(cwd, ".repro-report.json");
+  try {
+    await execFileP("npx", ["vitest", "run", ...files, "--reporter=json", `--outputFile=${report}`], {
+      cwd,
+      timeout: 120_000,
+    });
+  } catch {
+    // non-zero exit expected for failing suites
+  }
+  try {
+    const parsed = JSON.parse(await readFile(report, "utf8"));
+    await rm(report, { force: true });
+    let assertionFailure = false;
+    for (const suite of parsed.testResults ?? []) {
+      for (const test of suite.assertionResults ?? []) {
+        if (test.status !== "passed") {
+          const messages = (test.failureMessages ?? []).join("\n");
+          if (!/Cannot find (module|package)|ERR_MODULE_NOT_FOUND/.test(messages)) assertionFailure = true;
+        }
+      }
+    }
+    return { success: parsed.success === true, assertionFailure };
+  } catch {
+    return { success: false, assertionFailure: false };
+  }
+}
+
+// The repro-verified detector: did the agent add test files that FAIL on the
+// pre-fix baseline commit (with an assertion failure, not an import error)
+// and pass on the final tree? Runs after verifyAcceptance so node_modules is
+// installed. Uses a git worktree of the baseline commit (D5 machinery).
+export async function verifyRepro(dir: string): Promise<boolean> {
+  const git = (...args: string[]) =>
+    execFileSync("git", ["-C", dir, ...args], { encoding: "utf8" });
+  // node_modules (installed by verifyAcceptance) and the injected acceptance/
+  // suite are not the agent's work — only its own added test files count
+  git("add", "-A", "--", ".", ":!node_modules", ":!acceptance");
+  const addedTests = git("diff", "--cached", "HEAD", "--name-status")
+    .split("\n")
+    .filter((l) => l.startsWith("A\t"))
+    .map((l) => l.split("\t")[1])
+    .filter(
+      (p) =>
+        isTestFile(p) &&
+        !p.startsWith("node_modules/") &&
+        !p.startsWith("acceptance/") &&
+        p !== "package-lock.json",
+    );
+  if (addedTests.length === 0) return false;
+
+  // final tree first — before the worktree exists, so vitest's path filters
+  // cannot match the baseline copies of the same files
+  const onFinal = await runVitest(dir, addedTests);
+  if (!onFinal.success) return false;
+
+  const baseline = path.join(dir, ".baseline-check");
+  try {
+    git("worktree", "add", baseline, "HEAD");
+    await symlink(path.join(dir, "node_modules"), path.join(baseline, "node_modules"));
+    for (const file of addedTests) {
+      await mkdir(path.dirname(path.join(baseline, file)), { recursive: true });
+      await cp(path.join(dir, file), path.join(baseline, file));
+    }
+    const onBaseline = await runVitest(baseline, addedTests);
+    return !onBaseline.success && onBaseline.assertionFailure;
+  } finally {
+    try {
+      git("worktree", "remove", "--force", baseline);
+    } catch {
+      await rm(baseline, { recursive: true, force: true });
+    }
+  }
+}
 
 // Run the hold-out acceptance tests against a finished workspace — the primary
 // accuracy gate (D2). A run that fails here is a FAIL regardless of how little

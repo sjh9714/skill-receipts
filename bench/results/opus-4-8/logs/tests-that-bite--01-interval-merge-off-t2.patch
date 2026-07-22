@@ -1,0 +1,162 @@
+diff --git a/node_modules/.vite/vitest/results.json b/node_modules/.vite/vitest/results.json
+new file mode 100644
+index 0000000..4598007
+--- /dev/null
++++ b/node_modules/.vite/vitest/results.json
+@@ -0,0 +1 @@
++{"version":"2.1.9","results":[[":test/merge.test.js",{"duration":3.586207999999999,"failed":false}],[":test/example.test.js",{"duration":0.9637500000000045,"failed":false}]]}
+\ No newline at end of file
+diff --git a/test/merge.test.js b/test/merge.test.js
+new file mode 100644
+index 0000000..5a958f8
+--- /dev/null
++++ b/test/merge.test.js
+@@ -0,0 +1,148 @@
++import { describe, expect, it } from "vitest";
++import { mergeIntervals } from "../src/merge.js";
++
++describe("mergeIntervals", () => {
++  describe("empty and trivial inputs", () => {
++    it("returns [] for []", () => {
++      expect(mergeIntervals([])).toEqual([]);
++    });
++
++    it("returns a new array for [] (not the same reference)", () => {
++      const input = [];
++      expect(mergeIntervals(input)).not.toBe(input);
++    });
++
++    it("returns a single interval unchanged", () => {
++      expect(mergeIntervals([[1, 2]])).toEqual([[1, 2]]);
++    });
++
++    it("passes through a degenerate point interval [n, n]", () => {
++      expect(mergeIntervals([[3, 3]])).toEqual([[3, 3]]);
++    });
++  });
++
++  describe("overlapping intervals", () => {
++    it("merges two overlapping intervals ([1,4],[3,6] -> [1,6])", () => {
++      expect(mergeIntervals([[1, 4], [3, 6]])).toEqual([[1, 6]]);
++    });
++
++    it("merges when one interval fully contains another ([1,10],[3,5] -> [1,10])", () => {
++      expect(mergeIntervals([[1, 10], [3, 5]])).toEqual([[1, 10]]);
++    });
++
++    it("does not shrink the end when a contained interval ends earlier", () => {
++      expect(mergeIntervals([[1, 10], [2, 4]])).toEqual([[1, 10]]);
++    });
++
++    it("merges a chain of overlapping intervals into one", () => {
++      expect(mergeIntervals([[1, 3], [2, 5], [4, 8]])).toEqual([[1, 8]]);
++    });
++
++    it("merges duplicate identical intervals", () => {
++      expect(mergeIntervals([[1, 5], [1, 5], [1, 5]])).toEqual([[1, 5]]);
++    });
++  });
++
++  describe("touching intervals", () => {
++    it("merges touching intervals ([1,2],[2,3] -> [1,3])", () => {
++      expect(mergeIntervals([[1, 2], [2, 3]])).toEqual([[1, 3]]);
++    });
++
++    it("merges a point interval touching another ([1,3],[3,3] -> [1,3])", () => {
++      expect(mergeIntervals([[1, 3], [3, 3]])).toEqual([[1, 3]]);
++    });
++  });
++
++  describe("disjoint intervals", () => {
++    it("keeps disjoint intervals separate", () => {
++      expect(mergeIntervals([[1, 2], [4, 5]])).toEqual([[1, 2], [4, 5]]);
++    });
++
++    it("keeps intervals separated by a gap of one apart", () => {
++      // [1,2] and [3,4] do not touch (2 < 3), so they stay separate
++      expect(mergeIntervals([[1, 2], [3, 4]])).toEqual([[1, 2], [3, 4]]);
++    });
++
++    it("keeps many disjoint intervals separate and ordered", () => {
++      expect(mergeIntervals([[1, 2], [4, 5], [7, 8]])).toEqual([
++        [1, 2],
++        [4, 5],
++        [7, 8],
++      ]);
++    });
++  });
++
++  describe("sorting", () => {
++    it("returns intervals sorted by start ascending", () => {
++      expect(mergeIntervals([[7, 8], [1, 2], [4, 5]])).toEqual([
++        [1, 2],
++        [4, 5],
++        [7, 8],
++      ]);
++    });
++
++    it("merges overlapping intervals given out of order", () => {
++      expect(mergeIntervals([[3, 6], [1, 4]])).toEqual([[1, 6]]);
++    });
++
++    it("handles a scrambled mix of overlapping and disjoint intervals", () => {
++      expect(
++        mergeIntervals([[8, 10], [1, 3], [2, 6], [15, 18], [9, 12]])
++      ).toEqual([
++        [1, 6],
++        [8, 12],
++        [15, 18],
++      ]);
++    });
++  });
++
++  describe("negative and non-integer values", () => {
++    it("handles negative bounds", () => {
++      expect(mergeIntervals([[-5, -1], [-3, 2]])).toEqual([[-5, 2]]);
++    });
++
++    it("handles fractional bounds", () => {
++      expect(mergeIntervals([[1.5, 2.5], [2.0, 3.5]])).toEqual([[1.5, 3.5]]);
++    });
++  });
++
++  describe("input is never mutated", () => {
++    it("does not mutate the outer input array", () => {
++      const input = [[3, 6], [1, 4]];
++      mergeIntervals(input);
++      expect(input).toEqual([[3, 6], [1, 4]]);
++    });
++
++    it("does not mutate the inner pairs", () => {
++      const a = [1, 4];
++      const b = [3, 6];
++      mergeIntervals([a, b]);
++      expect(a).toEqual([1, 4]);
++      expect(b).toEqual([3, 6]);
++    });
++
++    it("returns pairs that are not the same references as the inputs", () => {
++      const a = [1, 4];
++      const result = mergeIntervals([a]);
++      expect(result[0]).not.toBe(a);
++    });
++  });
++
++  describe("invalid intervals", () => {
++    it("throws RangeError when a pair has start > end", () => {
++      expect(() => mergeIntervals([[5, 1]])).toThrow(RangeError);
++    });
++
++    it("throws RangeError even if a valid interval precedes the invalid one", () => {
++      expect(() => mergeIntervals([[1, 2], [9, 4]])).toThrow(RangeError);
++    });
++
++    it("does not throw for a degenerate but valid interval (start == end)", () => {
++      expect(() => mergeIntervals([[2, 2]])).not.toThrow();
++    });
++
++    it("includes the offending bounds in the error message", () => {
++      expect(() => mergeIntervals([[5, 1]])).toThrow("[5, 1]");
++    });
++  });
++});
