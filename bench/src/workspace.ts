@@ -29,10 +29,14 @@ export async function prepareWorkspace(
       path.join(dir, "CLAUDE.md"),
       await readFile(path.join(root, "skills", skillId, "dist/CLAUDE.md.snippet"), "utf8"),
     );
-  } else if (condition === "placebo") {
-    // strip the file's meta comment — it describes the experiment and must
-    // never reach the model
-    const raw = await readFile(path.join(root, "bench/placebo-instructions.md"), "utf8");
+  } else if (condition !== "off") {
+    // control/comparison arms: placebo instructions or a vendored competitor
+    // ruleset (vs-<name>). Strip the file's meta comment — it describes the
+    // experiment or the vendoring provenance and must never reach the model.
+    const source = condition === "placebo"
+      ? "bench/placebo-instructions.md"
+      : `bench/competitors/${condition.slice(3)}.md`;
+    const raw = await readFile(path.join(root, source), "utf8");
     await writeFile(path.join(dir, "CLAUDE.md"), raw.replace(/^<!--[\s\S]*?-->\n/, ""));
   }
   git(dir, "init", "-q", "-b", "main");

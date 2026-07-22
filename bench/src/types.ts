@@ -4,7 +4,9 @@
 //  - "on": the skill's shipped snippet, injected byte-identically
 //  - "off": no instructions
 //  - "placebo": style-only instructions of comparable length (instruction-presence confound)
-export type Condition = "on" | "off" | "placebo";
+//  - "vs-<name>": a vendored third-party ruleset from bench/competitors/<name>.md,
+//    run under the identical protocol (head-to-head audit arm; not part of admission)
+export type Condition = "on" | "off" | "placebo" | `vs-${string}`;
 
 export interface Trap {
   name: string;
@@ -39,6 +41,10 @@ export interface RunResult {
   // accuracy — the primary gate
   accepted: boolean;
   failingTests: string[];
+
+  // optional task-defined scalar receipt metric (e.g. mutant kill rate):
+  // acceptance writes a number to .bench-scalar in the workspace; null when absent
+  taskScalar: number | null;
 
   // scope metrics
   locAddedSrc: number;

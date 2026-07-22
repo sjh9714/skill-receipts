@@ -14,7 +14,15 @@ import type { Condition, RunResult } from "./types.js";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 
 export interface TargetSpec {
-  metric: "locAddedSrc" | "locAddedTest" | "filesCreated" | "exportedSymbols" | "numTurns" | "durationMs" | "totalCostUsd";
+  metric:
+    | "locAddedSrc"
+    | "locAddedTest"
+    | "filesCreated"
+    | "exportedSymbols"
+    | "numTurns"
+    | "durationMs"
+    | "totalCostUsd"
+    | "taskScalar"; // task-defined scalar written to .bench-scalar by acceptance
   direction: "down" | "up";
   label: string;
 }
@@ -50,13 +58,22 @@ const round1 = (x: number): number => Math.round(x * 10) / 10;
 const deltaPct = (on: number, base: number): number | null =>
   base === 0 ? null : round1(((on - base) / base) * 100);
 
-export function buildReceipt(skillId: string, target: TargetSpec, runs: RunResult[]): SkillReceipt {
+export function buildReceipt(skillId: string, target: TargetSpec, allRuns: RunResult[]): SkillReceipt {
+  // vs-* comparison arms are reported separately; admission is strictly three-armed
+  const runs = allRuns.filter((r) => r.condition === "on" || r.condition === "off" || r.condition === "placebo");
+  const value = (r: RunResult): number => {
+    if (target.metric !== "taskScalar") return r[target.metric];
+    if (r.taskScalar === null) {
+      throw new Error(`run ${r.runId} has no .bench-scalar value but the target metric requires one`);
+    }
+    return r.taskScalar;
+  };
   const arm = (c: Condition) => runs.filter((r) => r.condition === c);
   const taskIds = [...new Set(runs.map((r) => r.taskId))].sort();
 
   const rows: TaskReceiptRow[] = taskIds.map((taskId) => {
     const of = (c: Condition) => runs.filter((r) => r.taskId === taskId && r.condition === c);
-    const med = (c: Condition) => median(of(c).map((r) => r[target.metric]));
+    const med = (c: Condition) => median(of(c).map(value));
     const pass = (c: Condition) => of(c).filter((r) => r.accepted).length;
     return {
       taskId,

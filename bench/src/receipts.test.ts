@@ -30,6 +30,7 @@ function run(partial: Partial<RunResult>): RunResult {
     ranAt: "2026-07-22T00:00:00Z",
     accepted: true,
     failingTests: [],
+    taskScalar: null,
     locAddedSrc: 0,
     locAddedTest: 0,
     filesCreated: 0,
@@ -95,6 +96,35 @@ describe("buildReceipt", () => {
     const r = buildReceipt("s", up, runs);
     expect(r.admitted).toBe(true);
     expect(r.deltaVsOffPct).toBe(140);
+  });
+
+  it("supports the task-defined scalar metric (e.g. mutant kill rate)", () => {
+    const kill = { metric: "taskScalar", direction: "up", label: "mutant kill rate" } as const;
+    const runs = [
+      run({ runId: "o1", taskId: "a", condition: "off", taskScalar: 0.4 }),
+      run({ runId: "p1", taskId: "a", condition: "placebo", taskScalar: 0.5 }),
+      run({ runId: "n1", taskId: "a", condition: "on", taskScalar: 0.9 }),
+    ];
+    const r = buildReceipt("s", kill, runs);
+    expect(r.admitted).toBe(true);
+    expect(r.medianTarget).toEqual({ off: 0.4, placebo: 0.5, on: 0.9 });
+  });
+
+  it("throws when a run is missing the scalar the target requires", () => {
+    const kill = { metric: "taskScalar", direction: "up", label: "mutant kill rate" } as const;
+    expect(() => buildReceipt("s", kill, [run({ taskScalar: null })])).toThrow(/\.bench-scalar/);
+  });
+
+  it("excludes vs-* comparison arms from the admission decision", () => {
+    const runs = [
+      ...threeArm(),
+      run({ runId: "v1", taskId: "a", condition: "vs-caveman", locAddedSrc: 1 }),
+    ];
+    const r = buildReceipt("s", TARGET, runs);
+    expect(r.rows).toHaveLength(1);
+    expect(r.medianTarget).toEqual({ off: 42, placebo: 38, on: 20 });
+    expect(r.admitted).toBe(true);
+    expect(r.runsTotal).toBe(9);
   });
 });
 

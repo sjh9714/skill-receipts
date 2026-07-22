@@ -10,12 +10,13 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 // Run the hold-out acceptance tests against a finished workspace — the primary
 // accuracy gate (D2). A run that fails here is a FAIL regardless of how little
 // code it wrote. The agent never saw these tests; they are copied in here,
-// after the run.
+// after the run. Acceptance may additionally write a single number to
+// .bench-scalar (e.g. a mutant kill rate) — the task-defined receipt metric.
 export async function verifyAcceptance(
   dir: string,
   skillId: string,
   taskId: string,
-): Promise<{ accepted: boolean; failingTests: string[] }> {
+): Promise<{ accepted: boolean; failingTests: string[]; taskScalar: number | null }> {
   await cp(
     path.join(root, "skills", skillId, "tasks", taskId, "acceptance"),
     path.join(dir, "acceptance"),
@@ -35,6 +36,14 @@ export async function verifyAcceptance(
   } catch {
     // vitest exits non-zero on failing tests; the report tells us what failed
   }
+  let taskScalar: number | null = null;
+  try {
+    const raw = (await readFile(path.join(dir, ".bench-scalar"), "utf8")).trim();
+    const parsed = Number(raw);
+    if (Number.isFinite(parsed)) taskScalar = parsed;
+  } catch {
+    // task does not define a scalar metric
+  }
   try {
     const parsed = JSON.parse(await readFile(report, "utf8"));
     await rm(report, { force: true });
@@ -44,9 +53,9 @@ export async function verifyAcceptance(
         if (test.status !== "passed") failingTests.push(test.fullName);
       }
     }
-    return { accepted: parsed.success === true, failingTests };
+    return { accepted: parsed.success === true, failingTests, taskScalar };
   } catch {
     // no report at all: install failed or the suite could not even be collected
-    return { accepted: false, failingTests: ["<test run produced no report>"] };
+    return { accepted: false, failingTests: ["<test run produced no report>"], taskScalar };
   }
 }

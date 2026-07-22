@@ -128,6 +128,7 @@ async function executeRun(
       ranAt: new Date().toISOString(),
       accepted: verdict.accepted,
       failingTests: verdict.failingTests,
+      taskScalar: verdict.taskScalar,
       locAddedSrc: metrics.locAddedSrc,
       locAddedTest: metrics.locAddedTest,
       filesCreated: metrics.filesCreated,
