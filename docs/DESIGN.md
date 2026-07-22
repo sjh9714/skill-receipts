@@ -20,11 +20,14 @@ reported alongside but never count toward admission.
 
 ### underkill — anti-over-engineering (founding skill)
 - Target: `locAddedSrc` down.
-- 12 tasks migrated unchanged from the original repo, where its receipt is
-  already published (−21% median src LOC at 120/120 hold-out accuracy, plus a
-  pre-registered head-to-head against ponytail). Any receipt shown here is
-  regenerated from fresh runs under this repo's three-arm protocol; until then
-  the README links to the original published sweeps.
+- 12 tasks migrated unchanged from the original repo, where a two-arm receipt
+  is already published (−21% median src LOC at 120/120 hold-out accuracy,
+  plus a pre-registered head-to-head against ponytail).
+- **Amended before any run here**: the founding skill follows the same rule
+  as everyone else — a fresh three-arm sweep (all 12 tasks, K=5) under this
+  repo's protocol decides its admission. All 12 tasks run; selecting a task
+  subset based on previously observed effect sizes would be selection bias
+  and is explicitly ruled out.
 
 ### tests-that-bite — test-writing discipline
 - Target: `taskScalar` up = **mutant kill rate**. Each task ships a pure,
@@ -43,8 +46,9 @@ reported alongside but never count toward admission.
 
 ### thrift — token-spend discipline
 - Target: co-primary `totalCostUsd` down and `numTurns` down, at equal
-  accuracy. K=10 (cost is heavy-tailed). Duration is excluded from the
-  headline (API-latency confounded).
+  accuracy. K=8, amended from 10 before the sweep to fit the $100 budget cap
+  (the roster validator's recommended range was 8-10; cost is heavy-tailed).
+  Duration is excluded from the headline (API-latency confounded).
 - Tasks are fat brownfield templates (distractor files are script-generated)
   where waste is possible: redundant re-reads, disproportionate verification,
   unbatched edits. **T4 is a pre-registered counter-task** where correct
