@@ -119,6 +119,12 @@ async function executeRun(
       maxBuffer: 64 * 1024 * 1024,
     });
     await writeFile(path.join(opts.logsDir, `${planned.runId}.patch`), patch);
+    // a real run always bills something; $0 means the CLI failed upstream
+    // (rate limit / api_error) — throw so the run file is never written and
+    // the resumable sweep retries it later
+    if (agent.totalCostUsd === 0) {
+      throw new Error("agent run billed $0 (api_error / rate limit?) — not recording");
+    }
     const verdict = await verifyAcceptance(dir, planned.skillId, planned.taskId);
     const reproVerified = task.repro ? await verifyRepro(dir) : null;
     return {
