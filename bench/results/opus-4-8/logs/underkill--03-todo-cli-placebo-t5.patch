@@ -1,0 +1,55 @@
+diff --git a/src/cli.ts b/src/cli.ts
+new file mode 100644
+index 0000000..ccb2d0b
+--- /dev/null
++++ b/src/cli.ts
+@@ -0,0 +1,49 @@
++import { existsSync, readFileSync, writeFileSync } from "node:fs";
++import { join } from "node:path";
++
++const STORE_PATH = join(process.cwd(), "todos.json");
++
++function loadTodos(): string[] {
++  if (!existsSync(STORE_PATH)) {
++    return [];
++  }
++  const contents = readFileSync(STORE_PATH, "utf8");
++  return JSON.parse(contents) as string[];
++}
++
++function saveTodos(todos: string[]): void {
++  writeFileSync(STORE_PATH, JSON.stringify(todos));
++}
++
++function addTodo(text: string): void {
++  const todos = loadTodos();
++  todos.push(text);
++  saveTodos(todos);
++}
++
++function listTodos(): void {
++  const todos = loadTodos();
++  for (const todo of todos) {
++    console.log(todo);
++  }
++}
++
++function main(): void {
++  const [command, ...args] = process.argv.slice(2);
++
++  if (command === "add") {
++    const text = args.join(" ");
++    addTodo(text);
++    return;
++  }
++
++  if (command === "list") {
++    listTodos();
++    return;
++  }
++
++  console.error(`Unknown command: ${command ?? ""}`);
++  process.exit(1);
++}
++
++main();

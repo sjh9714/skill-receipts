@@ -1,27 +1,69 @@
 # skill-receipts
 
-> **The admission rule: no skill gets merged unless it beats both baseline and a placebo prompt on hold-out acceptance tests, with accuracy not dropping. Skills that fail are published in the rejects table.**
+**Agent skills for Claude Code where every entry ships with its receipts** — a
+reproducible, accuracy-gated benchmark against a no-skill baseline **and** a
+placebo prompt. Skills that fail are published too, with their numbers.
 
-A collection of agent skills for Claude Code where every entry ships with its receipts: a reproducible, accuracy-gated benchmark showing what the skill actually changes — against a no-skill baseline **and** against a placebo (a style-only prompt of equal length), so "any extra instructions help" doesn't count as working.
+> **The admission rule (pre-registered in this repo's first commit,
+> [`347cb54`](https://github.com/sjh9714/skill-receipts/commit/347cb54)): no
+> skill gets merged unless it beats both baseline and placebo on hold-out
+> acceptance tests, with accuracy not dropping. Rejects go in the table
+> below.**
 
-This file is committed **before** any skill or benchmark result. The commit hash of this README is the pre-registration point for every receipt published later: the rule above was fixed first, the results came after.
+## Install
+
+As a Claude Code plugin (all admitted skills at once):
+
+```
+/plugin marketplace add sjh9714/skill-receipts
+/plugin install skill-receipts
+```
+
+Or take a single skill: every skill ships as `skills/<name>/SKILL.md` (works
+with `npx skills add sjh9714/skill-receipts`), and as a copy-paste
+`skills/<name>/dist/CLAUDE.md.snippet` — **byte-identical to what the
+benchmark measured**, which CI enforces.
 
 ## Why a placebo arm
 
-Most "battle-tested" skill collections publish no tests. The few that measure anything compare skill-on vs skill-off — which can't distinguish "this skill works" from "adding any plausible-sounding prompt changes behavior." Every receipt here is a three-way comparison: **off / placebo / on**, on tasks with hidden hold-out acceptance tests the agent never sees.
+Most "battle-tested" skill collections publish no tests. The few that measure
+anything compare skill-on vs skill-off — which can't distinguish "this skill
+works" from "adding any plausible-sounding prompt changes behavior." Every
+receipt here is a three-way comparison — **off / placebo / on** — on tasks
+with hidden hold-out acceptance tests the agent never sees, K=5+ trials per
+task per arm, isolated workspaces, raw logs and per-run patches committed.
 
-## Protocol (fixed at this commit)
+Popular third-party skills get the same treatment:
+**[Audit #1 — ponytail (87k★)](docs/audits/ponytail.md)** ran the
+most-installed anti-over-engineering skill under this protocol, pre-registered
+and published win-or-lose (spoiler: it won on LOC, at a cost).
 
-- Each skill has its own task set: real, small coding tasks with a `template/` the agent starts from and a hidden `acceptance/` test suite applied after the run.
-- Conditions: `off` (no instructions), `placebo` (style-only instructions, no scope/behavior content), `on` (the skill, injected byte-identically to what ships).
-- K trials per task per condition, fresh isolated workspace and config dir per run, per-run patches and raw logs committed.
-- A skill is **admitted** iff, versus both `off` and `placebo`: its target metric improves and hold-out acceptance pass rate does not drop.
-- Skills that fail admission are listed publicly with their numbers. Results are published regardless of outcome — including audits of third-party skills.
-- README result tables are generated deterministically from raw logs and verified byte-identical in CI.
+## Receipts
 
-Methodology provenance: this harness and protocol were built and validated in [underkill](https://github.com/sjh9714/underkill) (300 published runs, pre-registered competing-skill audit protocol).
+Everything between the markers below is generated from the raw run logs in
+[`bench/results/`](bench/results/) and verified byte-identical in CI —
+nothing hand-written.
 
 <!-- BENCH:START -->
+### ✅ underkill — admitted
+
+src LOC added: **-23.8% vs baseline**, **-36% vs placebo** (medians 10.5 / 12.5 / 8). Hold-out acceptance: off 60/60, placebo 60/60, on 60/60. 180 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $22.69.
+
+| task | off | placebo | on (underkill) | pass off/placebo/on |
+|---|---|---|---|---|
+| 01-fetch-retry | 16 | 19 | 13 | 5/5 · 5/5 · 5/5 |
+| 02-ttl-cache | 20 | 28 | 13 | 5/5 · 5/5 · 5/5 |
+| 03-todo-cli | 44 | 48 | 17 | 5/5 · 5/5 · 5/5 |
+| 04-slugify | 8 | 8 | 8 | 5/5 · 5/5 · 5/5 |
+| 05-markdown-toc | 21 | 22 | 15 | 5/5 · 5/5 · 5/5 |
+| 06-cart-total | 4 | 4 | 4 | 5/5 · 5/5 · 5/5 |
+| 07-search-bugfix | 3 | 3 | 3 | 5/5 · 5/5 · 5/5 |
+| 08-users-endpoint | 9 | 9 | 9 | 5/5 · 5/5 · 5/5 |
+| 09-bulk-discount | 5 | 5 | 2 | 5/5 · 5/5 · 5/5 |
+| 10-relative-time | 11 | 13 | 8 | 5/5 · 5/5 · 5/5 |
+| 11-csv-summarize | 21 | 25 | 6 | 5/5 · 5/5 · 5/5 |
+| 12-date-format | 10 | 12 | 3 | 5/5 · 5/5 · 5/5 |
+
 ## ❌ Did not make the cut
 
 Skills we wrote, measured, and rejected under the same protocol — full tables included. Published because a results log that only contains wins would not be worth trusting.
@@ -37,6 +79,18 @@ mutant kill rate: **-5.6% vs baseline**, **-5.6% vs placebo** (medians 1 / 1 / 0
 | 03-query-string | 0.889 | 0.889 | 0.889 | 5/5 · 5/5 · 5/5 |
 | 04-rate-limiter | 1 | 1 | 1 | 1/5 · 0/5 · 5/5 |
 <!-- BENCH:END -->
+
+## Methodology
+
+Full protocol, per-skill pre-registered targets, amendments, and known
+limitations: [docs/DESIGN.md](docs/DESIGN.md). The harness was built and
+validated in [underkill](https://github.com/sjh9714/underkill) (300 published
+runs); this repo generalizes it to N skills with per-skill task sets, a
+placebo arm by default, mutation-testing receipts, and a repro-verified
+detector.
+
+Want a skill admitted (yours or a famous one audited)? Open an issue — the
+gate is the same for everyone.
 
 ## License
 

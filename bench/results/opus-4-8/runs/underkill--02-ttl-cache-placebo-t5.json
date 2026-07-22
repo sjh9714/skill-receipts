@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--02-ttl-cache-placebo-t5",
+  "skillId": "underkill",
+  "taskId": "02-ttl-cache",
+  "condition": "placebo",
+  "trial": 5,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:46:40.933Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 28,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.1171675,
+  "durationMs": 11896
+}

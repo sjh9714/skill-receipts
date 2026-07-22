@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--06-cart-total-placebo-t4",
+  "skillId": "underkill",
+  "taskId": "06-cart-total",
+  "condition": "placebo",
+  "trial": 4,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:53:16.926Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 4,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 4,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.11361099999999999,
+  "durationMs": 10321
+}

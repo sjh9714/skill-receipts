@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--10-relative-time-off-t4",
+  "skillId": "underkill",
+  "taskId": "10-relative-time",
+  "condition": "off",
+  "trial": 4,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:58:04.956Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 10,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 2,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.1176165,
+  "durationMs": 12782
+}

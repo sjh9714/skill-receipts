@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--02-ttl-cache-off-t1",
+  "skillId": "underkill",
+  "taskId": "02-ttl-cache",
+  "condition": "off",
+  "trial": 1,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:45:39.091Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 20,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.25662599999999997,
+  "durationMs": 17720
+}

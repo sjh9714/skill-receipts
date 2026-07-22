@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--09-bulk-discount-placebo-t2",
+  "skillId": "underkill",
+  "taskId": "09-bulk-discount",
+  "condition": "placebo",
+  "trial": 2,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:56:25.257Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 5,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 2,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.10810050000000002,
+  "durationMs": 10258
+}

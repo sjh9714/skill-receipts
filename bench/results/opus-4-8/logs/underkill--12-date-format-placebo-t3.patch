@@ -1,0 +1,18 @@
+diff --git a/src/cli.ts b/src/cli.ts
+new file mode 100644
+index 0000000..30d3c8c
+--- /dev/null
++++ b/src/cli.ts
+@@ -0,0 +1,12 @@
++function formatUtc(iso: string): string {
++  const date = new Date(iso);
++  const year = date.getUTCFullYear();
++  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
++  const day = String(date.getUTCDate()).padStart(2, "0");
++  const hours = String(date.getUTCHours()).padStart(2, "0");
++  const minutes = String(date.getUTCMinutes()).padStart(2, "0");
++  return `${year}-${month}-${day} ${hours}:${minutes}`;
++}
++
++const iso = process.argv[2];
++console.log(formatUtc(iso));

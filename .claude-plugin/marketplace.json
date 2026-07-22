@@ -1,0 +1,11 @@
+{
+  "name": "skill-receipts",
+  "owner": { "name": "sjh9714" },
+  "plugins": [
+    {
+      "name": "skill-receipts",
+      "source": "./",
+      "description": "Agent skills that ship with receipts: accuracy-gated benchmarks vs baseline AND placebo."
+    }
+  ]
+}

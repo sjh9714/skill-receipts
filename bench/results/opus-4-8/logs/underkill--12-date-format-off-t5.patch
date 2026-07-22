@@ -1,0 +1,16 @@
+diff --git a/src/cli.ts b/src/cli.ts
+new file mode 100644
+index 0000000..10be296
+--- /dev/null
++++ b/src/cli.ts
+@@ -0,0 +1,10 @@
++const iso = process.argv[2];
++
++const d = new Date(iso);
++const pad = (n: number) => String(n).padStart(2, "0");
++
++const formatted =
++  `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ` +
++  `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
++
++console.log(formatted);

@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--05-markdown-toc-off-t2",
+  "skillId": "underkill",
+  "taskId": "05-markdown-toc",
+  "condition": "off",
+  "trial": 2,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:51:25.380Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 17,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.112269,
+  "durationMs": 11936
+}

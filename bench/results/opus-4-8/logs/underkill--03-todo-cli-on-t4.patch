@@ -1,0 +1,23 @@
+diff --git a/src/cli.ts b/src/cli.ts
+new file mode 100644
+index 0000000..57c7695
+--- /dev/null
++++ b/src/cli.ts
+@@ -0,0 +1,17 @@
++import { readFileSync, writeFileSync, existsSync } from "node:fs";
++
++const FILE = "todos.json";
++
++function load(): string[] {
++  return existsSync(FILE) ? JSON.parse(readFileSync(FILE, "utf8")) : [];
++}
++
++const [command, ...rest] = process.argv.slice(2);
++
++if (command === "add") {
++  const todos = load();
++  todos.push(rest.join(" "));
++  writeFileSync(FILE, JSON.stringify(todos));
++} else if (command === "list") {
++  for (const todo of load()) console.log(todo);
++}

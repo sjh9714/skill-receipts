@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--01-fetch-retry-on-t2",
+  "skillId": "underkill",
+  "taskId": "01-fetch-retry",
+  "condition": "on",
+  "trial": 2,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T10:26:30.605Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 13,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.117861,
+  "durationMs": 12937
+}

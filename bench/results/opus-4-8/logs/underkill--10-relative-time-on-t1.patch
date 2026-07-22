@@ -1,0 +1,16 @@
+diff --git a/src/format.ts b/src/format.ts
+index 8acf66e..ba7ba93 100644
+--- a/src/format.ts
++++ b/src/format.ts
+@@ -4,3 +4,11 @@ export function formatTimestamp(ms: number): string {
+   const d = new Date(ms);
+   return `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}`;
+ }
++
++export function formatRelative(ms: number, nowMs: number): string {
++  const s = Math.floor((nowMs - ms) / 1000);
++  if (s < 60) return `${s}s ago`;
++  if (s < 3600) return `${Math.floor(s / 60)}m ago`;
++  if (s < 86400) return `${Math.floor(s / 3600)}h ago`;
++  return formatTimestamp(ms);
++}

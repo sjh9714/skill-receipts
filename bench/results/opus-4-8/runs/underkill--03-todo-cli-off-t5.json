@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--03-todo-cli-off-t5",
+  "skillId": "underkill",
+  "taskId": "03-todo-cli",
+  "condition": "off",
+  "trial": 5,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:49:16.041Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 38,
+  "locAddedTest": 0,
+  "filesCreated": 1,
+  "depsAdded": [],
+  "exportedSymbols": 0,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.1189665,
+  "durationMs": 18236
+}

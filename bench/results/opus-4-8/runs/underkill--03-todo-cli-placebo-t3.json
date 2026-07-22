@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--03-todo-cli-placebo-t3",
+  "skillId": "underkill",
+  "taskId": "03-todo-cli",
+  "condition": "placebo",
+  "trial": 3,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:48:24.716Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 47,
+  "locAddedTest": 0,
+  "filesCreated": 1,
+  "depsAdded": [],
+  "exportedSymbols": 0,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.12367399999999999,
+  "durationMs": 15404
+}

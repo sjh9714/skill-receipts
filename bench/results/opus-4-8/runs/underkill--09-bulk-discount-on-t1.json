@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--09-bulk-discount-on-t1",
+  "skillId": "underkill",
+  "taskId": "09-bulk-discount",
+  "condition": "on",
+  "trial": 1,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:56:03.298Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 2,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 2,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.112506,
+  "durationMs": 14422
+}

@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--11-csv-summarize-placebo-t1",
+  "skillId": "underkill",
+  "taskId": "11-csv-summarize",
+  "condition": "placebo",
+  "trial": 1,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:58:49.442Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 26,
+  "locAddedTest": 0,
+  "filesCreated": 1,
+  "depsAdded": [],
+  "exportedSymbols": 0,
+  "trapsTriggered": [],
+  "numTurns": 6,
+  "totalCostUsd": 0.179248,
+  "durationMs": 25035
+}

@@ -1,0 +1,16 @@
+diff --git a/src/cli.ts b/src/cli.ts
+new file mode 100644
+index 0000000..5a10653
+--- /dev/null
++++ b/src/cli.ts
+@@ -0,0 +1,10 @@
++const iso = process.argv[2];
++
++const date = new Date(iso);
++const yyyy = date.getUTCFullYear().toString().padStart(4, "0");
++const mm = (date.getUTCMonth() + 1).toString().padStart(2, "0");
++const dd = date.getUTCDate().toString().padStart(2, "0");
++const hh = date.getUTCHours().toString().padStart(2, "0");
++const min = date.getUTCMinutes().toString().padStart(2, "0");
++
++console.log(`${yyyy}-${mm}-${dd} ${hh}:${min}`);

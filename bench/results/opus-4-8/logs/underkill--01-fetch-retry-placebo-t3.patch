@@ -1,0 +1,26 @@
+diff --git a/src/index.ts b/src/index.ts
+index 8a62428..7fae616 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -1,2 +1,19 @@
+-// The agent implements the requested function here.
+-export {};
++const MAX_ATTEMPTS = 3;
++
++export async function fetchWithRetry(url: string): Promise<unknown> {
++  let lastError: unknown;
++
++  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
++    try {
++      const response = await fetch(url);
++      if (!response.ok) {
++        throw new Error(`Request failed with status ${response.status}`);
++      }
++      return await response.json();
++    } catch (error) {
++      lastError = error;
++    }
++  }
++
++  throw lastError;
++}

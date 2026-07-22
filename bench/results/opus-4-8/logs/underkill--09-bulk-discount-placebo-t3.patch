@@ -1,0 +1,15 @@
+diff --git a/src/pricing.ts b/src/pricing.ts
+index 625c802..b4b948f 100644
+--- a/src/pricing.ts
++++ b/src/pricing.ts
+@@ -5,5 +5,9 @@ export interface LineItem {
+ }
+ 
+ export function lineTotal(item: LineItem): number {
+-  return item.unitPrice * item.quantity;
++  const subtotal = item.unitPrice * item.quantity;
++  if (item.quantity >= 10) {
++    return Math.floor(subtotal * 0.9);
++  }
++  return subtotal;
+ }

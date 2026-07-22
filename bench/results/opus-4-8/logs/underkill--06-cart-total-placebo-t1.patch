@@ -1,0 +1,12 @@
+diff --git a/src/cart.ts b/src/cart.ts
+index fc65312..ca64996 100644
+--- a/src/cart.ts
++++ b/src/cart.ts
+@@ -11,3 +11,7 @@ export function addItem(cart: CartItem[], item: CartItem): CartItem[] {
+ export function itemCount(cart: CartItem[]): number {
+   return cart.reduce((count, item) => count + item.quantity, 0);
+ }
++
++export function cartTotal(cart: CartItem[]): number {
++  return cart.reduce((total, item) => total + item.unitPrice * item.quantity, 0);
++}

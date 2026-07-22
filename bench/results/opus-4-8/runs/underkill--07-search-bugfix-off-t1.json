@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--07-search-bugfix-off-t1",
+  "skillId": "underkill",
+  "taskId": "07-search-bugfix",
+  "condition": "off",
+  "trial": 1,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:53:34.465Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 3,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 3,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.104987,
+  "durationMs": 9910
+}

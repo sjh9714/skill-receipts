@@ -1,0 +1,20 @@
+diff --git a/src/server.ts b/src/server.ts
+index 0de3da7..3ede3aa 100644
+--- a/src/server.ts
++++ b/src/server.ts
+@@ -12,6 +12,15 @@ export function createServer(): Server {
+       res.end(JSON.stringify({ ok: true }));
+       return;
+     }
++    const userMatch = req.method === "GET" ? req.url?.match(/^\/users\/([^/]+)$/) : null;
++    if (userMatch) {
++      const user = users.find((u) => u.id === userMatch[1]);
++      if (user) {
++        res.writeHead(200, { "content-type": "application/json" });
++        res.end(JSON.stringify(user));
++        return;
++      }
++    }
+     res.writeHead(404, { "content-type": "application/json" });
+     res.end(JSON.stringify({ error: "not found" }));
+   });

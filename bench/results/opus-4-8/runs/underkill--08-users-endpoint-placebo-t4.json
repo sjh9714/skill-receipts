@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--08-users-endpoint-placebo-t4",
+  "skillId": "underkill",
+  "taskId": "08-users-endpoint",
+  "condition": "placebo",
+  "trial": 4,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T11:55:44.509Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 9,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.12073400000000001,
+  "durationMs": 11997
+}

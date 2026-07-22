@@ -1,0 +1,13 @@
+{
+  "name": "skill-receipts",
+  "version": "0.1.0",
+  "description": "Agent skills that ship with receipts: accuracy-gated benchmarks vs baseline AND placebo. Only admitted skills are installed; rejects stay published in the README.",
+  "author": { "name": "sjh9714" },
+  "homepage": "https://github.com/sjh9714/skill-receipts",
+  "license": "MIT",
+  "skills": [
+    "./skills/underkill",
+    "./skills/thrift",
+    "./skills/repro-first"
+  ]
+}
