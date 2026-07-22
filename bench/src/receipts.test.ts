@@ -175,7 +175,7 @@ describe("buildReceipt", () => {
     ];
     const md = renderReceipts([buildReceipt("s", TARGET, runs)]);
     expect(md).toContain("vs-caveman");
-    expect(md).toContain("not part of admission");
+    expect(md).toContain("never part of admission");
   });
 });
 
