@@ -114,7 +114,10 @@ async function executeRun(
     });
     const metrics = await collectMetrics(dir, task);
     // keep the diff as evidence before the workspace is deleted
-    const patch = execFileSync("git", ["-C", dir, "diff", "--cached", "HEAD"], { encoding: "utf8" });
+    const patch = execFileSync("git", ["-C", dir, "diff", "--cached", "HEAD"], {
+      encoding: "utf8",
+      maxBuffer: 64 * 1024 * 1024,
+    });
     await writeFile(path.join(opts.logsDir, `${planned.runId}.patch`), patch);
     const verdict = await verifyAcceptance(dir, planned.skillId, planned.taskId);
     const reproVerified = task.repro ? await verifyRepro(dir) : null;

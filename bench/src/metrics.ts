@@ -84,7 +84,7 @@ function* walk(dir: string, rel = ""): Generator<string> {
 }
 
 function git(dir: string, ...args: string[]): string {
-  return execFileSync("git", ["-C", dir, ...args], { encoding: "utf8" });
+  return execFileSync("git", ["-C", dir, ...args], { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
 }
 
 function depNames(pkgJson: string): Set<string> {

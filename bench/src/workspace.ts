@@ -25,6 +25,10 @@ export async function prepareWorkspace(
   await mkdir(base, { recursive: true });
   const dir = await mkdtemp(path.join(base, `${skillId}-${taskId}-${condition}-`));
   await cp(path.join(root, "skills", skillId, "tasks", taskId, "template"), dir, { recursive: true });
+  // keep node_modules out of the git index: agents often run npm install
+  // themselves, and a staged node_modules overflows diff buffers (ENOBUFS)
+  // and would pollute diff-based metrics
+  await writeFile(path.join(dir, ".gitignore"), "node_modules/\n");
   if (condition === "on") {
     await writeFile(
       path.join(dir, "CLAUDE.md"),
