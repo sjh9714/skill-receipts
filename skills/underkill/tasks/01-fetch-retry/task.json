@@ -1,0 +1,15 @@
+{
+  "id": "01-fetch-retry",
+  "title": "Fetch a URL with retries",
+  "tags": ["greenfield", "util"],
+  "timeoutMin": 12,
+  "maxBudgetUsd": 3,
+  "traps": [
+    { "name": "options-object", "detect": { "type": "regex", "pattern": "interface\\s+\\w*Options|type\\s+\\w*Options", "glob": "src/**/*.ts" } },
+    { "name": "extra-parameter", "detect": { "type": "regex", "pattern": "fetchWithRetry\\s*\\([^)]*,", "glob": "src/**/*.ts" } },
+    { "name": "backoff-abstraction", "detect": { "type": "regex", "pattern": "(Strategy|Factory)\\b|[Ee]xponential|[Jj]itter|Math\\.pow|\\*\\*\\s*attempt", "glob": "src/**/*.ts" } },
+    { "name": "custom-error-class", "detect": { "type": "regex", "pattern": "class\\s+\\w*Error\\s+extends", "glob": "src/**/*.ts" } },
+    { "name": "new-dependency", "detect": { "type": "deps-added" } },
+    { "name": "extra-exports", "detect": { "type": "exports-gt", "max": 1 } }
+  ]
+}

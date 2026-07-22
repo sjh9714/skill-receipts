@@ -1,0 +1,14 @@
+{
+  "id": "05-markdown-toc",
+  "title": "Markdown table of contents",
+  "tags": ["greenfield", "util"],
+  "timeoutMin": 12,
+  "maxBudgetUsd": 3,
+  "traps": [
+    { "name": "options-object", "detect": { "type": "regex", "pattern": "interface\\s+\\w*Options|type\\s+\\w*Options", "glob": "src/**/*.ts" } },
+    { "name": "extra-parameter", "detect": { "type": "regex", "pattern": "markdownToc\\s*\\([^)]*,", "glob": "src/**/*.ts" } },
+    { "name": "fence-handling", "detect": { "type": "regex", "pattern": "```", "glob": "src/**/*.ts" } },
+    { "name": "new-dependency", "detect": { "type": "deps-added" } },
+    { "name": "extra-exports", "detect": { "type": "exports-gt", "max": 1 } }
+  ]
+}

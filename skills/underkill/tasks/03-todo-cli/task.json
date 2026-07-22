@@ -1,0 +1,15 @@
+{
+  "id": "03-todo-cli",
+  "title": "Todo CLI with add and list",
+  "tags": ["cli", "app"],
+  "timeoutMin": 12,
+  "maxBudgetUsd": 3,
+  "traps": [
+    { "name": "options-object", "detect": { "type": "regex", "pattern": "interface\\s+\\w*Options|type\\s+\\w*Options", "glob": "src/**/*.ts" } },
+    { "name": "config-abstraction", "detect": { "type": "regex", "pattern": "\\w*Config\\b", "glob": "src/**/*.ts" } },
+    { "name": "class-hierarchy", "detect": { "type": "regex", "pattern": "class\\s+\\w+\\s+extends|abstract\\s+class", "glob": "src/**/*.ts" } },
+    { "name": "extra-commands", "detect": { "type": "regex", "pattern": "[\"'](remove|delete|done|complete|clear|help)[\"']", "glob": "src/**/*.ts" } },
+    { "name": "new-dependency", "detect": { "type": "deps-added" } },
+    { "name": "extra-exports", "detect": { "type": "exports-gt", "max": 0 } }
+  ]
+}

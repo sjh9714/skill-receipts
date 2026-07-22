@@ -1,0 +1,21 @@
+{
+  "name": "skill-receipts",
+  "version": "0.0.0",
+  "description": "Agent skills for Claude Code where every entry ships with its receipts: an accuracy-gated benchmark against baseline AND placebo.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build-dist": "tsx scripts/build-dist.ts",
+    "bench": "tsx bench/src/run.ts",
+    "report": "tsx bench/src/receipts.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests --exclude \"skills/**\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-morph": "^23.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

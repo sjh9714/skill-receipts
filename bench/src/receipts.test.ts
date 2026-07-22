@@ -1,0 +1,124 @@
+import { describe, expect, it } from "vitest";
+import { buildReceipt, renderReceipts, splice } from "./receipts.js";
+import type { RunResult } from "./types.js";
+
+describe("splice", () => {
+  const readme = "intro\n<!-- BENCH:START -->\nold\n<!-- BENCH:END -->\noutro";
+
+  it("replaces only the content between the sentinels", () => {
+    expect(splice(readme, "NEW")).toBe("intro\n<!-- BENCH:START -->\nNEW\n<!-- BENCH:END -->\noutro");
+  });
+
+  it("is idempotent", () => {
+    expect(splice(splice(readme, "NEW"), "NEW")).toBe(splice(readme, "NEW"));
+  });
+
+  it("throws when sentinels are missing", () => {
+    expect(() => splice("no markers", "NEW")).toThrow(/BENCH:START/);
+  });
+});
+
+function run(partial: Partial<RunResult>): RunResult {
+  return {
+    runId: "x",
+    skillId: "s",
+    taskId: "t",
+    condition: "off",
+    trial: 1,
+    model: "claude-opus-4-8",
+    cliVersion: "2.1.216 (Claude Code)",
+    ranAt: "2026-07-22T00:00:00Z",
+    accepted: true,
+    failingTests: [],
+    locAddedSrc: 0,
+    locAddedTest: 0,
+    filesCreated: 0,
+    depsAdded: [],
+    exportedSymbols: 0,
+    trapsTriggered: [],
+    numTurns: 1,
+    totalCostUsd: 0.1,
+    durationMs: 1000,
+    ...partial,
+  };
+}
+
+const TARGET = { metric: "locAddedSrc", direction: "down", label: "src LOC added" } as const;
+
+// task a: off [40,42,44]→42, placebo [36,38,40]→38, on [18,20,22]→20
+function threeArm(overrides: { onLoc?: number[]; onAccepted?: boolean[] } = {}): RunResult[] {
+  const onLoc = overrides.onLoc ?? [18, 20, 22];
+  const onAcc = overrides.onAccepted ?? [true, true, true];
+  return [
+    ...[40, 42, 44].map((loc, i) => run({ runId: `s--a-off-t${i + 1}`, taskId: "a", condition: "off", trial: i + 1, locAddedSrc: loc })),
+    ...[36, 38, 40].map((loc, i) => run({ runId: `s--a-placebo-t${i + 1}`, taskId: "a", condition: "placebo", trial: i + 1, locAddedSrc: loc })),
+    ...onLoc.map((loc, i) => run({ runId: `s--a-on-t${i + 1}`, taskId: "a", condition: "on", trial: i + 1, locAddedSrc: loc, accepted: onAcc[i] ?? true })),
+  ];
+}
+
+describe("buildReceipt", () => {
+  it("computes per-task three-arm medians and pass counts", () => {
+    const r = buildReceipt("s", TARGET, threeArm());
+    expect(r.rows).toEqual([
+      { taskId: "a", trials: 3, off: 42, placebo: 38, on: 20, passOff: 3, passPlacebo: 3, passOn: 3 },
+    ]);
+    expect(r.medianTarget).toEqual({ off: 42, placebo: 38, on: 20 });
+    expect(r.deltaVsOffPct).toBe(-52.4);
+    expect(r.deltaVsPlaceboPct).toBe(-47.4);
+  });
+
+  it("admits a skill that beats both arms without dropping accuracy", () => {
+    const r = buildReceipt("s", TARGET, threeArm());
+    expect(r.admitted).toBe(true);
+    expect(r.reasons).toEqual([]);
+  });
+
+  it("rejects a skill that beats off but not placebo", () => {
+    const r = buildReceipt("s", TARGET, threeArm({ onLoc: [39, 40, 41] }));
+    expect(r.admitted).toBe(false);
+    expect(r.reasons).toEqual(["does not beat placebo on src LOC added (40 vs 38)"]);
+  });
+
+  it("rejects a skill whose accuracy drops, even when the target improves", () => {
+    const r = buildReceipt("s", TARGET, threeArm({ onAccepted: [true, false, true] }));
+    expect(r.admitted).toBe(false);
+    expect(r.reasons).toEqual(["acceptance pass rate drops vs off (2/3 vs 3/3)", "acceptance pass rate drops vs placebo (2/3 vs 3/3)"]);
+  });
+
+  it("respects direction=up targets", () => {
+    const up = { metric: "locAddedTest", direction: "up", label: "test LOC added" } as const;
+    const runs = [
+      run({ runId: "o1", taskId: "a", condition: "off", locAddedTest: 5 }),
+      run({ runId: "p1", taskId: "a", condition: "placebo", locAddedTest: 6 }),
+      run({ runId: "n1", taskId: "a", condition: "on", locAddedTest: 12 }),
+    ];
+    const r = buildReceipt("s", up, runs);
+    expect(r.admitted).toBe(true);
+    expect(r.deltaVsOffPct).toBe(140);
+  });
+});
+
+describe("renderReceipts", () => {
+  const admitted = buildReceipt("underkill", TARGET, threeArm());
+  const rejected = buildReceipt("padder", TARGET, threeArm({ onLoc: [50, 52, 54] }));
+  const md = renderReceipts([admitted, rejected]);
+
+  it("renders admitted skills with their three-arm table", () => {
+    expect(md).toContain("underkill");
+    expect(md).toContain("42");
+    expect(md).toContain("38");
+    expect(md).toContain("20");
+    expect(md).toContain("-52.4%");
+    expect(md).toContain("claude-opus-4-8");
+  });
+
+  it("renders rejected skills in the rejects table with reasons", () => {
+    expect(md).toContain("Did not make the cut");
+    expect(md).toContain("padder");
+    expect(md).toMatch(/does not beat (baseline|placebo)/);
+  });
+
+  it("is deterministic", () => {
+    expect(md).toBe(renderReceipts([admitted, rejected]));
+  });
+});

@@ -1,0 +1,15 @@
+{
+  "name": "task-search-bugfix",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "fuse.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.0"
+  }
+}

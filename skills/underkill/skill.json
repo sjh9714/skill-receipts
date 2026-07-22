@@ -1,0 +1,6 @@
+{
+  "name": "underkill",
+  "description": "Use when writing or modifying code — implementing features, refactoring, or fixing bugs — to prevent over-engineering: unrequested abstractions, options, config, dependencies, and defensive code. Build exactly what was asked, nothing more.",
+  "snippetHeading": "Avoid over-engineering (underkill)",
+  "target": { "metric": "locAddedSrc", "direction": "down", "label": "src LOC added" }
+}

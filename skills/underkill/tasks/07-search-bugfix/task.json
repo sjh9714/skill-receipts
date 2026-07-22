@@ -1,0 +1,14 @@
+{
+  "id": "07-search-bugfix",
+  "title": "Fix case-insensitive search bug",
+  "tags": ["brownfield", "bugfix"],
+  "timeoutMin": 12,
+  "maxBudgetUsd": 3,
+  "traps": [
+    { "name": "unrelated-changes", "detect": { "type": "touches-outside", "allow": ["src/search.ts"] } },
+    { "name": "options-object", "detect": { "type": "regex", "pattern": "interface\\s+\\w*Options|type\\s+\\w*Options", "glob": "src/**/*.ts" } },
+    { "name": "fuzzy-search", "detect": { "type": "regex", "pattern": "[Ff]uzzy|[Ll]evenshtein|similarity", "glob": "src/**/*.ts" } },
+    { "name": "new-dependency", "detect": { "type": "deps-added" } },
+    { "name": "extra-exports", "detect": { "type": "exports-gt", "max": 3 } }
+  ]
+}

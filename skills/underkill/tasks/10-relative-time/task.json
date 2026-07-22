@@ -1,0 +1,14 @@
+{
+  "id": "10-relative-time",
+  "title": "Add relative time to an existing formatter",
+  "tags": ["brownfield", "feature"],
+  "timeoutMin": 12,
+  "maxBudgetUsd": 3,
+  "traps": [
+    { "name": "unrelated-changes", "detect": { "type": "touches-outside", "allow": ["src/format.ts"] } },
+    { "name": "i18n-layer", "detect": { "type": "regex", "pattern": "locale|Intl\\.RelativeTimeFormat|i18n", "glob": "src/**/*.ts" } },
+    { "name": "options-object", "detect": { "type": "regex", "pattern": "interface\\s+\\w*Options|type\\s+\\w*Options", "glob": "src/**/*.ts" } },
+    { "name": "new-dependency", "detect": { "type": "deps-added" } },
+    { "name": "extra-exports", "detect": { "type": "exports-gt", "max": 2 } }
+  ]
+}

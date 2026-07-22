@@ -1,0 +1,14 @@
+{
+  "id": "11-csv-summarize",
+  "title": "CSV summarize CLI",
+  "tags": ["cli", "app"],
+  "timeoutMin": 12,
+  "maxBudgetUsd": 3,
+  "traps": [
+    { "name": "options-object", "detect": { "type": "regex", "pattern": "interface\\s+\\w*Options|type\\s+\\w*Options", "glob": "src/**/*.ts" } },
+    { "name": "extra-flags", "detect": { "type": "regex", "pattern": "[\"']--", "glob": "src/**/*.ts" } },
+    { "name": "class-abstraction", "detect": { "type": "regex", "pattern": "\\bclass\\s+\\w+", "glob": "src/**/*.ts" } },
+    { "name": "new-dependency", "detect": { "type": "deps-added" } },
+    { "name": "extra-exports", "detect": { "type": "exports-gt", "max": 0 } }
+  ]
+}
