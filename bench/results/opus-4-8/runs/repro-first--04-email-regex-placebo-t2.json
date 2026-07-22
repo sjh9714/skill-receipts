@@ -1,0 +1,23 @@
+{
+  "runId": "repro-first--04-email-regex-placebo-t2",
+  "skillId": "repro-first",
+  "taskId": "04-email-regex",
+  "condition": "placebo",
+  "trial": 2,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.216 (Claude Code)",
+  "ranAt": "2026-07-22T12:50:55.095Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": false,
+  "locAddedSrc": 1,
+  "locAddedTest": 3,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 2,
+  "trapsTriggered": [],
+  "numTurns": 9,
+  "totalCostUsd": 0.23202650000000002,
+  "durationMs": 37346
+}

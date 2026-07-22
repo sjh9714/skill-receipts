@@ -45,6 +45,17 @@ Everything between the markers below is generated from the raw run logs in
 nothing hand-written.
 
 <!-- BENCH:START -->
+### ✅ repro-first — admitted
+
+verified-repro rate: **n/a vs baseline**, **n/a vs placebo** (medians 0 / 0 / 0.5). Hold-out acceptance: off 20/20, placebo 20/20, on 20/20. 60 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $12.94.
+
+| task | off | placebo | on (repro-first) | pass off/placebo/on |
+|---|---|---|---|---|
+| 01-discount-drift | 0 | 0 | 0 | 5/5 · 5/5 · 5/5 |
+| 02-short-page | 0 | 0 | 1 | 5/5 · 5/5 · 5/5 |
+| 03-cache-key-leak | 0 | 0 | 1 | 5/5 · 5/5 · 5/5 |
+| 04-email-regex | 0 | 0 | 0 | 5/5 · 5/5 · 5/5 |
+
 ### ✅ underkill — admitted
 
 src LOC added: **-23.8% vs baseline**, **-36% vs placebo** (medians 10.5 / 12.5 / 8). Hold-out acceptance: off 60/60, placebo 60/60, on 60/60. 180 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $22.69.

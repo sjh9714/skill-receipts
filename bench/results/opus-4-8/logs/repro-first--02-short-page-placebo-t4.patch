@@ -1,0 +1,11 @@
+diff --git a/src/paginate.js b/src/paginate.js
+index 4444bbf..85fddd1 100644
+--- a/src/paginate.js
++++ b/src/paginate.js
+@@ -2,5 +2,5 @@
+ // The last page may be short; a page past the end yields empty items.
+ export function paginate(all, page, size) {
+   const start = (page - 1) * size;
+-  return { items: all.slice(start, start + size - 1), total: all.length };
++  return { items: all.slice(start, start + size), total: all.length };
+ }

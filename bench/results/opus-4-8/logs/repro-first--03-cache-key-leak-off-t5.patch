@@ -1,0 +1,49 @@
+diff --git a/src/userService.js b/src/userService.js
+index 2f5239c..7b6d79e 100644
+--- a/src/userService.js
++++ b/src/userService.js
+@@ -7,7 +7,7 @@ export function makeUserService(loadUsers) {
+   const cache = createCache(60_000);
+   return {
+     async getUsers(opts) {
+-      const key = `users:${opts.team}`;
++      const key = `users:${opts.team}:${opts.includeArchived ? "all" : "active"}`;
+       const hit = cache.get(key);
+       if (hit !== undefined) return hit;
+       const users = await loadUsers(opts);
+diff --git a/test/userService.test.js b/test/userService.test.js
+new file mode 100644
+index 0000000..587d536
+--- /dev/null
++++ b/test/userService.test.js
+@@ -0,0 +1,30 @@
++import { describe, expect, it } from "vitest";
++import { makeUserService } from "../src/userService.js";
++
++describe("makeUserService", () => {
++  it("does not leak archived users into an active-only request", async () => {
++    const loadUsers = async (opts) =>
++      opts.includeArchived ? ["ada", "grace-archived"] : ["ada"];
++    const service = makeUserService(loadUsers);
++
++    const all = await service.getUsers({ team: "eng", includeArchived: true });
++    expect(all).toEqual(["ada", "grace-archived"]);
++
++    // Same team, but active-only must not reuse the archived-inclusive cache entry.
++    const active = await service.getUsers({ team: "eng", includeArchived: false });
++    expect(active).toEqual(["ada"]);
++  });
++
++  it("still caches repeated identical requests", async () => {
++    let calls = 0;
++    const loadUsers = async () => {
++      calls++;
++      return ["ada"];
++    };
++    const service = makeUserService(loadUsers);
++
++    await service.getUsers({ team: "eng", includeArchived: false });
++    await service.getUsers({ team: "eng", includeArchived: false });
++    expect(calls).toBe(1);
++  });
++});

@@ -1,0 +1,13 @@
+diff --git a/src/userService.js b/src/userService.js
+index 2f5239c..626abf0 100644
+--- a/src/userService.js
++++ b/src/userService.js
+@@ -7,7 +7,7 @@ export function makeUserService(loadUsers) {
+   const cache = createCache(60_000);
+   return {
+     async getUsers(opts) {
+-      const key = `users:${opts.team}`;
++      const key = `users:${opts.team}:archived=${Boolean(opts.includeArchived)}`;
+       const hit = cache.get(key);
+       if (hit !== undefined) return hit;
+       const users = await loadUsers(opts);

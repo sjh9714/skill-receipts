@@ -1,0 +1,30 @@
+diff --git a/src/paginate.js b/src/paginate.js
+index 4444bbf..85fddd1 100644
+--- a/src/paginate.js
++++ b/src/paginate.js
+@@ -2,5 +2,5 @@
+ // The last page may be short; a page past the end yields empty items.
+ export function paginate(all, page, size) {
+   const start = (page - 1) * size;
+-  return { items: all.slice(start, start + size - 1), total: all.length };
++  return { items: all.slice(start, start + size), total: all.length };
+ }
+diff --git a/test/paginate.test.js b/test/paginate.test.js
+new file mode 100644
+index 0000000..040e32b
+--- /dev/null
++++ b/test/paginate.test.js
+@@ -0,0 +1,13 @@
++import { describe, expect, it } from "vitest";
++import { paginate } from "../src/paginate.js";
++
++describe("paginate", () => {
++  it("returns a full page of `size` rows when enough remain", () => {
++    const all = Array.from({ length: 23 }, (_, i) => i + 1);
++    const { items, total } = paginate(all, 1, 10);
++    // Bug report: label says "showing 1-10 of 23" but only 9 rows render.
++    expect(items).toHaveLength(10);
++    expect(items).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
++    expect(total).toBe(23);
++  });
++});

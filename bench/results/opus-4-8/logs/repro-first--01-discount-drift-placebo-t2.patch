@@ -1,0 +1,35 @@
+diff --git a/src/money.js b/src/money.js
+index 3dacfef..8b8e853 100644
+--- a/src/money.js
++++ b/src/money.js
+@@ -5,9 +5,9 @@
+ //   of unitCents * qty. The discount (0-100, may be fractional) applies to
+ //   the ORDER SUBTOTAL, and the result is rounded to the nearest cent ONCE.
+ export function orderTotalCents(lines, discountPct) {
+-  let total = 0;
++  let subtotal = 0;
+   for (const line of lines) {
+-    total += Math.round(line.unitCents * line.qty * (1 - discountPct / 100));
++    subtotal += line.unitCents * line.qty;
+   }
+-  return total;
++  return Math.round(subtotal * (1 - discountPct / 100));
+ }
+diff --git a/test/money.test.js b/test/money.test.js
+index bf717e0..c7a96ba 100644
+--- a/test/money.test.js
++++ b/test/money.test.js
+@@ -5,4 +5,13 @@ describe("orderTotalCents", () => {
+   it("sums lines with no discount", () => {
+     expect(orderTotalCents([{ unitCents: 500, qty: 2 }], 0)).toBe(1000);
+   });
++
++  it("rounds the discounted subtotal once, not per line", () => {
++    const lines = [
++      { unitCents: 500, qty: 1 },
++      { unitCents: 500, qty: 1 },
++    ];
++    // Subtotal 1000 * (1 - 0.101) = 899 exactly -> $8.99, not $9.00.
++    expect(orderTotalCents(lines, 10.1)).toBe(899);
++  });
+ });

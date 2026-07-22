@@ -100,6 +100,36 @@ tests-that-bite = mutant kill rate; thrift = cost/turns;
 repro-first = wrong-fix rate + repro-verified compliance (owns
 `touches-outside` as secondary).
 
+## Known limitations (updated as receipts land)
+
+- **Kill-rate ceiling (tests-that-bite).** The no-skill baseline killed 100%
+  of mutants on 3 of 4 tasks — our mutants were too coarse for
+  claude-opus-4-8, so the pre-registered target could not differentiate and
+  the skill was rejected. The accuracy gate still separated arms on the
+  rate-limiter task (off 1/5, placebo 0/5, on 5/5): without the skill, the
+  model asserted wrong boundary expectations. A future round with subtler
+  mutants would need fresh pre-registration.
+- **repro-first is a compliance receipt, by its pre-registered fallback.**
+  The off-arm pilot was clean (12/12 correct fixes, zero traps) — the
+  wrong-fix axis was unearnable on these tasks, exactly the case the pilot
+  gate anticipated. The published receipt measures verified-repro compliance,
+  not accuracy improvement, and says so.
+- **The repro detector only sees added test files.** Repro tests appended to
+  an existing test file are invisible to it (git status A only). On the two
+  tasks whose natural home for a repro was an existing file, the on-arm
+  scored 0/5 despite writing tests. The receipt therefore understates
+  compliance; fixing this means diffing modified test files against baseline,
+  which is future work.
+- **thrift's rejection is a near-tie on cost.** Turns dropped 14% but median
+  cost landed $0.005 above baseline; under the co-primary rule that is a
+  rejection, not a rounding judgment call. The interesting result is the
+  comparison arm: the caveman ruleset measured MORE expensive than no
+  instructions at all on agentic tasks — consistent with agentic cost being
+  input-dominated. That does not test caveman's own claim, which is about
+  chat-response output tokens.
+- **Small task sets.** 4 tasks per new skill (12 for underkill) is enough to
+  gate on, not to generalize from. Receipts are evidence, not proofs.
+
 ## Budget
 
 Total sweep budget for the launch window: **$100** hard cap across all skills,
