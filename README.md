@@ -45,6 +45,14 @@ Everything between the markers below is generated from the raw run logs in
 nothing hand-written.
 
 <!-- BENCH:START -->
+### ✅ thrift — admitted
+
+cost per run (USD): **-3.3% vs baseline**, **-10.1% vs placebo** (medians 0.17 / 0.182 / 0.164). Hold-out acceptance: off 1/1, placebo 1/1, on 1/1. 3 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $0.52.
+
+| task | off | placebo | on (thrift) | pass off/placebo/on |
+|---|---|---|---|---|
+| 01-haystack-bugfix | 0.17 | 0.182 | 0.164 | 1/1 · 1/1 · 1/1 |
+
 ### ✅ underkill — admitted
 
 src LOC added: **-23.8% vs baseline**, **-36% vs placebo** (medians 10.5 / 12.5 / 8). Hold-out acceptance: off 60/60, placebo 60/60, on 60/60. 180 runs, claude-opus-4-8, CLI 2.1.216 (Claude Code), total cost $22.69.

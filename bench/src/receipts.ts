@@ -53,6 +53,9 @@ export interface SkillReceipt {
   passRate: { off: string; placebo: string; on: string }; // "accepted/total"
   admitted: boolean;
   reasons: string[];
+  // vendored third-party rulesets run under the identical protocol (vs-<name>
+  // arms) — reported for comparison, never part of the admission decision
+  comparisons: { name: string; runs: number; medianTarget: number; passRate: string }[];
 }
 
 const round1 = (x: number): number => Math.round(x * 10) / 10;
@@ -155,6 +158,21 @@ export function buildReceipt(
     reasons.push(`acceptance pass rate drops vs placebo (${frac(pc.on)} vs ${frac(pc.placebo)})`);
   }
 
+  const comparisons = [...new Set(allRuns.map((r) => r.condition).filter((c) => c.startsWith("vs-")))]
+    .sort()
+    .map((cond) => {
+      const vs = allRuns.filter((r) => r.condition === cond);
+      const vsTasks = [...new Set(vs.map((r) => r.taskId))].sort();
+      return {
+        name: cond.slice(3),
+        runs: vs.length,
+        medianTarget: median(
+          vsTasks.map((t) => median(vs.filter((r) => r.taskId === t).map(valueOf(target)))),
+        ),
+        passRate: `${vs.filter((r) => r.accepted).length}/${vs.length}`,
+      };
+    });
+
   return {
     skillId,
     target,
@@ -169,6 +187,7 @@ export function buildReceipt(
     passRate: { off: frac(pc.off), placebo: frac(pc.placebo), on: frac(pc.on) },
     admitted: reasons.length === 0,
     reasons,
+    comparisons,
   };
 }
 
@@ -191,6 +210,13 @@ function renderOne(r: SkillReceipt, lines: string[]): void {
     );
   }
   lines.push("");
+  for (const c of r.comparisons) {
+    lines.push(
+      `> Comparison arm **vs-${c.name}** (vendored ruleset, identical protocol, not part of admission): ` +
+        `${r.target.label} median ${fmtCell(c.medianTarget)}, acceptance ${c.passRate}, ${c.runs} runs.`,
+    );
+    lines.push("");
+  }
 }
 
 export function renderReceipts(receipts: SkillReceipt[]): string {

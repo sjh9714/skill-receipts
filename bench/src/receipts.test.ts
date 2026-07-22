@@ -137,16 +137,30 @@ describe("buildReceipt", () => {
     expect(admitted.admitted).toBe(true);
   });
 
-  it("excludes vs-* comparison arms from the admission decision", () => {
+  it("excludes vs-* comparison arms from the admission decision but reports them", () => {
     const runs = [
       ...threeArm(),
-      run({ runId: "v1", taskId: "a", condition: "vs-caveman", locAddedSrc: 1 }),
+      run({ runId: "v1", taskId: "a", condition: "vs-caveman", locAddedSrc: 30, accepted: true }),
+      run({ runId: "v2", taskId: "a", condition: "vs-caveman", locAddedSrc: 32, accepted: false }),
     ];
     const r = buildReceipt("s", TARGET, runs);
     expect(r.rows).toHaveLength(1);
     expect(r.medianTarget).toEqual({ off: 42, placebo: 38, on: 20 });
     expect(r.admitted).toBe(true);
     expect(r.runsTotal).toBe(9);
+    expect(r.comparisons).toEqual([
+      { name: "caveman", runs: 2, medianTarget: 31, passRate: "1/2" },
+    ]);
+  });
+
+  it("renders comparison arms under the skill section", () => {
+    const runs = [
+      ...threeArm(),
+      run({ runId: "v1", taskId: "a", condition: "vs-caveman", locAddedSrc: 30 }),
+    ];
+    const md = renderReceipts([buildReceipt("s", TARGET, runs)]);
+    expect(md).toContain("vs-caveman");
+    expect(md).toContain("not part of admission");
   });
 });
 
