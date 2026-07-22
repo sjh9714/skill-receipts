@@ -45,9 +45,10 @@ async function runVitest(cwd: string, files: string[]): Promise<{ success: boole
 export async function verifyRepro(dir: string): Promise<boolean> {
   const git = (...args: string[]) =>
     execFileSync("git", ["-C", dir, ...args], { encoding: "utf8" });
-  // node_modules (installed by verifyAcceptance) and the injected acceptance/
-  // suite are not the agent's work — only its own added test files count
-  git("add", "-A", "--", ".", ":!node_modules", ":!acceptance");
+  // node_modules stays out via the workspace .gitignore; the injected
+  // acceptance/ suite is filtered below — only the agent's own added test
+  // files count
+  git("add", "-A");
   const addedTests = git("diff", "--cached", "HEAD", "--name-status")
     .split("\n")
     .filter((l) => l.startsWith("A\t"))
