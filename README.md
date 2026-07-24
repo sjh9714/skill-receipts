@@ -4,6 +4,12 @@
 reproducible, accuracy-gated benchmark against a no-skill baseline **and** a
 placebo prompt. Skills that fail are published too, with their numbers.
 
+**Featured — [Audit #4](docs/audits/karpathy.md):** we ran the ≈196k★
+[Karpathy Guidelines](https://github.com/multica-ai/andrej-karpathy-skills)
+skill on our exact source-LOC metric. It beats a placebo (−23%) but barely
+beats no instructions at all (−4.8%) — and our 20-line `underkill` writes 20%
+less code than it does, at the same 60/60 hold-out accuracy.
+
 > **The admission rule (pre-registered in this repo's first commit,
 > [`347cb54`](https://github.com/sjh9714/skill-receipts/commit/347cb54)): no
 > skill gets merged unless it beats both baseline and placebo on its
