@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--06-cart-total-vs-karpathy-t4",
+  "skillId": "underkill",
+  "taskId": "06-cart-total",
+  "condition": "vs-karpathy",
+  "trial": 4,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.218 (Claude Code)",
+  "ranAt": "2026-07-24T10:48:43.376Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 4,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 4,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.12053449999999999,
+  "durationMs": 15129
+}

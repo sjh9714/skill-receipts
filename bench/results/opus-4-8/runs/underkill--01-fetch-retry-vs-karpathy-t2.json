@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--01-fetch-retry-vs-karpathy-t2",
+  "skillId": "underkill",
+  "taskId": "01-fetch-retry",
+  "condition": "vs-karpathy",
+  "trial": 2,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.218 (Claude Code)",
+  "ranAt": "2026-07-24T10:45:37.492Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 15,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.12707,
+  "durationMs": 15713
+}

@@ -1,0 +1,23 @@
+diff --git a/src/index.ts b/src/index.ts
+index 8a62428..bae9b3d 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -1,2 +1,16 @@
+-// The agent implements the requested function here.
+-export {};
++export function markdownToc(markdown: string): string {
++  const lines: string[] = [];
++  for (const line of markdown.split("\n")) {
++    const match = /^(#{1,6}) (.*)$/.exec(line);
++    if (!match) continue;
++    const level = match[1].length;
++    const title = match[2];
++    const anchor = title
++      .toLowerCase()
++      .replace(/ /g, "-")
++      .replace(/[^a-z0-9-]/g, "");
++    const indent = "  ".repeat(level - 1);
++    lines.push(`${indent}- [${title}](#${anchor})`);
++  }
++  return lines.join("\n");
++}

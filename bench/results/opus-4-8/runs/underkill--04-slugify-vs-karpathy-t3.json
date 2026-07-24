@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--04-slugify-vs-karpathy-t3",
+  "skillId": "underkill",
+  "taskId": "04-slugify",
+  "condition": "vs-karpathy",
+  "trial": 3,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.218 (Claude Code)",
+  "ranAt": "2026-07-24T10:47:41.605Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 8,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.1263,
+  "durationMs": 14742
+}

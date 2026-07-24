@@ -41,12 +41,18 @@ receipt here is a three-way comparison — **off / placebo / on** — on tasks
 with hidden hold-out acceptance tests the agent never sees, K=5+ trials per
 task per arm, isolated workspaces, raw logs and per-run patches committed.
 
-Popular third-party rulesets get the same treatment:
+Popular third-party rulesets get the same treatment, published win-or-lose:
+**[Audit #4 — Karpathy Guidelines (≈196k★)](docs/audits/karpathy.md)** ran the
+most-starred behavioral skill on `underkill`'s exact metric — it beats a
+placebo (−23% LOC) but barely beats no instructions at all (−4.8%), and our
+20-line skill writes 20% less code than it does.
 **[Audit #1 — ponytail (87k★)](docs/audits/ponytail.md)** ran the
-most-starred anti-over-engineering skill under a pre-registered protocol,
-published win-or-lose (it won on LOC, at a cost), and
-**[Audit #2 — caveman (92k★)](docs/audits/caveman.md)** measured whether
-terse-mode compression cuts agentic run cost (it didn't — it raised it).
+most-starred anti-over-engineering skill under the same protocol (it won on
+LOC, at a cost); **[Audit #2 — caveman (92k★)](docs/audits/caveman.md)**
+measured whether terse-mode compression cuts agentic run cost (it didn't — it
+raised it); **[Audit #3 — superpowers systematic-debugging
+(259k★)](docs/audits/superpowers-debugging.md)** found the Iron Law produces
+verified repros at 4× baseline, at +73% cost.
 
 ## Receipts
 
@@ -88,6 +94,8 @@ src LOC added: **-23.8% vs baseline**, **-36% vs placebo** (medians 10.5 / 12.5 
 | 10-relative-time | 11 | 13 | 8 | 5/5 · 5/5 · 5/5 |
 | 11-csv-summarize | 21 | 25 | 6 | 5/5 · 5/5 · 5/5 |
 | 12-date-format | 10 | 12 | 3 | 5/5 · 5/5 · 5/5 |
+
+> Comparison arm **vs-karpathy** (vendored ruleset — same tasks, model, harness, and gates; trial count may differ from the primary arms; never part of admission): src LOC added median 10, acceptance 60/60, 60 runs. See docs/audits/karpathy.md.
 
 ## ❌ Did not make the cut
 

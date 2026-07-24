@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--02-ttl-cache-vs-karpathy-t2",
+  "skillId": "underkill",
+  "taskId": "02-ttl-cache",
+  "condition": "vs-karpathy",
+  "trial": 2,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.218 (Claude Code)",
+  "ranAt": "2026-07-24T10:46:14.067Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 17,
+  "locAddedTest": 0,
+  "filesCreated": 0,
+  "depsAdded": [],
+  "exportedSymbols": 1,
+  "trapsTriggered": [],
+  "numTurns": 3,
+  "totalCostUsd": 0.12223899999999999,
+  "durationMs": 14196
+}

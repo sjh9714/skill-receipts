@@ -1,17 +1,17 @@
 {
   "model": "claude-opus-4-8",
-  "cliVersion": "2.1.216 (Claude Code)",
-  "startedAt": "2026-07-22T13:55:57.465Z",
+  "cliVersion": "2.1.218 (Claude Code)",
+  "startedAt": "2026-07-24T10:45:16.788Z",
   "args": {
     "model": "claude-opus-4-8",
     "trials": 5,
     "skills": [
-      "repro-first"
+      "underkill"
     ],
     "sweep": "opus-4-8",
-    "budgetUsd": 8,
+    "budgetUsd": 12,
     "conditions": [
-      "vs-superpowers-debugging"
+      "vs-karpathy"
     ]
   }
 }

@@ -1,0 +1,25 @@
+diff --git a/src/index.ts b/src/index.ts
+index 8a62428..14085ab 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -1,2 +1,18 @@
+-// The agent implements the requested function here.
+-export {};
++const TTL_MS = 60_000;
++
++export function createTtlCache() {
++  const store = new Map<string, { value: unknown; expiresAt: number }>();
++
++  return {
++    set(key: string, value: unknown): void {
++      store.set(key, { value, expiresAt: Date.now() + TTL_MS });
++    },
++    get(key: string): unknown {
++      const entry = store.get(key);
++      if (entry === undefined || Date.now() >= entry.expiresAt) {
++        return undefined;
++      }
++      return entry.value;
++    },
++  };
++}

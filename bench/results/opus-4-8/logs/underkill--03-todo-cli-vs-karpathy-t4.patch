@@ -1,0 +1,35 @@
+diff --git a/src/cli.ts b/src/cli.ts
+new file mode 100644
+index 0000000..25af835
+--- /dev/null
++++ b/src/cli.ts
+@@ -0,0 +1,21 @@
++import { readFileSync, writeFileSync, existsSync } from "node:fs";
++
++const FILE = "todos.json";
++
++function load(): string[] {
++  if (!existsSync(FILE)) return [];
++  return JSON.parse(readFileSync(FILE, "utf8"));
++}
++
++const [command, ...args] = process.argv.slice(2);
++
++if (command === "add") {
++  const todos = load();
++  todos.push(args.join(" "));
++  writeFileSync(FILE, JSON.stringify(todos));
++} else if (command === "list") {
++  for (const todo of load()) console.log(todo);
++} else {
++  console.error(`Unknown command: ${command ?? ""}`);
++  process.exit(1);
++}
+diff --git a/todos.json b/todos.json
+new file mode 100644
+index 0000000..9ad7447
+--- /dev/null
++++ b/todos.json
+@@ -0,0 +1 @@
++["buy milk","walk dog"]
+\ No newline at end of file

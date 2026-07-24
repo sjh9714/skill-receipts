@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--11-csv-summarize-vs-karpathy-t4",
+  "skillId": "underkill",
+  "taskId": "11-csv-summarize",
+  "condition": "vs-karpathy",
+  "trial": 4,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.218 (Claude Code)",
+  "ranAt": "2026-07-24T10:51:39.776Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 19,
+  "locAddedTest": 0,
+  "filesCreated": 1,
+  "depsAdded": [],
+  "exportedSymbols": 0,
+  "trapsTriggered": [],
+  "numTurns": 10,
+  "totalCostUsd": 0.2613265,
+  "durationMs": 42232
+}

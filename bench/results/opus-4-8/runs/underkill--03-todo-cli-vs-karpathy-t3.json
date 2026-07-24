@@ -1,0 +1,23 @@
+{
+  "runId": "underkill--03-todo-cli-vs-karpathy-t3",
+  "skillId": "underkill",
+  "taskId": "03-todo-cli",
+  "condition": "vs-karpathy",
+  "trial": 3,
+  "model": "claude-opus-4-8",
+  "cliVersion": "2.1.218 (Claude Code)",
+  "ranAt": "2026-07-24T10:47:02.529Z",
+  "accepted": true,
+  "failingTests": [],
+  "taskScalar": null,
+  "reproVerified": null,
+  "locAddedSrc": 30,
+  "locAddedTest": 0,
+  "filesCreated": 1,
+  "depsAdded": [],
+  "exportedSymbols": 0,
+  "trapsTriggered": [],
+  "numTurns": 5,
+  "totalCostUsd": 0.1707955,
+  "durationMs": 25772
+}

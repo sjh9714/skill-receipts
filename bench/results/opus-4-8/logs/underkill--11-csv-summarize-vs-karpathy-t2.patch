@@ -1,0 +1,22 @@
+diff --git a/src/cli.ts b/src/cli.ts
+new file mode 100644
+index 0000000..2f3701e
+--- /dev/null
++++ b/src/cli.ts
+@@ -0,0 +1,16 @@
++import { readFileSync } from "node:fs";
++
++const file = process.argv[2];
++if (!file) {
++  console.error("usage: npx tsx src/cli.ts <file>");
++  process.exit(1);
++}
++
++const lines = readFileSync(file, "utf8").split("\n");
++if (lines.length > 0 && lines[lines.length - 1] === "") lines.pop();
++
++const cols = lines[0].split(",").length;
++const rows = lines.length - 1;
++
++console.log(`rows: ${rows}`);
++console.log(`cols: ${cols}`);
