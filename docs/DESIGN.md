@@ -114,6 +114,32 @@ Published win-or-lose, like every audit. Metrics reported: repro-verified
 rate, accuracy, cost/turns/test-LOC vs the existing off/placebo/on arms.
 Budget note: ~$6, bringing the launch-window total to ≈$99 of the $100 cap.
 
+## Audit #4 — pre-registration (committed before any run)
+
+Target: **multica-ai/andrej-karpathy-skills `karpathy-guidelines`** (≈196k
+stars — 195,882 at pre-registration, 2026-07-24), license MIT as declared in
+the skill's SKILL.md frontmatter and repo README (no standalone LICENSE file;
+attribution to the repository). Vendored verbatim — YAML frontmatter omitted,
+ruleset body only — at repo HEAD commit `2c60614` (body unchanged since
+`64723a4`) as the `vs-karpathy` arm on **underkill's 12 LOC tasks**,
+`claude-opus-4-8`, K=5 (60 runs), same hold-out acceptance gates. The
+provenance/notice comment is stripped at injection, identical in scope to the
+placebo and every other comparison arm.
+
+Why underkill's tasks and the src-LOC headline: the skill's §2 "Simplicity
+First" makes a direct, falsifiable claim on underkill's exact pre-registered
+metric — *"If you write 200 lines and it could be 50, rewrite it... No
+features beyond what was asked. No abstractions for single-use code."* Its §3
+"Surgical Changes" and §4 "Goal-Driven Execution" also overlap
+underkill/repro-first territory, but **`locAddedSrc` is the pre-registered
+headline** and underkill's already-published off / placebo / on runs are the
+baselines (not re-run). Published win-or-lose, like every audit. The framing
+is explicit: this measures whether a ≈196k-star *general* behavioral ruleset
+moves the same LOC axis our 20-line *single-purpose* skill was built for —
+not a claim that either dominates the other on their off-axis intents.
+Metrics reported: src-LOC median vs off/placebo/underkill-on, hold-out
+acceptance, and cost/turns/test-LOC as the honest trade.
+
 ## Known limitations (updated as receipts land)
 
 - **Kill-rate ceiling (tests-that-bite).** The no-skill baseline killed 100%
@@ -176,4 +202,12 @@ Budget note: ~$6, bringing the launch-window total to ≈$99 of the $100 cap.
 ## Budget
 
 Total sweep budget for the launch window: **$100** hard cap across all skills,
-enforced per sweep via `--budget-usd`.
+enforced per sweep via `--budget-usd`. The launch window (the four founding
+skills plus Audits #1–#3) closed at ≈$99.6 of that cap.
+
+**Post-launch audits are budgeted and disclosed separately**, so the
+launch-window cap is never retroactively rewritten. Each audit added after
+launch gets its own dated cap here, committed before it runs:
+
+- **Audit #4** (`vs-karpathy`, 60 runs on underkill's tasks) — authorized
+  2026-07-24 at a **$12** cap, enforced via `--budget-usd`.
